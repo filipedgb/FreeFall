@@ -1,9 +1,10 @@
-package jogo;
+package game.objects;
 
 import android.content.res.Resources;
 import android.graphics.*;
 
 public class Clouds extends GameObject {
+	
 	private static Bitmap bmp;
 	
 	public Clouds(int x, int y, Resources res) {
@@ -25,7 +26,7 @@ public class Clouds extends GameObject {
 		}
 	}
 	public void draw(Canvas canvas, Paint paint) {
-		paint.setColor(Color.CYAN);
+		paint.setColor(Color.BLUE);
 		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
 		// canvas.drawBitmap(bmp, getX(), getY(), paint);
 	}

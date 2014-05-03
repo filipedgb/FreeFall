@@ -1,5 +1,7 @@
-package jogo;
+package game.main;
 
+import game.objects.Alien;
+import game.objects.Clouds;
 import android.content.Context;
 import android.graphics.*;
 import android.util.Log;
@@ -10,6 +12,7 @@ public class GameView extends View implements Runnable {
 	private boolean running = true;
 	private Paint paint;
 	private Clouds[] inimigos;
+	private Alien principal;
 	private int pontos = 0;
 	private long tempo = System.currentTimeMillis();
 	
@@ -26,12 +29,17 @@ public class GameView extends View implements Runnable {
 	}
 	
 	public void iniciaJogo() {
-		inimigos = new Clouds[getHeight()/50];
+		inimigos = new Clouds[5];
 		for (int i = 0; i < inimigos.length; i++) {
 			int y = i*+50;
 			int x = (int) (Math.random()*(getWidth()-25));
 			inimigos[i] = new Clouds(x, y, getResources());
 		}
+		
+		principal = new Alien(getWidth()/2, getHeight()/2);
+		
+		
+		
 		
 //		bmpFundo = BitmapFactory.decodeResource(getResources(), R.drawable.fundo);
 //		bmpFundo = Bitmap.createScaledBitmap(bmpFundo, getWidth(), getHeight(), true);
@@ -79,6 +87,8 @@ public class GameView extends View implements Runnable {
 			inimigos[i].draw(canvas, paint);
 		}
 		
+		principal.draw(canvas,paint);
+		
 //		//defino a cor do texto
 //		paint.setColor(Color.BLACK);
 //		paint.setTextSize(30);
@@ -88,31 +98,41 @@ public class GameView extends View implements Runnable {
 //		canvas.drawText("Tempo: " + segundos, 200, 30, paint);
 	}
 	
-//	public boolean onTouchEvent(MotionEvent event) {
-//		//pega o evento
-//		int action = event.getAction();
-//		//pega a posicao do dedo
-//		int x = (int) event.getX();
-//		int y = (int) event.getY();
-//		if (action == MotionEvent.ACTION_DOWN) {
-//			//afundou o dedo
-//			for (int i = 0; i < inimigos.length; i++) {
-//				if (inimigos[i].colide(x, y)) {
-//					inimigos[i].setX(-50);
-//					pontos ++;
-//				}
-//			}
-//		
-//		} else if (action==MotionEvent.ACTION_UP) {
-//			//soltou o dedo
-//
-//		} else if (action==MotionEvent.ACTION_MOVE) {
-//			//movimentou o dedo
-//			
-//		}
-//		
-//		return super.onTouchEvent(event);
-//	}
+	public boolean onTouchEvent(MotionEvent event) {
+		//pega o evento
+		boolean hold = true;
+		int action = event.getAction();
+		//pega a posicao do dedo
+		int x = (int) event.getX();
+		int y = (int) event.getY();
+		if (action == MotionEvent.ACTION_DOWN) {
+			//afundou o dedo
+			hold = true;
+			
+			if(event.getX() < getWidth()/2) {
+				principal.moveLeft();
+			}
+						
+			if(event.getX() > getWidth()/2) {
+				principal.moveRight();
+			}
+			
+			
+		
+		} else if (action==MotionEvent.ACTION_UP) {
+			//soltou o dedo
+			
+		//	hold = false;
+
+		}
+		else if (action==MotionEvent.ACTION_MOVE) {
+			//movimentou o dedo
+			
+			
+		}
+		
+		return super.onTouchEvent(event);
+	}
 	
 	//termina o jogo
 	public void release() {
