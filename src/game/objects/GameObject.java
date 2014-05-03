@@ -1,8 +1,8 @@
-package jogo;
+package game.objects;
 
 public class GameObject {
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	private int height;
 	private int width;
 	
