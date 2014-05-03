@@ -1,14 +1,9 @@
-package unifran.ely;
+package jogo;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
 
 public class GameView extends View implements Runnable {
 	private final static int INTERVAL = 25;
