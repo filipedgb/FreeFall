@@ -1,4 +1,4 @@
-package unifran.ely;
+package jogo;
 
 import android.app.Activity;
 import android.os.Bundle;

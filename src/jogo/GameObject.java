@@ -1,4 +1,4 @@
-package unifran.ely;
+package jogo;
 
 public class GameObject {
 	private int x;
