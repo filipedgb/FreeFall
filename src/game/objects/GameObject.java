@@ -51,4 +51,6 @@ public class GameObject {
 		if (y2<y) return false;
 		return true;
 	}
+	
+	
 }

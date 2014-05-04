@@ -4,21 +4,25 @@ import game.objects.Alien;
 import game.objects.Clouds;
 import android.content.Context;
 import android.graphics.*;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.view.*;
 
 public class GameView extends View implements Runnable {
-	private final static int INTERVAL = 25;
-	private boolean running = true;
+	private final static int INTERVAL = 200;
 	private Paint paint;
 	private Clouds[] inimigos;
 	private Alien principal;
-	private int pontos = 0;
-	private long tempo = System.currentTimeMillis();
-	
 	private boolean jogoIniciado = false;
 	
-	private Bitmap bmpFundo;
+	private int FRAMES_PER_SECOND = 25;
+    private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+	private long next_game_tick = System.currentTimeMillis();
+    private int sleep_time = 0;
+	private boolean running = true;
+
 	
 	public GameView(Context context) {
 		super(context);
@@ -38,9 +42,7 @@ public class GameView extends View implements Runnable {
 		
 		principal = new Alien(getWidth()/2, getHeight()/2);
 		
-		
-		
-		
+				
 //		bmpFundo = BitmapFactory.decodeResource(getResources(), R.drawable.fundo);
 //		bmpFundo = Bitmap.createScaledBitmap(bmpFundo, getWidth(), getHeight(), true);
 		
@@ -49,12 +51,19 @@ public class GameView extends View implements Runnable {
 
 	public void run() {
 		while (running) {
-			try {
-				Thread.sleep(INTERVAL);
-			} catch (Exception e) {
-				Log.e("Jogo", "Sleep da Thread");
-			}
 			update();
+			postInvalidate();
+			next_game_tick += SKIP_TICKS;
+			sleep_time = (int) (next_game_tick - System.currentTimeMillis());
+			if(sleep_time >= 0) {
+				try {
+					java.lang.Thread.sleep(sleep_time);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
 		}
 	}
 			
@@ -65,9 +74,37 @@ public class GameView extends View implements Runnable {
 		for (int i = 0; i < inimigos.length; i++) {
 			inimigos[i].move(getHeight(), getWidth());
 		}
+		
+		for(int i = 0; i < inimigos.length; i++) {
+			if(principal.colide(inimigos[i])) {
+				principal.getsHit();
+			}
+		}
+		
+		if(principal.getLifepoints() <= 0) {
+			release();
+		}
+		
+		if(principal.isTurbo() && principal.getTurbopoints() > 0) {
+			principal.setTurbopoints(principal.getTurbopoints()-1);
+		}
+		else if (principal.getTurbopoints() < 100 && !principal.isTurbo()){
+			principal.setTurbopoints(principal.getTurbopoints()+0.1);
 
-		//invoca o método draw
-		postInvalidate();
+		}
+		
+		
+		if(principal.getTurbopoints() <= 0) {
+			principal.setTurbo(false);
+			FRAMES_PER_SECOND = 25;
+			SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+		}
+		
+		
+		
+		
+
+		
 		
 	}
 	
@@ -89,13 +126,14 @@ public class GameView extends View implements Runnable {
 		
 		principal.draw(canvas,paint);
 		
-//		//defino a cor do texto
-//		paint.setColor(Color.BLACK);
-//		paint.setTextSize(30);
-//		canvas.drawText("Pontos: " + pontos, 0, 30, paint);
-//		
-//		int segundos = (int) (System.currentTimeMillis() - tempo)/1000;
-//		canvas.drawText("Tempo: " + segundos, 200, 30, paint);
+		//defino a cor do texto
+		paint.setColor(Color.WHITE);
+		paint.setTextSize(15);
+	//	canvas.drawText("Pontos: " + pontos, 0, 30, paint);
+		
+		canvas.drawText("Life points: " + principal.getLifepoints(), getWidth()/3, 30, paint);
+		canvas.drawText("Turbo points: " + (int) principal.getTurbopoints(), getWidth()/3, 50, paint);
+
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) {
@@ -107,7 +145,7 @@ public class GameView extends View implements Runnable {
 		int y = (int) event.getY();
 		if (action == MotionEvent.ACTION_DOWN) {
 			//afundou o dedo
-			hold = true;
+			//hold = true;
 			
 			if(event.getX() < getWidth()/2) {
 				principal.moveLeft();
@@ -117,10 +155,26 @@ public class GameView extends View implements Runnable {
 				principal.moveRight();
 			}
 			
+			if(event.getY() > (4*getHeight()/5) && principal.getTurbopoints() > 0) {
+				principal.setTurbo(true);
+				FRAMES_PER_SECOND = 65;
+				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+				Log.e("entrou", "" + FRAMES_PER_SECOND);
+			}
+			
+			if(event.getY() < (getHeight()/5)) {
+				principal.setTurbo(false);
+				FRAMES_PER_SECOND = 25;
+				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+				Log.e("entrou", "" + FRAMES_PER_SECOND);
+
+			}
+			
 			
 		
 		} else if (action==MotionEvent.ACTION_UP) {
 			//soltou o dedo
+			
 			
 		//	hold = false;
 
@@ -138,5 +192,6 @@ public class GameView extends View implements Runnable {
 	public void release() {
 		running = false;
 	}
+
 	
 }

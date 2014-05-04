@@ -25,6 +25,7 @@ public class Clouds extends GameObject {
 			setY(height+25);
 		}
 	}
+	
 	public void draw(Canvas canvas, Paint paint) {
 		paint.setColor(Color.BLUE);
 		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
