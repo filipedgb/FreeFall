@@ -10,7 +10,9 @@ public class GameState {
 	private Clouds[] clouds;
 	private Alien player;
 
-	
+	private float points;
+
+
 	private boolean movePlayerLeft = false;
 	private int moveCounterLeft = 15;
 	private boolean movePlayerRight = false;
@@ -45,9 +47,16 @@ public class GameState {
 	}
 
 	public void update() {
+		
+		if(player.isTurbo()) points += 1;
+		else points += 0.1;
+		
 		if (gameStarted==false) {
 			return;
 		}
+		
+		incTotalVelocity();
+		
 		for (int i = 0; i < clouds.length; i++) {
 			clouds[i].move(current_view.getHeight(), current_view.getWidth());
 		}
@@ -76,7 +85,7 @@ public class GameState {
 		}
 
 		if(player.isTurbo() && player.getTurbopoints() > 0) {
-			incVelocity();
+			setTotalVelocity();
 			player.setTurbopoints(player.getTurbopoints()-1);
 		}
 		else if (player.getTurbopoints() < 100 && !player.isTurbo()){
@@ -94,6 +103,13 @@ public class GameState {
 	}
 	
 
+	public float getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
 
 	boolean isMovePlayerLeft() {
 		return movePlayerLeft;
@@ -129,18 +145,25 @@ public class GameState {
 
 	private void resetVelocity() {
 		for(int i = 0; i < clouds.length; i++) {
-			clouds[i].resetVelocity();
+			clouds[i].setFast(false);
 			//randomizeClouds();
 		}
 	}
 
-	private void incVelocity() {
+	private void setTotalVelocity() {
 		for(int i = 0; i < clouds.length; i++) {
-			clouds[i].setVelocity(10);
+			clouds[i].setFast(true);
 			//randomizeClouds();
 		}
-		
 	}
+	
+	private void incTotalVelocity() {
+		for(int i = 0; i < clouds.length; i++) {
+			clouds[i].incVelocity();
+			//randomizeClouds();
+		}
+	}
+
 
 	public Clouds[] getClouds() {
 		return clouds;

@@ -84,7 +84,7 @@ public class GameView extends View implements Runnable {
 		
 		canvas.drawText("Life points: " + game.getPlayer().getLifepoints(), getWidth()/3, 30, paint);
 		canvas.drawText("Turbo points: " + (int) game.getPlayer().getTurbopoints(), getWidth()/3, 50, paint);
-
+		canvas.drawText("Score: " + (int) game.getPoints(), getWidth()/3, 70, paint);
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) {
@@ -97,9 +97,7 @@ public class GameView extends View implements Runnable {
 		if (action == MotionEvent.ACTION_DOWN) {
 			//afundou o dedo
 			//hold = true;
-			
 			if(event.getX() < getWidth()/2) {
-				//game.getPlayer().moveLeft();
 				game.setMoveCounterLeft(15);
 				game.setMovePlayerLeft(true);
 			}
@@ -111,17 +109,11 @@ public class GameView extends View implements Runnable {
 			
 			if(event.getY() > (4*getHeight()/5) && game.getPlayer().getTurbopoints() > 0) {
 				game.getPlayer().setTurbo(true);
-//				FRAMES_PER_SECOND = 65;
-//				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-//				Log.e("entrou", "" + FRAMES_PER_SECOND);
+
 			}
 			
 			if(event.getY() < (getHeight()/5)) {
 				game.getPlayer().setTurbo(false);
-//				FRAMES_PER_SECOND = 25;
-//				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-//				Log.e("entrou", "" + FRAMES_PER_SECOND);
-
 			}
 			
 			
