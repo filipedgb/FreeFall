@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
-import android.view.MotionEvent;
 
 public class Alien extends GameObject {
 
@@ -14,7 +13,7 @@ public class Alien extends GameObject {
 
 
 	public Alien(int x, int y) {
-		super(x, y, 15, 15);
+		super(x, y, 25, 25);
 		lifepoints = 1000;
 		turbopoints = 100;
 		turbo_enabled = false;
@@ -37,11 +36,11 @@ public class Alien extends GameObject {
 	}
 
 	public void moveLeft() {
-		x -= 15;
+		x -= 3;
 	}
 	
 	public void moveRight() {
-		x += 15;
+		x += 3;
 	}
 	
 	public void moveDown() {

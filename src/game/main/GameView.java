@@ -1,5 +1,6 @@
 package game.main;
 
+import game.logic.GameState;
 import game.objects.Alien;
 import game.objects.Clouds;
 import android.content.Context;
@@ -13,45 +14,33 @@ import android.view.*;
 public class GameView extends View implements Runnable {
 	private final static int INTERVAL = 200;
 	private Paint paint;
-	private Clouds[] inimigos;
-	private Alien principal;
-	private boolean jogoIniciado = false;
+//	private Clouds[] inimigos;
+//	private Alien principal;
+//	private boolean jogoIniciado = false;
 	
+	private GameState game;
 	private int FRAMES_PER_SECOND = 25;
     private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
 	private long next_game_tick = System.currentTimeMillis();
     private int sleep_time = 0;
 	private boolean running = true;
+	private int moveLeft_counter= 0;
 
 	
 	public GameView(Context context) {
 		super(context);
 		paint = new Paint();
+		game = new GameState(this);
 		Thread minhaThread = new Thread(this);
 		minhaThread.setPriority(Thread.MIN_PRIORITY);
 		minhaThread.start();
 	}
 	
-	public void iniciaJogo() {
-		inimigos = new Clouds[5];
-		for (int i = 0; i < inimigos.length; i++) {
-			int y = i*+50;
-			int x = (int) (Math.random()*(getWidth()-25));
-			inimigos[i] = new Clouds(x, y, getResources());
-		}
-		
-		principal = new Alien(getWidth()/2, getHeight()/2);
-		
-				
-//		bmpFundo = BitmapFactory.decodeResource(getResources(), R.drawable.fundo);
-//		bmpFundo = Bitmap.createScaledBitmap(bmpFundo, getWidth(), getHeight(), true);
-		
-		jogoIniciado = true;
-	}
+	
 
 	public void run() {
 		while (running) {
-			update();
+			game.update();
 			postInvalidate();
 			next_game_tick += SKIP_TICKS;
 			sleep_time = (int) (next_game_tick - System.currentTimeMillis());
@@ -67,51 +56,12 @@ public class GameView extends View implements Runnable {
 		}
 	}
 			
-	private void update() {
-		if (jogoIniciado==false) {
-			return;
-		}
-		for (int i = 0; i < inimigos.length; i++) {
-			inimigos[i].move(getHeight(), getWidth());
-		}
-		
-		for(int i = 0; i < inimigos.length; i++) {
-			if(principal.colide(inimigos[i])) {
-				principal.getsHit();
-			}
-		}
-		
-		if(principal.getLifepoints() <= 0) {
-			release();
-		}
-		
-		if(principal.isTurbo() && principal.getTurbopoints() > 0) {
-			principal.setTurbopoints(principal.getTurbopoints()-1);
-		}
-		else if (principal.getTurbopoints() < 100 && !principal.isTurbo()){
-			principal.setTurbopoints(principal.getTurbopoints()+0.1);
 
-		}
-		
-		
-		if(principal.getTurbopoints() <= 0) {
-			principal.setTurbo(false);
-			FRAMES_PER_SECOND = 25;
-			SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-		}
-		
-		
-		
-		
-
-		
-		
-	}
 	
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
-		if (jogoIniciado==false) {
-			iniciaJogo();
+		if (game.isGameStarted() ==false) {
+			game.init();
 		}
 		
 		//desenha cor de fundo
@@ -120,19 +70,20 @@ public class GameView extends View implements Runnable {
 		
 		//define a cor do desenho
 		paint.setColor(Color.BLUE);
-		for (int i = 0; i < inimigos.length; i++) {
-			inimigos[i].draw(canvas, paint);
+		for (int i = 0; i < game.getClouds().length; i++) {
+			game.getClouds()[i].draw(canvas, paint);
 		}
 		
-		principal.draw(canvas,paint);
+	
+		game.getPlayer().draw(canvas,paint);
 		
 		//defino a cor do texto
 		paint.setColor(Color.WHITE);
 		paint.setTextSize(15);
 	//	canvas.drawText("Pontos: " + pontos, 0, 30, paint);
 		
-		canvas.drawText("Life points: " + principal.getLifepoints(), getWidth()/3, 30, paint);
-		canvas.drawText("Turbo points: " + (int) principal.getTurbopoints(), getWidth()/3, 50, paint);
+		canvas.drawText("Life points: " + game.getPlayer().getLifepoints(), getWidth()/3, 30, paint);
+		canvas.drawText("Turbo points: " + (int) game.getPlayer().getTurbopoints(), getWidth()/3, 50, paint);
 
 	}
 	
@@ -148,25 +99,28 @@ public class GameView extends View implements Runnable {
 			//hold = true;
 			
 			if(event.getX() < getWidth()/2) {
-				principal.moveLeft();
+				//game.getPlayer().moveLeft();
+				game.setMoveCounterLeft(15);
+				game.setMovePlayerLeft(true);
 			}
 						
 			if(event.getX() > getWidth()/2) {
-				principal.moveRight();
+				game.setMoveCounterRight(15);
+				game.setMovePlayerRight(true);
 			}
 			
-			if(event.getY() > (4*getHeight()/5) && principal.getTurbopoints() > 0) {
-				principal.setTurbo(true);
-				FRAMES_PER_SECOND = 65;
-				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-				Log.e("entrou", "" + FRAMES_PER_SECOND);
+			if(event.getY() > (4*getHeight()/5) && game.getPlayer().getTurbopoints() > 0) {
+				game.getPlayer().setTurbo(true);
+//				FRAMES_PER_SECOND = 65;
+//				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+//				Log.e("entrou", "" + FRAMES_PER_SECOND);
 			}
 			
 			if(event.getY() < (getHeight()/5)) {
-				principal.setTurbo(false);
-				FRAMES_PER_SECOND = 25;
-				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-				Log.e("entrou", "" + FRAMES_PER_SECOND);
+				game.getPlayer().setTurbo(false);
+//				FRAMES_PER_SECOND = 25;
+//				SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+//				Log.e("entrou", "" + FRAMES_PER_SECOND);
 
 			}
 			

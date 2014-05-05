@@ -1,28 +1,28 @@
 package game.objects;
 
 public class GameObject {
-	protected int x;
-	protected int y;
+	protected float x;
+	protected float y;
 	private int height;
 	private int width;
 	
-	public GameObject(int x, int y, int height, int width) {
+	public GameObject(float x, float y, int height, int width) {
 		this.x = x;
 		this.y = y;
 		this.height = height;
 		this.width = width;
 	}
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	public void setX(int x) {
 		this.x = x;
 	}
-	public int getY() {
+	public float getY() {
 		return y;
 	}
-	public void setY(int y) {
-		this.y = y;
+	public void setY(float f) {
+		this.y = f;
 	}
 	public int getHeight() {
 		return height;
