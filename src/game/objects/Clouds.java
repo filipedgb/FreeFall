@@ -6,7 +6,8 @@ import android.graphics.*;
 public class Clouds extends GameObject {
 	
 	private static Bitmap bmp;
-	private int velocity = 5;
+	private float velocity = 5;
+	private boolean fast = false;
 	
 	public Clouds(int x, int y, Resources res) {
 		super(x, y, 40, 40);
@@ -18,9 +19,18 @@ public class Clouds extends GameObject {
 //		}
 	}
 	
+	public boolean isFast() {
+		return fast;
+	}
+
+	public void setFast(boolean fast) {
+		this.fast = fast;
+	}
+
 	public void move(int height, int width) {
 		if (getY()>0) {
-			setY(getY()-velocity);
+			if(fast)setY(getY()-(velocity+10));
+			else setY(getY()-velocity);
 		} else {
 			int x = (int) (Math.random() * (width-25));
 			int y = (int) (Math.random() *200);
@@ -34,15 +44,15 @@ public class Clouds extends GameObject {
 	}
 	
 	public void incVelocity() {
-		this.velocity += 1;
+		this.velocity += 0.01;
 	}
 	
-	public int getVelocity() {
+	public float getVelocity() {
 		return velocity;
 	}
 
-	public void setVelocity(int velocity) {
-		this.velocity = velocity;
+	public void setVelocity(float a) {
+		this.velocity = a;
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
