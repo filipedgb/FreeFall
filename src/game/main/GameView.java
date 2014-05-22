@@ -1,8 +1,6 @@
 package game.main;
 
-import game.logic.GameState;
-import game.objects.Alien;
-import game.objects.Clouds;
+import game.states.GameState;
 import android.content.Context;
 import android.graphics.*;
 import android.hardware.Sensor;
@@ -10,6 +8,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.view.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class GameView extends View implements Runnable {
 	private final static int INTERVAL = 200;
@@ -24,7 +24,6 @@ public class GameView extends View implements Runnable {
 	private long next_game_tick = System.currentTimeMillis();
     private int sleep_time = 0;
 	private boolean running = true;
-	private int moveLeft_counter= 0;
 
 	
 	public GameView(Context context) {
@@ -64,27 +63,29 @@ public class GameView extends View implements Runnable {
 			game.init();
 		}
 		
+		
 		//desenha cor de fundo
 		canvas.drawColor(Color.BLACK);
-//		canvas.drawBitmap(bmpFundo, 0, 0, paint);
+
 		
 		//define a cor do desenho
 		paint.setColor(Color.BLUE);
-		for (int i = 0; i < game.getClouds().length; i++) {
-			game.getClouds()[i].draw(canvas, paint);
+		for (int i = 0; i < game.getObjects().size(); i++) {
+			game.getObjects().get(i).draw(canvas, paint);
 		}
 		
 	
 		game.getPlayer().draw(canvas,paint);
+		game.getHealth_item().draw(canvas,paint);
+		game.getHealth_item().draw(canvas,paint);
+		game.getSlowmotion_item().draw(canvas,paint);
 		
 		//defino a cor do texto
 		paint.setColor(Color.WHITE);
-		paint.setTextSize(15);
-	//	canvas.drawText("Pontos: " + pontos, 0, 30, paint);
-		
-		canvas.drawText("Life points: " + game.getPlayer().getLifepoints(), getWidth()/3, 30, paint);
-		canvas.drawText("Turbo points: " + (int) game.getPlayer().getTurbopoints(), getWidth()/3, 50, paint);
+		paint.setTextSize(20);
 		canvas.drawText("Score: " + (int) game.getPoints(), getWidth()/3, 70, paint);
+		paint.setTextSize(10);
+		canvas.drawText("Life: " + game.getPlayer().getLifepoints(), getWidth()/3, 50, paint);
 	}
 	
 	public boolean onTouchEvent(MotionEvent event) {
@@ -97,27 +98,32 @@ public class GameView extends View implements Runnable {
 		if (action == MotionEvent.ACTION_DOWN) {
 			//afundou o dedo
 			//hold = true;
-			if(event.getX() < getWidth()/2) {
-				game.setMoveCounterLeft(15);
-				game.setMovePlayerLeft(true);
-			}
-						
-			if(event.getX() > getWidth()/2) {
-				game.setMoveCounterRight(15);
-				game.setMovePlayerRight(true);
-			}
+//			if(event.getX() < getWidth()/2) {
+//				game.setMoveCounterLeft(15);
+//				game.setMovePlayerLeft(true);
+//			}
+//						
+//			if(event.getX() > getWidth()/2) {
+//				game.setMoveCounterRight(15);
+//				game.setMovePlayerRight(true);
+//			}
+//			
+//			
+//			
+//			if(event.getY() > (4*getHeight()/5) && game.getPlayer().getTurbopoints() > 0) {
+//				game.getPlayer().setTurbo(true);
+//
+//			}
+//			
+//			if(event.getY() < (getHeight()/5)) {
+//				game.getPlayer().setTurbo(false);
+//			}
 			
-			if(event.getY() > (4*getHeight()/5) && game.getPlayer().getTurbopoints() > 0) {
-				game.getPlayer().setTurbo(true);
-
-			}
+			game.setMovePlayer(true);
+			game.setMoveCounter(25);
+			game.getPlayer().setVelocity_x(event.getX() - game.getPlayer().getX());
+	
 			
-			if(event.getY() < (getHeight()/5)) {
-				game.getPlayer().setTurbo(false);
-			}
-			
-			
-		
 		} else if (action==MotionEvent.ACTION_UP) {
 			//soltou o dedo
 			
