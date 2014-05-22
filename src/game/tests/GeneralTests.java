@@ -31,7 +31,4 @@ public class GeneralTests {
 		// verifica se velocidade funciona como esperados
 	}
 	
-	
-	
-
 }

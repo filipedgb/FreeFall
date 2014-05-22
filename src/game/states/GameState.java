@@ -8,7 +8,6 @@ import game.objects.Health;
 import game.objects.Player;
 import game.objects.Obstacle;
 import game.objects.SlowDown;
-import android.graphics.Paint;
 import android.util.Log;
 
 public class GameState {
