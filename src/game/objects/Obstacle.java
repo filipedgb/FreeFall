@@ -19,6 +19,17 @@ public class Obstacle extends GameObject {
 //		}
 	}
 	
+	public Obstacle(int x, int y) {
+		super(x, y, 40, 40);
+		damage = 10;
+	}
+	
+	public Obstacle(int x, int y, int damage) {
+		super(x, y, 40, 40);
+		this.damage = damage;
+	}
+	
+	
 	public boolean isFast() {
 		return fast;
 	}
@@ -30,7 +41,13 @@ public class Obstacle extends GameObject {
 	public void damage() {
 		
 	}
-
+	
+	public void damage(Player player) {
+		if(this.colide(player)) {
+			player.addHealthPoints(-damage);
+		}
+	}
+	
 
 	public void draw(Canvas canvas, Paint paint) {
 		paint.setColor(Color.CYAN);

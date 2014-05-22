@@ -2,12 +2,11 @@ package game.objects;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 
 public abstract class GameObject {
 	private int height;
 	private int width;
-	
+
 	protected float x;
 	protected float y;
 	protected float terminal_velocity = 50;
@@ -17,7 +16,6 @@ public abstract class GameObject {
 	protected float velocity_x = 0;
 	protected float resistence ;
 
-	
 
 	public GameObject(float x, float y, int height, int width) {
 		this.x = x;
@@ -25,8 +23,7 @@ public abstract class GameObject {
 		this.height = height;
 		this.width = width;
 	}
-	
-	
+
 	public boolean colide(GameObject r) {
 		if (r.getX()>x+width) return false;
 		if (r.getY() > y +height) return false;
@@ -34,7 +31,7 @@ public abstract class GameObject {
 		if (r.getY()+r.getHeight()<y) return false;
 		return true;
 	}
-	
+
 	public boolean colide(int x2, int y2) {
 		if (x2>x+width) return false;
 		if (y2>y+height) return false;
@@ -42,13 +39,13 @@ public abstract class GameObject {
 		if (y2<y) return false;
 		return true;
 	}
-	
-	
+
+
 	public void move(int width ,int height) {
-		
+
 		velocity_x = velocity_x + (accelaration_x + resistence)/25;
 		velocity_y = velocity_y + (accelaration_y )/25;
-		
+
 		if(velocity_y >= terminal_velocity) {
 			accelaration_y = 0;
 		}
@@ -63,7 +60,7 @@ public abstract class GameObject {
 			setY(height+50+y);
 		}
 	}
-	
+
 	public float getAccelaration_y() {
 		return accelaration_y;
 	}
@@ -105,8 +102,6 @@ public abstract class GameObject {
 
 
 	abstract public void draw(Canvas canvas, Paint paint);
-	
-	
 
 	public float getX() {
 		return x;
@@ -132,9 +127,4 @@ public abstract class GameObject {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
-
-
-
-	
 }
