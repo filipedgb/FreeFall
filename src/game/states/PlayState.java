@@ -62,6 +62,8 @@ public class PlayState implements GameState{
 			return;
 		}
 		
+		points += 0.25;
+		
 		if(movePlayer) {
 			player.move();
 			//moveCounter--;
