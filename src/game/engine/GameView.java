@@ -72,6 +72,7 @@ public class GameView extends View{
 		game.getHealth_item().draw(canvas,paint);
 		game.getHealth_item().draw(canvas,paint);
 		game.getSlowmotion_item().draw(canvas,paint);
+		game.getNodamage_item().draw(canvas,paint);
 
 		//defino a cor do texto
 		paint.setColor(Color.WHITE);

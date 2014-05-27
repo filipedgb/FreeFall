@@ -2,12 +2,13 @@ package game.entities;
 
 import android.content.res.Resources;
 import android.graphics.*;
+import android.util.Log;
 
 public class Obstacle extends GameObject {
 	
 	private static Bitmap bmp;
 	private boolean fast = false;
-	private float damage;
+	private int damage;
 	
 	public Obstacle(int x, int y, Resources res) {
 		super(x, y, 40, 40);
@@ -17,6 +18,8 @@ public class Obstacle extends GameObject {
 //			//redimensiona imagem
 //			bmp = Bitmap.createScaledBitmap(bmp, 40, 40, true);
 //		}
+		
+		damage = 10;
 	}
 	
 	public Obstacle(int x, int y) {
@@ -38,12 +41,10 @@ public class Obstacle extends GameObject {
 		this.fast = fast;
 	}
 
-	public void damage() {
-		
-	}
 	
 	public void damage(Player player) {
 		if(this.colide(player)) {
+			Log.e("damage", "" + damage);
 			player.addHealthPoints(-damage);
 		}
 	}
