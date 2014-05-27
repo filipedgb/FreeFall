@@ -24,7 +24,6 @@ public class GameView extends View{
 		super(context);
 		paint = new Paint();
 		game = new PlayState(this);
-		game.init();
 		GameLoop loop = new GameLoop(this,game);
 		/*
 		Thread minhaThread = new Thread(this);
