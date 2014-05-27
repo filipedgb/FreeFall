@@ -36,12 +36,10 @@ public class PlayState implements GameState{
 	}
 
 	public void init() {
-			
 		randomizeObstacles();	
 		player = new Player(current_view.getWidth()/2, current_view.getHeight()/3);
 		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200,15,15);
 		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200,15,15);
-		
 		gameStarted = true;
 	}
 
@@ -57,7 +55,8 @@ public class PlayState implements GameState{
 
 	public void update() {
 		if (gameStarted==false) {
-			return;
+			Log.e("update", "entrou no gamestartfals");
+					return;
 		}
 		
 		if(movePlayer) {
