@@ -1,8 +1,10 @@
 package game.tests;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
-import game.objects.*;
+
+import game.entities.*;
 
 public class PlayerTests {
 

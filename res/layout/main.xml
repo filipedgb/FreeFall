@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/mainmenu"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        android:minHeight="50dp"
+        android:minWidth="145dp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/exit_button"
+        android:layout_alignLeft="@+id/exit_button"
+        android:layout_marginBottom="146dp"
+        android:minHeight="50dp"
+        android:minWidth="145dp" />
+
+</RelativeLayout>
