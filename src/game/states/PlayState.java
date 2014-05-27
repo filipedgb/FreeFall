@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import game.engine.GameView;
 import game.entities.GameObject;
 import game.entities.Health;
+import game.entities.Invulnerability;
 import game.entities.Obstacle;
 import game.entities.Player;
 import game.entities.SlowDown;
@@ -12,10 +13,11 @@ import android.util.Log;
 
 public class PlayState implements GameState{
 
-	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
+	private ArrayList<Obstacle> objects = new ArrayList<Obstacle>();
 	private Player player;
 	private Health health_item;
 	private SlowDown slowmotion_item;
+	private Invulnerability nodamage_item;
 		
 	private float points;
 
@@ -38,8 +40,10 @@ public class PlayState implements GameState{
 	public void init() {
 		randomizeObstacles();	
 		player = new Player(current_view.getWidth()/2, current_view.getHeight()/3);
-		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200,15,15);
-		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200,15,15);
+		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight() ,15,15);
+		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight(),15,15);
+		nodamage_item = new Invulnerability((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight(),15,15);
+
 		gameStarted = true;
 	}
 
@@ -49,14 +53,13 @@ public class PlayState implements GameState{
 		for (int i = 0; i < 5; i++) {
 			int y = (int) (Math.random() *200);
 			x = (int) (Math.random()*(current_view.getWidth()-25));
-			objects.add(new Obstacle(x, y, current_view.getResources()));
+			objects.add(new Obstacle(x, current_view.getHeight()+y, current_view.getResources()));
 		}		
 	}
 
 	public void update() {
 		if (gameStarted==false) {
-			Log.e("update", "entrou no gamestartfals");
-					return;
+			return;
 		}
 		
 		if(movePlayer) {
@@ -65,6 +68,11 @@ public class PlayState implements GameState{
 		}
 		
 		health_item.caught(player);
+		nodamage_item.caught(player);
+		
+		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
+		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
+		
 		
 		if(slowmotion_item.colide(player)) {
 			decreaseVelocity();
@@ -72,13 +80,13 @@ public class PlayState implements GameState{
 	
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move(current_view.getHeight(), current_view.getWidth());
+			objects.get(i).damage(player);
 		}
 		
 		health_item.move(current_view.getHeight(), current_view.getWidth());
 		slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
-		
-		Log.e("POSICAO",health_item.getX() + " " + health_item.getY());
-		
+		nodamage_item.move(current_view.getHeight(),current_view.getWidth());
+	
 		if(player.getLifepoints() <= 0) {
 			current_view.release();
 		}
@@ -120,11 +128,11 @@ public class PlayState implements GameState{
 	}
 
 
-	public ArrayList<GameObject> getObjects() {
+	public ArrayList<Obstacle> getObjects() {
 		return objects;
 	}
 
-	void setObjects(ArrayList<GameObject> objects) {
+	void setObjects(ArrayList<Obstacle> objects) {
 		this.objects = objects;
 	}
 
@@ -167,5 +175,9 @@ public class PlayState implements GameState{
 
 	public void setCurrent_view(GameView current_view) {
 		this.current_view = current_view;
+	}
+
+	public Invulnerability getNodamage_item() {
+		return nodamage_item;
 	}
 }

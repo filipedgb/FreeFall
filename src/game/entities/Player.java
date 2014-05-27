@@ -3,6 +3,7 @@ package game.entities;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 public class Player extends GameObject {
 
@@ -10,6 +11,7 @@ public class Player extends GameObject {
 	private int fuel;
 	boolean turbo_enabled;
 	boolean invulnerable;
+	private int invulnerable_ticks;
 
 	public Player(int x, int y) {
 		super(x, y, 25, 25);
@@ -18,6 +20,7 @@ public class Player extends GameObject {
 		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
+		invulnerable_ticks = 0;
 	}
 
 	public Player() {
@@ -27,6 +30,7 @@ public class Player extends GameObject {
 		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
+		invulnerable_ticks = 0;
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
@@ -59,11 +63,25 @@ public class Player extends GameObject {
 	}
 
 	public void addHealthPoints(float value) {
-		if(!invulnerable || value>0)
-			lifepoints += value;
+		if(!invulnerable || value > 0) lifepoints += value;
+	
 	}
 	
 	public void setInvulnerable(boolean x) {
 		invulnerable = x;
+		invulnerable_ticks = 100;
+	}
+	
+	public boolean isInvulnerable() {
+		return invulnerable;
+	}
+
+	public int getInvulnerable_ticks() {
+		// TODO Auto-generated method stub
+		return invulnerable_ticks;
+	}
+	
+	public void decrement_ticks() {
+		invulnerable_ticks--;
 	}
 }
