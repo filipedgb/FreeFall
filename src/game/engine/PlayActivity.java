@@ -3,6 +3,8 @@ package game.engine;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class PlayActivity extends Activity {
 
@@ -10,22 +12,9 @@ public class PlayActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(new GameView(getBaseContext()));
 	}
-
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-		
-		Intent intent = new Intent(PlayActivity.this, GameMainActivity.class);
-        startActivity(intent);
-        finish();
-	}
-	
-	
-
-	
-	
 
 }

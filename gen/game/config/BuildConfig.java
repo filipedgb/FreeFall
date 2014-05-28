@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package unifran.ely;
+package game.config;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

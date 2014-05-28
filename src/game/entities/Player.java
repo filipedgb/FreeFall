@@ -1,9 +1,14 @@
 package game.entities;
 
+import game.config.R;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
+import android.content.res.Resources;
+
 
 public class Player extends GameObject {
 
@@ -13,18 +18,26 @@ public class Player extends GameObject {
 	boolean invulnerable;
 	private int invulnerable_ticks;
 
+
 	public Player(int x, int y) {
-		super(x, y, 25, 25);
+		super(x, y, 50, 50);
 		lifepoints = 1000;
 		fuel = 100;
 		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
+		
+		if (bmp==null) {
+			//instancio a imagem do resource
+			bmp = BitmapFactory.decodeResource(res, R.drawable.alien);
+			//redimensiona imagem
+			bmp = Bitmap.createScaledBitmap(bmp, 50, 50, true);
+		}
 	}
 
 	public Player() {
-		super(0, 0, 25, 25);
+		this(0,0);
 		lifepoints = 1000;
 		fuel = 100;
 		turbo_enabled = false;
@@ -34,9 +47,9 @@ public class Player extends GameObject {
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
-		paint.setColor(Color.RED);
-		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
-		// canvas.drawBitmap(bmp, getX(), getY(), paint);
+		//paint.setColor(Color.RED);
+		//canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
+		canvas.drawBitmap(bmp, getX(), getY(), paint);
 	}
 
 	public void move() {

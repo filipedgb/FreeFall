@@ -1,6 +1,6 @@
 package game.engine;
 
-import unifran.ely.R;
+import game.config.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,8 +18,7 @@ public class GameMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.main);
 
@@ -44,7 +43,7 @@ public class GameMainActivity extends Activity {
 			public void onClick(View v) {
 				 Intent intent = new Intent(GameMainActivity.this, PlayActivity.class);
 		         startActivity(intent);
-		         finish();
+		         //finish();
 			}
 		});
 	}

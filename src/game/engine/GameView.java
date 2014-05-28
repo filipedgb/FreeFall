@@ -1,6 +1,8 @@
 package game.engine;
 
+import game.entities.GameObject;
 import game.states.PlayState;
+import android.R.color;
 import android.content.Context;
 import android.graphics.*;
 import android.view.*;
@@ -22,6 +24,7 @@ public class GameView extends View{
 
 	public GameView(Context context) {
 		super(context);
+		GameObject.setRes(this.getResources());
 		paint = new Paint();
 		game = new PlayState(this);
 		GameLoop loop = new GameLoop(this,game);
@@ -29,11 +32,11 @@ public class GameView extends View{
 		Thread minhaThread = new Thread(this);
 		minhaThread.setPriority(Thread.MIN_PRIORITY);
 		minhaThread.start();
-		*/
+		 */
 	}
 
-	
-/*
+
+	/*
 	public void run() {
 		while (running) {
 			game.update();
@@ -50,8 +53,8 @@ public class GameView extends View{
 			}
 		}
 	}
-	
-	*/
+
+	 */
 
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
@@ -60,10 +63,9 @@ public class GameView extends View{
 		}
 
 		//desenha cor de fundo
-		canvas.drawColor(Color.BLACK);
+		canvas.drawColor(Color.argb(255, 204, 255, 255));
 
 		//define a cor do desenho
-		paint.setColor(Color.BLUE);
 		for (int i = 0; i < game.getObjects().size(); i++) {
 			game.getObjects().get(i).draw(canvas, paint);
 		}
@@ -83,49 +85,23 @@ public class GameView extends View{
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
-		//pega o evento
-		boolean hold = true;
 		int action = event.getAction();
-		//pega a posicao do dedo
-		int x = (int) event.getX();
-		int y = (int) event.getY();
+		float temp;
+		
 		if (action == MotionEvent.ACTION_DOWN) {
-			/*afundou o dedo
-			hold = true;
-						if(event.getX() < getWidth()/2) {
-							game.setMoveCounterLeft(15);
-							game.setMovePlayerLeft(true);
-						}
-
-						if(event.getX() > getWidth()/2) {
-							game.setMoveCounterRight(15);
-							game.setMovePlayerRight(true);
-						}
-
-
-						if(event.getY() > (4*getHeight()/5) && game.getPlayer().getTurbopoints() > 0) {
-							game.getPlayer().setTurbo(true);
-
-						}
-
-						if(event.getY() < (getHeight()/5)) {
-							game.getPlayer().setTurbo(false);
-						}
-			 */
 			game.setMovePlayer(true);
 			game.setMoveCounter(25);
-			game.getPlayer().setVelocity_x(event.getX() - game.getPlayer().getX());
 
+			if(event.getX() < getWidth()/2) temp = this.getWidth()/2 ;
+			else temp = - this.getWidth()/2;
+			//	game.getPlayer().setVelocity_x((event.getX()-getWidth()/2));
+			for(int i = 0; i < game.getObjects().size(); i++){
+				game.getObjects().get(i).setVelocity_x(temp);
+			}
 
-		} else if (action==MotionEvent.ACTION_UP) {
-			//soltou o dedo
-
-
-			//	hold = false;
-
-		}
-		else if (action==MotionEvent.ACTION_MOVE) {
-			//movimentou o dedo
+			game.getHealth_item().setVelocity_x(temp);
+			game.getSlowmotion_item().setVelocity_x(temp);
+			game.getNodamage_item().setVelocity_x(temp);
 
 		}
 

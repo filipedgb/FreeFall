@@ -1,5 +1,7 @@
 package game.entities;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -15,7 +17,18 @@ public abstract class GameObject {
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
 	protected float resistence ;
+	
+	protected static Resources res;
+	protected Bitmap bmp;
 
+
+	public static Resources getRes() {
+		return res;
+	}
+
+	public static void setRes(Resources res) {
+		GameObject.res = res;
+	}
 
 	public GameObject(float x, float y, int height, int width) {
 		this.x = x;
@@ -42,6 +55,8 @@ public abstract class GameObject {
 
 
 	public void move(int width ,int height) {
+
+		resistence = (float) (-0.9*velocity_x);
 
 		velocity_x = velocity_x + (accelaration_x + resistence)/25;
 		velocity_y = velocity_y + (accelaration_y )/25;
