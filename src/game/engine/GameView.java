@@ -2,24 +2,23 @@ package game.engine;
 
 import game.entities.GameObject;
 import game.states.PlayState;
-import android.R.color;
 import android.content.Context;
 import android.graphics.*;
 import android.view.*;
 
 public class GameView extends View{
-	private final static int INTERVAL = 200;
 	private Paint paint;
-	//	private Clouds[] inimigos;
-	//	private Alien principal;
-	//	private boolean jogoIniciado = false;
+//	private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
+//	private long next_game_tick = System.currentTimeMillis();
+//	private int sleep_time = 0;
+//	private final static int INTERVAL = 200;
+//	private int FRAMES_PER_SECOND = 25;
+//	private Clouds[] inimigos;
+//	private Alien principal;
+//	private boolean jogoIniciado = false;
 
 	private PlayState game;
-	private int FRAMES_PER_SECOND = 25;
-	private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-	private long next_game_tick = System.currentTimeMillis();
-	private int sleep_time = 0;
-	private boolean running = true;
+
 
 
 	public GameView(Context context) {
@@ -27,7 +26,7 @@ public class GameView extends View{
 		GameObject.setRes(this.getResources());
 		paint = new Paint();
 		game = new PlayState(this);
-		GameLoop loop = new GameLoop(this,game);
+		new GameLoop(this,game);
 		/*
 		Thread minhaThread = new Thread(this);
 		minhaThread.setPriority(Thread.MIN_PRIORITY);
@@ -109,9 +108,6 @@ public class GameView extends View{
 	}
 
 	//termina o jogo
-	public void release() {
-		running = false;
-	}
 
 
 }

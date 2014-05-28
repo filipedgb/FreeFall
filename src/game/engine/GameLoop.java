@@ -4,7 +4,6 @@ import game.states.PlayState;
 
 public class GameLoop extends Thread {
 
-	private final static int INTERVAL = 200;
 	private int FRAMES_PER_SECOND = 25;
 	private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
 	private long next_game_tick = System.currentTimeMillis();

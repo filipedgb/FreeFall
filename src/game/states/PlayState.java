@@ -3,13 +3,11 @@ package game.states;
 import java.util.ArrayList;
 
 import game.engine.GameView;
-import game.entities.GameObject;
 import game.entities.Health;
 import game.entities.Invulnerability;
 import game.entities.Obstacle;
 import game.entities.Player;
 import game.entities.SlowDown;
-import android.util.Log;
 
 public class PlayState implements GameState{
 
@@ -18,17 +16,8 @@ public class PlayState implements GameState{
 	private Health health_item;
 	private SlowDown slowmotion_item;
 	private Invulnerability nodamage_item;
-	private boolean out_of_bonds;
-		
 	private float points;
-	private float temp;
 
-
-//	private boolean movePlayerLeft = false;
-//	private int moveCounterLeft = 15;
-//	private boolean movePlayerRight = false;
-//	private int moveCounterRight = 15;
-	
 	private boolean movePlayer = false;
 	private int moveCounter = 25;
 	
@@ -41,7 +30,7 @@ public class PlayState implements GameState{
 
 	public void init() {
 		randomizeObstacles();	
-		player = new Player(current_view.getWidth()/2, current_view.getHeight()/3);
+		player = new Player(current_view.getWidth()/2-50, current_view.getHeight()/3);
 		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight());
 		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
 		nodamage_item = new Invulnerability((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*150 + current_view.getHeight());
@@ -51,9 +40,9 @@ public class PlayState implements GameState{
 
 	private void randomizeObstacles() {
 		int x;
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 			int y = (int) (Math.random() *200);
-			x = (int) (Math.random()*(current_view.getWidth()-25));
+			x = (int) (Math.random()*(6*current_view.getWidth())-3*current_view.getWidth());
 			objects.add(new Obstacle(x, current_view.getHeight()+y));
 		}		
 	}
@@ -80,36 +69,18 @@ public class PlayState implements GameState{
 			decreaseVelocity();
 		}
 
-		
-//		if(player.getX() > current_view.getWidth() || player.getX() < -50) {
-//			if(player.getX() < 0) temp = current_view.getWidth()/2 ;
-//			else temp = - current_view.getWidth()/2;
-//			
-//			player.setVelocity_x(temp);
-//			health_item.setVelocity_x(temp);
-//			slowmotion_item.setVelocity_x(temp);
-//			nodamage_item.setVelocity_x(temp);
-//			
-//		}
-	
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move(current_view.getHeight(), current_view.getWidth());
 			objects.get(i).damage(player);
-//			if(player.getX() > current_view.getWidth() || player.getX() < -50) {
-//				objects.get(i).setVelocity_x(temp);
-//			}
+
 		}
 		
-	
-
-		
+			
 		health_item.move(current_view.getHeight(), current_view.getWidth());
 		slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
 		nodamage_item.move(current_view.getHeight(),current_view.getWidth());
 	
-		if(player.getLifepoints() <= 0) {
-			current_view.release();
-		}
+	
 	}
 	
 

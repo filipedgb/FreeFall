@@ -1,6 +1,5 @@
 package game.entities;
 
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 

@@ -1,6 +1,5 @@
 package game.entities;
 
-import android.content.res.Resources;
 
 public abstract class Item extends GameObject {
 	
