@@ -92,7 +92,7 @@ public class PlayerTests {
 		int life = p.getLifepoints();
 
 		//cria obstaculo que da a vida ao player
-		Health h = new Health(p.getX(),p.getY(), 5,5);
+		Health h = new Health(p.getX(),p.getY());
 
 		//verifica se apanha
 		assertTrue(h.colide(p));

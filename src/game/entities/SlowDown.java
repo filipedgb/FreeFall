@@ -1,13 +1,14 @@
 package game.entities;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
 public class SlowDown extends Item  {
 
-	public SlowDown(float x, float y, int height, int width) {
-		super(x, y, height, width);
+	public SlowDown(float x, float y) {
+		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
 

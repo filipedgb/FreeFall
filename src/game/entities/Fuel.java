@@ -1,12 +1,13 @@
 package game.entities;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public class Fuel extends Item {
 
-	public Fuel(float x, float y, int height, int width) {
-		super(x, y, height, width);
+	public Fuel(float x, float y) {
+		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
 

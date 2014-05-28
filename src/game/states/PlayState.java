@@ -18,8 +18,10 @@ public class PlayState implements GameState{
 	private Health health_item;
 	private SlowDown slowmotion_item;
 	private Invulnerability nodamage_item;
+	private boolean out_of_bonds;
 		
 	private float points;
+	private float temp;
 
 
 //	private boolean movePlayerLeft = false;
@@ -40,20 +42,19 @@ public class PlayState implements GameState{
 	public void init() {
 		randomizeObstacles();	
 		player = new Player(current_view.getWidth()/2, current_view.getHeight()/3);
-		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight() ,15,15);
-		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight(),15,15);
-		nodamage_item = new Invulnerability((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight(),15,15);
-
+		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight());
+		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
+		nodamage_item = new Invulnerability((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*150 + current_view.getHeight());
 		gameStarted = true;
 	}
 
 
 	private void randomizeObstacles() {
 		int x;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			int y = (int) (Math.random() *200);
 			x = (int) (Math.random()*(current_view.getWidth()-25));
-			objects.add(new Obstacle(x, current_view.getHeight()+y, current_view.getResources()));
+			objects.add(new Obstacle(x, current_view.getHeight()+y));
 		}		
 	}
 
@@ -75,15 +76,32 @@ public class PlayState implements GameState{
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
 		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
 		
-		
 		if(slowmotion_item.colide(player)) {
 			decreaseVelocity();
 		}
+
+		
+//		if(player.getX() > current_view.getWidth() || player.getX() < -50) {
+//			if(player.getX() < 0) temp = current_view.getWidth()/2 ;
+//			else temp = - current_view.getWidth()/2;
+//			
+//			player.setVelocity_x(temp);
+//			health_item.setVelocity_x(temp);
+//			slowmotion_item.setVelocity_x(temp);
+//			nodamage_item.setVelocity_x(temp);
+//			
+//		}
 	
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move(current_view.getHeight(), current_view.getWidth());
 			objects.get(i).damage(player);
+//			if(player.getX() > current_view.getWidth() || player.getX() < -50) {
+//				objects.get(i).setVelocity_x(temp);
+//			}
 		}
+		
+	
+
 		
 		health_item.move(current_view.getHeight(), current_view.getWidth());
 		slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
@@ -102,6 +120,8 @@ public class PlayState implements GameState{
 		
 		health_item.setVelocity_y(-20);
 		slowmotion_item.setVelocity_y(-20);
+		nodamage_item.setVelocity_y(-20);
+
 		
 	}
 
