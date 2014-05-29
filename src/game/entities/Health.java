@@ -17,7 +17,7 @@ public class Health extends Item {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.health);
 			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, 25, 25, true);
+			bmp = Bitmap.createScaledBitmap(bmp, this.getWidth(), this.getHeight(), true);
 		}
 		
 	}

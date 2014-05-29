@@ -2,6 +2,7 @@ package game.states;
 
 import java.util.ArrayList;
 
+import android.util.Log;
 import game.engine.GameView;
 import game.entities.Health;
 import game.entities.Invulnerability;
@@ -46,6 +47,8 @@ public class PlayState implements GameState{
 			objects.add(new Obstacle(x, current_view.getHeight()+y));
 		}		
 	}
+	
+	
 
 	public void update() {
 		if (gameStarted==false) {
@@ -83,6 +86,21 @@ public class PlayState implements GameState{
 	
 	}
 	
+	public float getGlobalAccelaration() {
+		return health_item.getAccelaration_x();
+	}
+	
+	public void setGlobalAccelaration(float ac) {
+		Log.e("tag2", "" + ac); 
+		for(int i = 0; i < objects.size(); i++) {
+			objects.get(i).setAccelaration_x(ac);
+		}
+		
+		health_item.setAccelaration_x(ac);
+		slowmotion_item.setAccelaration_x(ac);
+		nodamage_item.setAccelaration_x(ac);
+	}
+	
 
 	private void decreaseVelocity() {
 		for(int i = 0; i < objects.size(); i++){
@@ -92,7 +110,6 @@ public class PlayState implements GameState{
 		health_item.setVelocity_y(-20);
 		slowmotion_item.setVelocity_y(-20);
 		nodamage_item.setVelocity_y(-20);
-
 		
 	}
 

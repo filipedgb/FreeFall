@@ -4,6 +4,7 @@ import game.entities.GameObject;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
+import android.util.Log;
 import android.view.*;
 
 public class GameView extends View{
@@ -24,6 +25,7 @@ public class GameView extends View{
 	public GameView(Context context) {
 		super(context);
 		GameObject.setRes(this.getResources());
+			
 		paint = new Paint();
 		game = new PlayState(this);
 		new GameLoop(this,game);
@@ -58,6 +60,9 @@ public class GameView extends View{
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
 		if (game.isGameStarted() ==false) {
+			GameObject.setScreen_height(this.getHeight());
+			Log.e("gameview", "" + this.getHeight());
+			GameObject.setScreen_width(this.getWidth());			
 			game.init();
 		}
 
@@ -83,31 +88,36 @@ public class GameView extends View{
 		canvas.drawText("Life: " + game.getPlayer().getLifepoints(), getWidth()/3, 50, paint);
 	}
 
+	private boolean hold = false;
+	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		int action = event.getAction();
-		float temp;
 		
-		if (action == MotionEvent.ACTION_DOWN) {
-			game.setMovePlayer(true);
-			game.setMoveCounter(25);
-
-			if(event.getX() < getWidth()/2) temp = this.getWidth()/2 ;
-			else temp = - this.getWidth()/2;
-			//	game.getPlayer().setVelocity_x((event.getX()-getWidth()/2));
-			for(int i = 0; i < game.getObjects().size(); i++){
-				game.getObjects().get(i).setVelocity_x(temp);
-			}
-
-			game.getHealth_item().setVelocity_x(temp);
-			game.getSlowmotion_item().setVelocity_x(temp);
-			game.getNodamage_item().setVelocity_x(temp);
-
+		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			return true;
 		}
-
+		
+		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
+			if(event.getX() > this.getWidth()/2) { 
+				game.setGlobalAccelaration(game.getGlobalAccelaration()-10);
+			} 
+			
+			else { 
+				game.setGlobalAccelaration(game.getGlobalAccelaration()+10);
+			}
+		}
+		
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			Log.e("coiso", "Levantou");
+			hold = false;
+			game.setGlobalAccelaration(0);
+		}
+		
+		
+		
 		return super.onTouchEvent(event);
 	}
 
-	//termina o jogo
+	
 
 
 }

@@ -17,7 +17,7 @@ public class Player extends GameObject {
 
 
 	public Player(int x, int y) {
-		super(x, y, 50, 50);
+		super(x, y, screen_width/6, screen_width/6);
 		lifepoints = 1000;
 		fuel = 100;
 		turbo_enabled = false;
