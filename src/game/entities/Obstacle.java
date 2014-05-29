@@ -13,12 +13,12 @@ public class Obstacle extends GameObject {
 	private int damage;
 	
 	public Obstacle(int x, int y) {
-		super(x, y , 100, 100);
+		super(x, y , screen_height/3,  screen_height/3);
 		if (bmp==null) {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.nuvem);
 			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, 100, 100, true);
+			bmp = Bitmap.createScaledBitmap(bmp, this.getHeight(), this.getWidth(), true);
 		}
 		
 		damage = 10;

@@ -19,6 +19,24 @@ public abstract class GameObject {
 	protected float resistence ;
 	
 	protected static Resources res;
+	protected static int screen_height;
+	protected static int screen_width;
+	
+	public static int getScreen_height() {
+		return screen_height;
+	}
+
+	public static void setScreen_height(int screen_height) {
+		GameObject.screen_height = screen_height;
+	}
+
+	public static int getScreen_width() {
+		return screen_width;
+	}
+
+	public static void setScreen_width(int screen_width) {
+		GameObject.screen_width = screen_width;
+	}
 	protected Bitmap bmp;
 
 
