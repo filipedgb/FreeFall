@@ -12,7 +12,8 @@ public abstract class GameObject {
 	protected float x;
 	protected float y;
 	protected float terminal_velocity = 50;
-	protected float accelaration_y = -9.8f;
+	protected float accelaration_y;
+	protected float gravity_constant = -9.8f;
 	protected float velocity_y = 0;
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
@@ -21,6 +22,12 @@ public abstract class GameObject {
 	protected static Resources res;
 	protected static int screen_height;
 	protected static int screen_width;
+	
+	protected boolean active = true;
+	
+	public boolean isActive() {
+		return active;
+	}
 	
 	public static int getScreen_height() {
 		return screen_height;
@@ -77,7 +84,7 @@ public abstract class GameObject {
 		resistence = (float) (-0.9*velocity_x);
 
 		velocity_x = velocity_x + (accelaration_x + resistence)/25;
-		velocity_y = velocity_y + (accelaration_y )/25;
+		velocity_y = velocity_y + (accelaration_y + gravity_constant)/25;
 
 		if(velocity_y >= terminal_velocity) {
 			accelaration_y = 0;
@@ -87,10 +94,10 @@ public abstract class GameObject {
 			setY(getY() + velocity_y/25);
 			setX(getX() + velocity_x/25);
 		} else {
-			int x = (int) (Math.random()*(width-25));
+			int x = (int) (Math.random()*(screen_width-25));
 			int y = (int) (Math.random()*200);
 			setX(x);
-			setY(height+50+y);
+			setY(screen_height+50+y);
 		}
 	}
 

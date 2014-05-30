@@ -27,6 +27,7 @@ public class Health extends Item {
 		if(this.colide(player)) {
 			Log.e("coiso", "colidiu");
 			player.addHealthPoints(value);
+			active = false;
 		}
 	}
 
