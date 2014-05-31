@@ -1,10 +1,12 @@
 package game.entities;
 
 import game.config.R;
+import game.engine.Sprite;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 
 public class Player extends GameObject {
@@ -16,6 +18,9 @@ public class Player extends GameObject {
 	boolean turbo_enabled;
 	boolean invulnerable;
 	private int invulnerable_ticks;
+	private Sprite player_animation;
+	private Bitmap player_spritesheet;
+	private int motion;
 
 
 	public Player(int x, int y) {
@@ -33,8 +38,18 @@ public class Player extends GameObject {
 			//redimensiona imagem
 			bmp = Bitmap.createScaledBitmap(bmp, 50, 50, true);
 		}
+		
+		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
+		player_animation = new Sprite(x,y,screen_height,screen_width,player_spritesheet);
+			
 	}
 	
+
+	public void setMotion(int motion) {
+		player_animation.setDirection(motion);
+		this.motion = motion;
+	}
+
 
 	public Player() {
 		this(0,0);
@@ -44,20 +59,24 @@ public class Player extends GameObject {
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
+		motion = -1;
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
 		//paint.setColor(Color.RED);
 		//canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
-		canvas.drawBitmap(bmp, getX(), getY(), paint);
-	}
+		Log.e("PLAYER","" + motion);
+		
+		if(motion == -1) canvas.drawBitmap(bmp, getX(), getY(), paint);
+		else player_animation.draw(canvas);
 
-	public void move() {
-		move(0,0);
 	}
+	
+	
+
 
 	@Override
-	public void move(int a, int b) {
+	public void move() {
 		resistence = (float) (-0.9*velocity_x);
 
 		velocity_x = velocity_x + (accelaration_x + resistence)/25;

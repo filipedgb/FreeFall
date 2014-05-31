@@ -11,7 +11,7 @@ public class Health extends Item {
 
 	public Health(float x, float y) {
 		super(x, y);
-		this.value = 30;
+		this.value = 200;
 				
 		if (bmp==null) {
 			//instancio a imagem do resource
