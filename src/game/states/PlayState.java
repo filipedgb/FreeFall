@@ -1,6 +1,7 @@
 package game.states;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.util.Log;
 import game.engine.GameView;
@@ -30,20 +31,30 @@ public class PlayState implements GameState{
 		current_view = gameView;
 	}
 
+	
+	/**
+	 * Função que inicializa os objectos todos da cena, com posições aleatórias
+	 */
+	
 	public void init() {
 		randomizeObstacles();	
+		Random rand = new Random();
+	
 		player = new Player(current_view.getWidth()/2-50, current_view.getHeight()/3);
-		health_item = new Health((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*200 + current_view.getHeight());
-	//	//slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
-		nodamage_item = new Invulnerability((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*150 + current_view.getHeight());
-		fuel_item = new Fuel((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*150 + current_view.getHeight());
+		health_item = new Health((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
+		//slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
+		nodamage_item = new Invulnerability((int)rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
+		fuel_item = new Fuel((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
 		gameStarted = true;
 	}
 
+	/**
+	 * Função que determina posições iniciais dos obstáculos, chamada no init
+	 */
 
 	private void randomizeObstacles() {
 		int x;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			int y = (int) (Math.random() *200);
 			x = (int) (Math.random()*(6*current_view.getWidth())-3*current_view.getWidth());
 			objects.add(new Obstacle(x, current_view.getHeight()+y));
@@ -57,12 +68,22 @@ public class PlayState implements GameState{
 			return;
 		}
 		
+		/**
+		 * Verifica se jogador perdeu
+		 */
+		
 		if(player.getLifepoints() > 0) points += 0.1;
-						
+					
+		/**
+		 * Verifica se foi apanhado algum item
+		 */
 		if(health_item.isActive()) health_item.caught(player);
 		if(nodamage_item.isActive()) nodamage_item.caught(player);
 		if(fuel_item.isActive()) fuel_item.caught(player);
 
+		/**
+		 * Counter para o bonus de invulnerabilidade
+		 */
 		
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
 		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
@@ -70,18 +91,25 @@ public class PlayState implements GameState{
 //		if(//slowmotion_item.colide(player)) {
 //			decreaseVelocity();
 //		}
+		
+		/**
+		 *  Move todos os obstáculos e verifica e o jogador colide com algum deles
+		 */
 
 		for(int i = 0; i < objects.size(); i++){
-			objects.get(i).move(current_view.getHeight(), current_view.getWidth());
+			objects.get(i).move();
 			objects.get(i).damage(player);
 
 		}
 		
-			
-		health_item.move(current_view.getHeight(), current_view.getWidth());
+		/**
+		 * Move os restantes objectos do jogo
+		 */
+					
+		health_item.move();
 		//slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
-		nodamage_item.move(current_view.getHeight(),current_view.getWidth());
-		fuel_item.move(current_view.getHeight(),current_view.getWidth());
+		nodamage_item.move();
+		fuel_item.move();
 
 	
 	

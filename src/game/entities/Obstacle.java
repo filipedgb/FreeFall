@@ -13,7 +13,7 @@ public class Obstacle extends GameObject {
 	private int damage;
 	
 	public Obstacle(int x, int y) {
-		super(x, y , screen_height/4,  screen_height/4);
+		super(x, y , screen_height/3,  screen_height/3);
 		if (bmp==null) {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.nuvem);

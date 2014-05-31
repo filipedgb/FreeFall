@@ -78,8 +78,22 @@ public abstract class GameObject {
 		return true;
 	}
 
+	/**
+	 * Função move default para todos os objectos
+	 * A velocidade em y é definida através da aceleração provocada pelos motadores da nave + aceleração gravítica
+	 * A velocidade em x é definida pela aceleração horizontal da nave + aceleração oposta ao moviemtno (atrito)
+	 * 
+	 * A divisão por 25 nos cálculos é devida ao framerate ser 25 FPS. Esta função é chamada 25 vezes por segundo 
+	 * logo o incremento deve ser 1/25 para os valores terem unidades certas - m/s^2 e m/s
+	 * 
+	 * O jogador encontra-se no centro do referencial, sendo assim o movimento do mesmo é simulado através
+	 * do movimento relativo de todos os outros objectos em cena. 
+	 * Como o jogador está em queda livre, os objectos sobem. Quando ultrapassam o topo do ecrã, a sua posição
+	 * é recalculada aleatoriamente numa posição abaixo do ecrã. 
+	 *  
+	 */
 
-	public void move(int width ,int height) {
+	public void move() {
 
 		resistence = (float) (-0.9*velocity_x);
 
@@ -90,14 +104,14 @@ public abstract class GameObject {
 			accelaration_y = 0;
 		}
 
-		if (getY()>-50) {
+		if (getY()>-150) {
 			setY(getY() + velocity_y/25);
 			setX(getX() + velocity_x/25);
 		} else {
-			int x = (int) (Math.random()*(screen_width-25));
-			int y = (int) (Math.random()*200);
+			int x = (int) (Math.random()*3*screen_width);
+			int y = (int) (Math.random()*screen_height);
 			setX(x);
-			setY(screen_height+50+y);
+			setY(screen_height+y);
 		}
 	}
 
