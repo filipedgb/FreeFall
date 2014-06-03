@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="game.engine.PlayActivity"></activity>
+        <activity android:name="game.engine.HighscoreActivity"></activity>
     </application>
 
 </manifest>

@@ -34,6 +34,16 @@ public class GameMainActivity extends Activity {
 			}
 		});
 		
+		Button buttonHighscore = (Button) findViewById(R.id.highscore_button);
+		buttonHighscore.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				//setContentView(new GameView(getBaseContext()));
+				 Intent intent = new Intent(GameMainActivity.this, HighscoreActivity.class);
+		         startActivity(intent);
+			}
+		});
+		
 		Button buttonStart = (Button) findViewById(R.id.start_button);
 //		buttonStart.setVisibility(View.VISIBLE);
 //		buttonStart.setBackgroundColor(Color.TRANSPARENT);
