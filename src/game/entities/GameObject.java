@@ -30,6 +30,16 @@ public abstract class GameObject {
 	protected boolean active = true;
 	
 	
+	/**
+	 * Define as duas componentes da aceleração, que são comuns a todos os objectos
+	 * 
+	 * Os objectos igualam a sua aceleração (variável nao estatica) a esta , por defeito, 
+	 * embora possam ter a sua propria aceleração se se quiser defini-la. 
+	 * 
+	 * @param x - aceleração do objecto em x (feita por ele proprio, atrito à parte)
+	 * @param y - aceleração do objecto em y (feita por ele proprio, gravidade à parte)
+	 */
+	
 	public static void setGlobalAccelaration(float x, float y) {
 		global_accelaration_x = x;
 		global_accelaration_y = y;
@@ -72,6 +82,12 @@ public abstract class GameObject {
 		this.height = height;
 		this.width = width;
 	}
+	
+	/**
+	 * Função que verifica se o objecto colide com outro objecto 
+	 * @param r - objecto com o qual se quer verificar se o atual colide
+	 * @return
+	 */
 
 	public boolean colide(GameObject r) {
 		if (r.getX()>x+width) return false;
@@ -80,6 +96,15 @@ public abstract class GameObject {
 		if (r.getY()+r.getHeight()<y) return false;
 		return true;
 	}
+	
+	/**
+	 * Função que verifica se o objecto colide com um determinado espaço,
+	 * passado como input 
+	 * 
+	 * @param x2
+	 * @param y2
+	 * @return
+	 */
 
 	public boolean colide(int x2, int y2) {
 		if (x2>x+width) return false;
@@ -91,15 +116,18 @@ public abstract class GameObject {
 
 	/**
 	 * Função move default para todos os objectos
+	 * 
+	 * Aceleração particular do objecto recebe o valor da aceleração global (pois todos têm a mesma, visto o movimento ser do jogador)
+	 * 
 	 * A velocidade em y é definida através da aceleração provocada pelos motadores da nave + aceleração gravítica
 	 * A velocidade em x é definida pela aceleração horizontal da nave + aceleração oposta ao moviemtno (atrito)
 	 * 
-	 * A divisão por 25 nos cálculos é devida ao framerate ser 25 FPS. Esta função é chamada 25 vezes por segundo 
-	 * logo o incremento deve ser 1/25 para os valores terem unidades certas - m/s^2 e m/s
+	 * A divisão por FPS nos cálculos é devida ao framerate. Esta função é chamada FPS vezes por segundo 
+	 * logo o incremento deve ser 1/FPS para os valores terem unidades certas - m/s^2 e m/s
 	 * 
 	 * O jogador encontra-se no centro do referencial, sendo assim o movimento do mesmo é simulado através
 	 * do movimento relativo de todos os outros objectos em cena. 
-	 * Como o jogador está em queda livre, os objectos sobem. Quando ultrapassam o topo do ecrã, a sua posição
+	 * Como o jogador está em queda livre, os objectos sobem. Quando ultrapassam o 2*(topo do ecrã), a sua posição
 	 * é recalculada aleatoriamente numa posição abaixo do ecrã. 
 	 *  
 	 */
