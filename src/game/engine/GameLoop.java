@@ -1,6 +1,5 @@
 package game.engine;
 
-import android.util.Log;
 import game.states.PlayState;
 
 public class GameLoop extends Thread {

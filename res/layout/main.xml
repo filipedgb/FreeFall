@@ -13,7 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="68dp"
         android:minHeight="50dp"
-        android:minWidth="145dp" />
+        android:minWidth="145dp"
+        android:text="@string/Exit" />
 
     <Button
         android:id="@+id/start_button"
@@ -23,26 +24,29 @@
         android:layout_alignLeft="@+id/exit_button"
         android:layout_marginBottom="146dp"
         android:minHeight="50dp"
-        android:minWidth="145dp" />
+        android:minWidth="145dp"
+        android:text="@string/Play" />
 
     <Button
-        android:id="@+id/Button01"
+        android:id="@+id/about_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/exit_button"
         android:layout_alignLeft="@+id/exit_button"
         android:layout_marginBottom="17dp"
         android:minHeight="50dp"
-        android:minWidth="145dp" />
+        android:minWidth="145dp"
+        android:text="@string/About" />
 
     <Button
-        android:id="@+id/Button02"
+        android:id="@+id/highscore_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Button01"
-        android:layout_alignLeft="@+id/Button01"
+        android:layout_above="@+id/about_button"
+        android:layout_alignLeft="@+id/about_button"
         android:layout_marginBottom="14dp"
         android:minHeight="50dp"
-        android:minWidth="145dp" />
+        android:minWidth="145dp"
+        android:text="@string/Highscore" />
 
 </RelativeLayout>

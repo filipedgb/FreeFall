@@ -6,8 +6,6 @@ import android.content.Context;
 import android.graphics.*;
 import android.util.Log;
 import android.view.*;
-import android.view.View.OnTouchListener;
-
 
 public class GameView extends View {
 	private Paint paint;
@@ -26,7 +24,6 @@ public class GameView extends View {
 		game = new PlayState(this);
 		new GameLoop(this,game);
 		this.setOnTouchListener(new Controllers(this,game));
-
 	}
 
 	public PlayState getGame() {
@@ -87,7 +84,6 @@ public class GameView extends View {
 		paint.setColor(Color.argb(255, 92, 87, 8));
 		paint.setTextSize(Tools.getDrawUnity((float)1.5));
 		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
-
 	}
 
 //	@Override
@@ -144,12 +140,5 @@ public class GameView extends View {
 //		return true;
 //	}
 //
-//	
-
-
-
-
-
-
-
+//
 }
