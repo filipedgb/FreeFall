@@ -10,6 +10,9 @@ public abstract class GameObject {
 	private int height;
 	private int width;
 
+	protected static float global_accelaration_x = 0;
+	protected static float global_accelaration_y = 0;
+	
 	protected float x;
 	protected float y;
 	protected float terminal_velocity = 50;
@@ -25,6 +28,13 @@ public abstract class GameObject {
 	protected static int screen_width;
 	
 	protected boolean active = true;
+	
+	
+	public static void setGlobalAccelaration(float x, float y) {
+		global_accelaration_x = x;
+		global_accelaration_y = y;
+	}
+
 	
 	public boolean isActive() {
 		return active;
@@ -95,6 +105,8 @@ public abstract class GameObject {
 	 */
 
 	public void move() {
+		accelaration_x = global_accelaration_x;
+		accelaration_y = global_accelaration_y;
 
 		resistence = (float) (-0.9*velocity_x);
 

@@ -10,6 +10,9 @@ import game.entities.Health;
 import game.entities.Invulnerability;
 import game.entities.Obstacle;
 import game.entities.Player;
+import android.content.Context;
+import android.os.Vibrator;
+
 //import game.entities.SlowDown;
 
 public class PlayState implements GameState{
@@ -24,9 +27,11 @@ public class PlayState implements GameState{
 	
 	private boolean gameStarted = false;
 	private GameView current_view;
+	Vibrator v;
 
 	public PlayState(GameView gameView) {
 		current_view = gameView;
+		v = (Vibrator) current_view.getContext().getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	
@@ -66,22 +71,19 @@ public class PlayState implements GameState{
 			return;
 		}
 		
-		/**
-		 * Verifica se jogador perdeu
-		 */
+		 // Verifica se jogador perdeu
+		
 		
 		if(player.getLifepoints() > 0) points += 0.1;
 					
-		/**
-		 * Verifica se foi apanhado algum item
-		 */
+		// Verifica se foi apanhado algum item
+		
 		if(health_item.isActive()) health_item.caught(player);
 		if(nodamage_item.isActive()) nodamage_item.caught(player);
 		if(fuel_item.isActive()) fuel_item.caught(player);
 
-		/**
-		 * Counter para o bonus de invulnerabilidade
-		 */
+		// Counter para o bonus de invulnerabilidade
+		
 		
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
 		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
@@ -90,19 +92,19 @@ public class PlayState implements GameState{
 //			decreaseVelocity();
 //		}
 		
-		/**
-		 *  Move todos os obstáculos e verifica e o jogador colide com algum deles
-		 */
+		// Move todos os obstáculos e verifica e o jogador colide com algum deles
+		
 
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move();
-			objects.get(i).damage(player);
+			if(objects.get(i).damage(player)) {
+				 v.vibrate(20);
+			};
 
 		}
 		
-		/**
-		 * Move os restantes objectos do jogo
-		 */
+		// Move os restantes objectos do jogo
+	
 					
 		health_item.move();
 		//slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
@@ -121,32 +123,7 @@ public class PlayState implements GameState{
 	}
 	
 	
-	public void setGlobalAccelaration(float a_x, float a_y) {
-		
-		
-		Log.e("tag2", "" + a_x); 
-		for(int i = 0; i < objects.size(); i++) {
-			objects.get(i).setAccelaration_x(a_x);
-			objects.get(i).setAccelaration_y(a_y);
-
-		}
-		
-		health_item.setAccelaration_x(a_x);
-		health_item.setAccelaration_y(a_y);
-
-		//slowmotion_item.setAccelaration_x(a_x);
-		//slowmotion_item.setAccelaration_y(a_y);
-
-		nodamage_item.setAccelaration_x(a_x);
-		nodamage_item.setAccelaration_y(a_y);
-		
-		fuel_item.setAccelaration_x(a_x);
-		fuel_item.setAccelaration_y(a_y);
-
-
-	}
-	
-
+//
 //	private void decreaseVelocity() {
 //		for(int i = 0; i < objects.size(); i++){
 //			objects.get(i).setVelocity_y(-20);
