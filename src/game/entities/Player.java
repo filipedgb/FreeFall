@@ -2,6 +2,7 @@ package game.entities;
 
 import game.config.R;
 import game.engine.Sprite;
+import game.engine.Tools;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -31,6 +32,8 @@ public class Player extends GameObject {
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
+		motion = -1;
+
 		
 		if (bmp==null) {
 			//instancio a imagem do resource
@@ -41,10 +44,19 @@ public class Player extends GameObject {
 		
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
 		player_animation = new Sprite(x,y,screen_height,screen_width,player_spritesheet);
-			
+	
 	}
 	
 
+	public float getHealthFrac() {
+		return (float) lifepoints/max_life;
+	}
+	
+	public float getFuelFrac() {
+		return  (float) fuel/max_fuel;
+		
+	}
+	
 	public void setMotion(int motion) {
 		player_animation.setDirection(motion);
 		this.motion = motion;
@@ -73,17 +85,15 @@ public class Player extends GameObject {
 	}
 	
 	
-
-
 	@Override
 	public void move() {
 		resistence = (float) (-0.9*velocity_x);
 
-		velocity_x = velocity_x + (accelaration_x + resistence)/25;
-		velocity_y = velocity_y + accelaration_y/25;
+		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
+		velocity_y = velocity_y + accelaration_y/Tools.getFPS();
 
-		setY(getY() + velocity_y/25);
-		setX(getX() + velocity_x/25);
+		setY(getY() + velocity_y/Tools.getFPS());
+		setX(getX() + velocity_x/Tools.getFPS());
 	}
 
 	public int getLifepoints() {

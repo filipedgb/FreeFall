@@ -3,7 +3,6 @@ package game.engine;
 import game.config.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,8 +22,8 @@ public class GameMainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		Button buttonExit = (Button) findViewById(R.id.exit_button);
-		buttonExit.setVisibility(View.VISIBLE);
-		buttonExit.setBackgroundColor(Color.TRANSPARENT);
+//		buttonExit.setVisibility(View.VISIBLE);
+//		buttonExit.setBackgroundColor(Color.TRANSPARENT);
 
 		buttonExit.setOnClickListener(new OnClickListener() {
 
@@ -36,8 +35,8 @@ public class GameMainActivity extends Activity {
 		});
 		
 		Button buttonStart = (Button) findViewById(R.id.start_button);
-		buttonStart.setVisibility(View.VISIBLE);
-		buttonStart.setBackgroundColor(Color.TRANSPARENT);
+//		buttonStart.setVisibility(View.VISIBLE);
+//		buttonStart.setBackgroundColor(Color.TRANSPARENT);
 		buttonStart.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
