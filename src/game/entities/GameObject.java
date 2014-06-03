@@ -1,5 +1,6 @@
 package game.entities;
 
+import game.engine.Tools;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -97,16 +98,16 @@ public abstract class GameObject {
 
 		resistence = (float) (-0.9*velocity_x);
 
-		velocity_x = velocity_x + (accelaration_x + resistence)/25;
-		velocity_y = velocity_y + (accelaration_y + gravity_constant)/25;
+		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
+		velocity_y = velocity_y + (accelaration_y + gravity_constant)/Tools.getFPS();
 
 		if(velocity_y >= terminal_velocity) {
 			accelaration_y = 0;
 		}
 
-		if (getY()>-150) {
-			setY(getY() + velocity_y/25);
-			setX(getX() + velocity_x/25);
+		if (getY()>-screen_height) {
+			setY(getY() + velocity_y/Tools.getFPS());
+			setX(getX() + velocity_x/Tools.getFPS());
 		} else {
 			int x = (int) (Math.random()*3*screen_width);
 			int y = (int) (Math.random()*screen_height);

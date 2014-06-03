@@ -19,9 +19,12 @@ public final class R {
         public static final int ic_launcher=0x7f020005;
         public static final int invulnerability=0x7f020006;
         public static final int mainmenu=0x7f020007;
-        public static final int nuvem=0x7f020008;
+        public static final int mainmenu2=0x7f020008;
+        public static final int nuvem=0x7f020009;
     }
     public static final class id {
+        public static final int Button01=0x7f050002;
+        public static final int Button02=0x7f050003;
         public static final int exit_button=0x7f050000;
         public static final int start_button=0x7f050001;
     }

@@ -1,41 +1,36 @@
 package game.engine;
 
-import game.config.R;
 import game.entities.GameObject;
-import game.entities.Player;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
 import android.util.Log;
 import android.view.*;
+import android.view.View.OnTouchListener;
 
-public class GameView extends View{
+
+public class GameView extends View {
 	private Paint paint;
-
-//	private int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
-//	private long next_game_tick = System.currentTimeMillis();
-//	private int sleep_time = 0;
-//	private final static int INTERVAL = 200;
-//	private int FRAMES_PER_SECOND = 25;
-//	private Clouds[] inimigos;
-//	private Alien principal;
-//	private boolean jogoIniciado = false;
-
 	private PlayState game;
-	
-	/**
-	 * 0 - up 1 -down 2-left 3 -right
-	 */
-	private int direction;
+	private final int LEFT_DIRECTION = 0;
+	private final int DOWN_DIRECTION = 1;
+	private final int UP_DIRECTION = 2;
+	private final int RIGHT_DIRECTION = 3;
+	private final int NO_ACCEL = -1;
 
 	public GameView(Context context) {
 		super(context);
 		GameObject.setRes(this.getResources());
-			
+
 		paint = new Paint();
 		game = new PlayState(this);
 		new GameLoop(this,game);
-		
+		this.setOnTouchListener(new Controllers(this,game));
+
+	}
+
+	public PlayState getGame() {
+		return game;
 	}
 
 	public void draw(Canvas canvas) {
@@ -43,100 +38,118 @@ public class GameView extends View{
 		if (game.isGameStarted() ==false) {
 			GameObject.setScreen_height(this.getHeight());
 			Log.e("gameview", "" + this.getHeight());
-			GameObject.setScreen_width(this.getWidth());			
+			GameObject.setScreen_width(this.getWidth());
+			Tools.init(this.getWidth(),this.getHeight());
 			game.init();
 		}
 
-		//desenha cor de fundo
+		// Desenha o fundo
+
 		canvas.drawColor(Color.argb(255, 135, 206, 235));
 
-		//desenha objectos
+		// Desenha os obstáculos
+
 		for (int i = 0; i < game.getObjects().size(); i++) {
 			game.getObjects().get(i).draw(canvas, paint);
 		}
-		
-		/**
-		 * Desenha barras de vida e combustível
-		 */
-		
-		paint.setColor(Color.GREEN);
-		canvas.drawRect(30, 30, 30+game.getPlayer().getLifepoints()*(30+getWidth()/4)/Player.getMax_life(), 40, paint);
-		paint.setColor(Color.BLUE);
-      	canvas.drawRect(30, 50, 30+game.getPlayer().getFuel()*(30+getWidth()/4)/Player.getMax_fuel(), 60, paint);
 
+		// Desenha barra de vida 
+
+		paint.setColor(Color.GREEN);
+
+		canvas.drawRect(Tools.getDrawUnity(4),
+				Tools.getDrawUnity(1),
+				Tools.getDrawUnity(6)+(game.getPlayer().getHealthFrac()*Tools.getDrawUnity(4)),
+				Tools.getDrawUnity(1)+Tools.getDrawUnity((float) 0.5),
+				paint);
+
+		paint.setColor(Color.BLUE);
+
+		// Desenha barra de fuel
+
+		canvas.drawRect(Tools.getDrawUnity(4),
+				Tools.getDrawUnity((float)1.75),
+				Tools.getDrawUnity(6)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(4)),
+				Tools.getDrawUnity((float)1.75)+Tools.getDrawUnity((float) 0.5),
+				paint);
+
+		// Desenha jogador
 		game.getPlayer().draw(canvas,paint);
-		
+
+		// Desenha items que podem ser apanhados - Vida/Invulnerabilidade/Combustível
 		if(game.getHealth_item().isActive()) game.getHealth_item().draw(canvas,paint);
-//		game.getSlowmotion_item().draw(canvas,paint);
+		//		game.getSlowmotion_item().draw(canvas,paint);
 		if(game.getNodamage_item().isActive())game.getNodamage_item().draw(canvas,paint);
 		if(game.getFuel_item().isActive())game.getFuel_item().draw(canvas,paint);
 
+		// Desenha a pontuação
 		paint.setAntiAlias(true);
 		paint.setColor(Color.argb(255, 92, 87, 8));
-		paint.setTextSize(20);
-		canvas.drawText("SCORE: " + (int) game.getPoints(), 2*canvas.getWidth()/3 , 30, paint);
-//		paint.setTextSize(10);
-//		canvas.drawText("Life: " + game.getPlayer().getLifepoints(), getWidth()/3, 50, paint);
-	}
-	
-	/**
-	 *  Se o jogador clica na metade direita do ecrã, o jogador move-se para a direita
-	 *  A aceleração tem um pico inicial (event ACTION_DOWN) e depois aumenta consoante o tempo que o jogador mantiver o ecrã premido (event ACTION_MOVE)
-	 *  	 
-	 *  Se o jogador clicar na parte de cima do ecrã, pode contrariar a gravidade, abrandando até poder mesmo começar a subir
-	 *  
-	 *  Se o jogador clicar na parte de baixo do ecrã, acelera ainda mais ganhando pontos extra
-	 *   
-	 */
+		paint.setTextSize(Tools.getDrawUnity((float)1.5));
+		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		
-		if(event.getAction() == MotionEvent.ACTION_DOWN) {
-			if(event.getX() > this.getWidth()/2) 
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-100,game.getGlobalAccelaration_y());
-			else 
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+100,game.getGlobalAccelaration_y());
-
-			return true;
-		}
-		
-		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
-			if(event.getY() < this.getHeight()/6 && game.getPlayer().getFuel() > 0)  {
-				game.getPlayer().setMotion(2);
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()+10);
-				game.getPlayer().addFuel(-0.05f*game.getGlobalAccelaration_y());
-			}
-						
-			else if(event.getY() > 5*this.getHeight()/6 && game.getPlayer().getFuel() > 0 ) {
-				game.getPlayer().setMotion(1);
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()-10);
-				game.getPlayer().addFuel(0.05f*game.getGlobalAccelaration_y());
-			}
-			
-			else if(event.getX() > this.getWidth()/2) {
-				game.getPlayer().setMotion(3);
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-10,game.getGlobalAccelaration_y());
-			}		
-			else if(event.getX() < this.getWidth()/2 ){
-				game.getPlayer().setMotion(0);
-				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+10,game.getGlobalAccelaration_y());
-			}
-			
-		}
-		
-		if(event.getAction() == MotionEvent.ACTION_UP) {
-			Log.e("coiso", "Levantou");
-			game.setGlobalAccelaration(0,0);
-			game.getPlayer().setMotion(-1);
-		}
-		
-		
-		
-		return super.onTouchEvent(event);
 	}
 
-	
+//	@Override
+//	public boolean onTouchEvent(MotionEvent event) {
+//
+//
+//		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+//			if(event.getX() > this.getWidth()/2) 
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-100,game.getGlobalAccelaration_y());
+//			else 
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+100,game.getGlobalAccelaration_y());
+//
+//			return true;
+//		}
+//
+//		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
+//			if(event.getY() < this.getHeight()/6 && game.getPlayer().getFuel() > 0)  {
+//				game.getPlayer().setMotion(UP_DIRECTION);
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()+10);
+//				game.getPlayer().addFuel(-0.05f*game.getGlobalAccelaration_y());
+//			}
+//
+//			else if(event.getY() > 5*this.getHeight()/6 && game.getPlayer().getFuel() > 0 ) {
+//				game.getPlayer().setMotion(DOWN_DIRECTION);
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()-10);
+//				game.getPlayer().addFuel(0.05f*game.getGlobalAccelaration_y());
+//			}
+//
+//			else if(event.getX() > this.getWidth()/2) {
+//				game.getPlayer().setMotion(RIGHT_DIRECTION);
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-10,game.getGlobalAccelaration_y());
+//			}		
+//			else if(event.getX() < this.getWidth()/2 ){
+//				game.getPlayer().setMotion(LEFT_DIRECTION);
+//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+10,game.getGlobalAccelaration_y());
+//			}
+//			
+//			
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//		}
+//
+//		if(event.getAction() == MotionEvent.ACTION_UP) {
+//			Log.e("coiso", "Levantou");
+//			game.setGlobalAccelaration(0,0);
+//			game.getPlayer().setMotion(NO_ACCEL);
+//		}
+//
+//		return true;
+//	}
+//
+//	
+
+
+
+
+
 
 
 }

@@ -1,8 +1,6 @@
 package game.engine;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -10,7 +8,7 @@ import android.util.Log;
 
 public class Sprite {
 	
-	private int x, y, speed_x, speed_y, height , width, currentframe =0, direction;
+	private int x, y, height , width, currentframe =0, direction;
 	
 
 	Bitmap spritesheet;

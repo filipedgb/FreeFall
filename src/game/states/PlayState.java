@@ -6,13 +6,11 @@ import java.util.Random;
 import android.util.Log;
 import game.engine.GameView;
 import game.entities.Fuel;
-import game.entities.GameObject;
 import game.entities.Health;
 import game.entities.Invulnerability;
 import game.entities.Obstacle;
 import game.entities.Player;
-import game.entities.SlowDown;
-import android.os.Vibrator;
+//import game.entities.SlowDown;
 
 public class PlayState implements GameState{
 
@@ -149,16 +147,16 @@ public class PlayState implements GameState{
 	}
 	
 
-	private void decreaseVelocity() {
-		for(int i = 0; i < objects.size(); i++){
-			objects.get(i).setVelocity_y(-20);
-		}
-		
-		health_item.setVelocity_y(-20);
-		//slowmotion_item.setVelocity_y(-20);
-		nodamage_item.setVelocity_y(-20);
-		
-	}
+//	private void decreaseVelocity() {
+//		for(int i = 0; i < objects.size(); i++){
+//			objects.get(i).setVelocity_y(-20);
+//		}
+//		
+//		health_item.setVelocity_y(-20);
+//		//slowmotion_item.setVelocity_y(-20);
+//		nodamage_item.setVelocity_y(-20);
+//		
+//	}
 /*
 	public SlowDown getSlowmotion_item() {
 		return //slowmotion_item;
