@@ -42,7 +42,7 @@ public class PlayerTests {
 		float aY = p.getAccelaration_y();
 
 		//move right
-	//	p.move(20,0);
+		//p.move(20,0);
 
 		assertTrue(pX < p.getX());
 		assertTrue(pY == p.getY());

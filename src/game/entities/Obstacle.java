@@ -41,10 +41,12 @@ public class Obstacle extends GameObject {
 	}
 
 	
-	public void damage(Player player) {
+	public boolean damage(Player player) {
 		if(this.colide(player)) {
 			player.addHealthPoints(-damage);
+			return true;
 		}
+		return false;
 	}
 	
 
