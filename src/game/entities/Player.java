@@ -20,6 +20,9 @@ public class Player extends GameObject {
 	private Sprite player_animation;
 	private Bitmap player_spritesheet;
 	private int motion;
+	
+	private boolean malfunctioning = false;
+	private int malfunc_ticks = 0;
 
 	public Player(int x, int y) {
 		super(x, y, screen_width/6, screen_width/6);
@@ -30,6 +33,7 @@ public class Player extends GameObject {
 		invulnerable = false;
 		invulnerable_ticks = 0;
 		motion = -1;
+		
 
 		if (bmp==null) {
 			//instancio a imagem do resource
@@ -41,6 +45,21 @@ public class Player extends GameObject {
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
 		player_animation = new Sprite(x,y,screen_height,screen_width,5,4,player_spritesheet);	
 	}
+	
+	public boolean isMalfunctioning() {
+		return malfunctioning;
+	}
+
+	public void setMalfunctioning(boolean malfunctioning) {
+		this.malfunctioning = malfunctioning;
+		malfunc_ticks = (int) (5*Tools.getFPS());
+	}
+	
+	public void update() {
+		if(malfunc_ticks > 0) malfunc_ticks--;
+		else malfunctioning = false;
+	}
+
 
 	public float getHealthFrac() {
 		return (float) lifepoints/max_life;

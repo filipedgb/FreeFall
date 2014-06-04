@@ -53,7 +53,7 @@ public class GameView extends View {
 		
 		// Desenha malfunction sprite
 		
-		malfunction_anim.draw(canvas);
+		if(game.getPlayer().isMalfunctioning())	malfunction_anim.draw(canvas);
 		
 		// Desenha os obstáculos
 		for (int i = 0; i < game.getObjects().size(); i++) {

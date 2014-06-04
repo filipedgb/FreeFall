@@ -102,12 +102,17 @@ public class PlayState implements GameState {
 		if(health_item.isActive()) health_item.caught(player);
 		if(nodamage_item.isActive()) nodamage_item.caught(player);
 		if(fuel_item.isActive()) fuel_item.caught(player);
+		if(sky_mine.isActive()) sky_mine.caught(player);
+
 		
 		//actualiza os items
 		health_item.updateItem();
 		fuel_item.updateItem();
 		nodamage_item.updateItem();
 		slowmotion_item.updateItem();
+		sky_mine.updateItem();
+		player.update();
+
 
 
 		// Counter para o bonus de invulnerabilidade
