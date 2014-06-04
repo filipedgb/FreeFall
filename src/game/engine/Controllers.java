@@ -43,20 +43,20 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 		if(event.getAction() == MotionEvent.ACTION_DOWN) {
 			if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0)
 				current_game.setDirection(UP_DIRECTION);
-		
+
 			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) 
 				current_game.setDirection(DOWN_DIRECTION);
-			
+
 			else if(event.getX() > current_gameview.getWidth()/2)
 				current_game.setDirection(RIGHT_DIRECTION);
-	
+
 			else if(event.getX() < current_gameview.getWidth()/2 )
 				current_game.setDirection(LEFT_DIRECTION);
-			
+
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
-			
+
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_UP) {
