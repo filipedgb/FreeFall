@@ -1,5 +1,6 @@
 package game.entities;
 
+import game.engine.PlayActivity;
 import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -24,6 +25,7 @@ public class Skymine extends Item {
 	public void caught(Player player) {
 		if(!player.isInvulnerable()) {
 			if(this.colide(player)) {
+				PlayActivity.getSingleInstance().playMalfunc();
 				player.setMalfunctioning(true);
 				disabler(25);	
 			}

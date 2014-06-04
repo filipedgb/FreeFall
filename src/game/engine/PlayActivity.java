@@ -28,7 +28,11 @@ public class PlayActivity extends Activity {
 
 	private SensorManager sensorManager;
 
-	private MediaPlayer mediaPlayer;
+	private MediaPlayer malfunction;
+	private MediaPlayer health_powerup;
+	private MediaPlayer fuel_powerup;
+	private MediaPlayer nodamage;
+	
 	private HighscoreState highscores;
 	private static PlayActivity singleInstance = null;
 
@@ -57,7 +61,10 @@ public class PlayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
 
-		mediaPlayer = MediaPlayer.create(getBaseContext(), R.raw.hithurt);
+		malfunction = MediaPlayer.create(getBaseContext(), R.raw.malfunction);
+		health_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup);
+		fuel_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup2);
+		nodamage = MediaPlayer.create(getBaseContext(), R.raw.nodamage);
 
 		singleInstance = this;
 
@@ -147,7 +154,19 @@ public class PlayActivity extends Activity {
 		super.onBackPressed();
 	}
 
-	public void playHitSound() {
-		mediaPlayer.start();
+	public void playMalfunc() {
+		malfunction.start();
+	}
+	
+	public void playHealth() {
+		health_powerup.start();
+	}
+	
+	public void playFuel() {
+		fuel_powerup.start();
+	}
+	
+	public void playNoDamage() {
+		nodamage.start();
 	}
 }
