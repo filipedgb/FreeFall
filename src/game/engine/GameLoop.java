@@ -14,7 +14,6 @@ public class GameLoop extends Thread {
 	private PlayState current_gamestate;
 	private static GameLoop current_instance = null;
 
-
 	public GameLoop(GameView gameview,PlayState gamestate) {
 		stopThread();
 		current_instance = this;
@@ -41,7 +40,6 @@ public class GameLoop extends Thread {
 				try {
 					java.lang.Thread.sleep(sleep_time);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

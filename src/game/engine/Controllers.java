@@ -5,26 +5,23 @@ import game.states.PlayState;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-
 
 public class Controllers implements OnTouchListener, SensorEventListener {
 
 	private GameView current_gameview;
 	private PlayState current_game;
 	private int counter = 0;
-	
+
 	private boolean controllerSensor = false;
-		
+
 	private final int LEFT_DIRECTION = 0;
 	private final int DOWN_DIRECTION = 1;
 	private final int UP_DIRECTION = 2;
 	private final int RIGHT_DIRECTION = 3;
 	private final int NO_ACCEL = -1;
-
 
 	public Controllers(GameView view, PlayState game) {
 		current_gameview = view;
@@ -42,15 +39,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	 */
 
 	@Override
-	public boolean onTouch(View arg0, MotionEvent event) {
-
-//		try {
-//			Thread.sleep(70);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
+	public boolean onTouch(View arg0, MotionEvent event) {		
 		if(event.getAction() == MotionEvent.ACTION_DOWN) {
 			if(event.getX() > current_gameview.getWidth()/2) 
 				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()-100,current_game.getGlobalAccelaration_y());
@@ -62,9 +51,9 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
 			counter ++;
-			
+
 			if(counter %10 != 0) return true;
-			
+
 			if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0)  {
 				current_game.getPlayer().setMotion(UP_DIRECTION);
 				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x(),current_game.getGlobalAccelaration_y()+10);
@@ -85,26 +74,20 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 				current_game.getPlayer().setMotion(LEFT_DIRECTION);
 				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()+10,current_game.getGlobalAccelaration_y());
 			}
-
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_UP) {
-			Log.e("coiso", "Levantou");
 			GameObject.setGlobalAccelaration(0,0);
 			current_game.getPlayer().setMotion(NO_ACCEL);
 		}
-
-
 
 		return true;
 	}
 
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
-
 	}
-	
-	
+
 	/**
 	 * Acelerómetro 
 	 */
@@ -115,12 +98,10 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 		 * se o jogador tiver escolhido para usar acelerómetro controllerSensor = true
 		 */
 		if(controllerSensor) {
-
 			// check sensor type
 			if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER){
-
 				float x=event.values[0];
-			
+
 				if(x > 0) {
 					if (current_game.isGameStarted()) { 
 						current_game.getPlayer().setMotion(LEFT_DIRECTION);
@@ -133,9 +114,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 						GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()+10,current_game.getGlobalAccelaration_y());
 					}
 				}
-
 			}
-
 		}
 	}
 }

@@ -21,38 +21,30 @@ public class GameMainActivity extends Activity {
 
 		setContentView(R.layout.main);
 
+		//exit button
 		Button buttonExit = (Button) findViewById(R.id.exit_button);
-//		buttonExit.setVisibility(View.VISIBLE);
-//		buttonExit.setBackgroundColor(Color.TRANSPARENT);
-
 		buttonExit.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
-				//setContentView(new GameView(getBaseContext()));
 				finish();
 				System.exit(0);
 			}
 		});
-		
+
+		//highscore button
 		Button buttonHighscore = (Button) findViewById(R.id.highscore_button);
 		buttonHighscore.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
-				//setContentView(new GameView(getBaseContext()));
-				 Intent intent = new Intent(GameMainActivity.this, HighscoreActivity.class);
-		         startActivity(intent);
+				Intent intent = new Intent(GameMainActivity.this, HighscoreActivity.class);
+				startActivity(intent);
 			}
 		});
-		
-		Button buttonStart = (Button) findViewById(R.id.start_button);
-//		buttonStart.setVisibility(View.VISIBLE);
-//		buttonStart.setBackgroundColor(Color.TRANSPARENT);
-		buttonStart.setOnClickListener(new OnClickListener() {
 
+		//start button
+		Button buttonStart = (Button) findViewById(R.id.start_button);
+		buttonStart.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				 Intent intent = new Intent(GameMainActivity.this, PlayActivity.class);
-		         startActivity(intent);
-		         //finish();
+				Intent intent = new Intent(GameMainActivity.this, PlayActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

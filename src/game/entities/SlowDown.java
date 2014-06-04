@@ -2,7 +2,6 @@ package game.entities;
 
 import game.engine.Tools;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 public class SlowDown extends Item  {
@@ -14,8 +13,7 @@ public class SlowDown extends Item  {
 
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
-		paint.setColor(Color.BLUE);
-		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);		
+		canvas.drawBitmap(bmp, getX(), getY(), paint);	
 	}
 
 	@Override
