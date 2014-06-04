@@ -121,7 +121,7 @@ public class Player extends GameObject {
 
 	public void addHealthPoints(float value) {
 		if(value > 0 && lifepoints <= max_life) { 
-			if(lifepoints+value > 1000) lifepoints = max_life;
+			if(lifepoints+value > max_life) lifepoints = max_life;
 			else lifepoints += value;
 		}
 
@@ -133,7 +133,7 @@ public class Player extends GameObject {
 
 	public void addFuel(float value) {
 		if(value > 0 && fuel <= max_fuel) { 
-			if(fuel+value > 1000) fuel = max_fuel;
+			if(fuel+value > max_fuel) fuel = max_fuel;
 			else fuel += value;
 		}
 
@@ -149,7 +149,7 @@ public class Player extends GameObject {
 
 	public void setInvulnerable(boolean x) {
 		invulnerable = x;
-		invulnerable_ticks = 100;
+		invulnerable_ticks = (int) (4*Tools.getFPS());
 	}
 
 	public boolean isInvulnerable() {
