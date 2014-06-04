@@ -16,7 +16,7 @@ public class Tools {
 	private static Bitmap cloud ;
 	private static Bitmap health;
 	private static Bitmap invulnerable;
-	private static Bitmap fuel = null;
+	private static Bitmap fuel;
 	private static Bitmap skymine;
 	private static Bitmap slowmo;
 
@@ -71,7 +71,7 @@ public class Tools {
 		slowmo = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
 
 		health = BitmapFactory.decodeResource(res, R.drawable.health);
-		health = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
 	}
 
 
