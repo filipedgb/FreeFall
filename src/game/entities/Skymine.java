@@ -12,7 +12,12 @@ public class Skymine extends Item {
 	}
 
 	@Override
-	public void caught(Player player) {}
+	public void caught(Player player) {
+		if(this.colide(player)) {
+			player.setMalfunctioning(true);
+			disabler(25);	
+		}
+	}
 
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
