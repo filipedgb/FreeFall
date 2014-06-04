@@ -1,9 +1,6 @@
 package game.entities;
 
-import game.config.R;
 import game.engine.Tools;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -15,7 +12,6 @@ public class Fuel extends Item {
 		this.bmp  = Tools.getFuel();
 	}
 
-
 	@Override
 	public void caught(Player player) {
 		if(this.colide(player)) {
@@ -24,12 +20,8 @@ public class Fuel extends Item {
 		}		
 	}
 
-
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
-		// TODO Auto-generated method stub
 		canvas.drawBitmap(bmp, getX(), getY(), paint);
-
 	}
-
 }

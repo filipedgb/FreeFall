@@ -13,11 +13,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-
-
 
 public class PlayActivity extends Activity {
 
@@ -25,7 +22,7 @@ public class PlayActivity extends Activity {
 
 	private MediaPlayer mediaPlayer;
 	private HighscoreState highscores;
-	
+
 	private static PlayActivity singleInstance = null;
 
 	public static PlayActivity getSingleInstance()  {
@@ -34,7 +31,6 @@ public class PlayActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		GameView game_view = new GameView(getBaseContext());
 
 		super.onCreate(savedInstanceState);
@@ -43,11 +39,10 @@ public class PlayActivity extends Activity {
 		mediaPlayer = MediaPlayer.create(getBaseContext(), R.raw.hithurt);
 
 		singleInstance = this;
-		
+
 		sensorManager.registerListener(new Controllers(game_view,game_view.getGame()),
 				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
-
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -66,7 +61,7 @@ public class PlayActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void addH (String name, int score) {
 		highscores.addHighscore(name, score);
 	}
@@ -92,14 +87,11 @@ public class PlayActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		GameLoop.stopThread();
 		super.onBackPressed();
-		Log.e("entrou","backbutton");
 	}
 
 	public void playHitSound() {
 		mediaPlayer.start();
 	}
-
 }

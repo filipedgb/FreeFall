@@ -10,21 +10,13 @@ import android.view.*;
 public class GameView extends View {
 	private Paint paint;
 	private PlayState game = null;
-	private final int LEFT_DIRECTION = 0;
-	private final int DOWN_DIRECTION = 1;
-	private final int UP_DIRECTION = 2;
-	private final int RIGHT_DIRECTION = 3;
-	private final int NO_ACCEL = -1;
 
 	public GameView(Context context) {
 		super(context);
 		GameObject.setRes(this.getResources());
 		paint = new Paint();
-
-	//	init();
-	//	tthis.setOnTouchListener(new Controllers(this,game));his.setOnTouchListener(new Controllers(this,game));
 	}
-	
+
 	public void init() {
 		Tools.loadImages(this.getResources());
 		game = new PlayState(this);
@@ -38,7 +30,7 @@ public class GameView extends View {
 
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
-		
+
 		if(game == null) {
 			Tools.init(this.getWidth(),this.getHeight());
 			GameObject.setScreen_height(this.getHeight());
@@ -46,25 +38,20 @@ public class GameView extends View {
 			GameObject.setScreen_width(this.getWidth());
 			init();
 		}
-		
-		if (game.isGameStarted() ==false) {
-			
+
+		if (!game.isGameStarted()) {
 			game.init();
 		}
 
 		// Desenha o fundo
-
 		canvas.drawColor(Color.argb(255, 135, 206, 235));
 
 		// Desenha os obstáculos
-
 		for (int i = 0; i < game.getObjects().size(); i++) {
 			game.getObjects().get(i).draw(canvas, paint);
 		}
 
 		// Desenha barra de vida 
-
-		
 		paint.setColor(Color.GREEN);
 
 		canvas.drawRect(Tools.getDrawUnity(4),
@@ -76,7 +63,6 @@ public class GameView extends View {
 		paint.setColor(Color.BLUE);
 
 		// Desenha barra de fuel
-
 		canvas.drawRect(Tools.getDrawUnity(4),
 				Tools.getDrawUnity((float)1.75),
 				Tools.getDrawUnity(4)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(4)),
@@ -85,7 +71,7 @@ public class GameView extends View {
 
 		// Desenha jogador
 		game.getPlayer().draw(canvas,paint);
-		
+
 		// Desenha items que podem ser apanhados - Vida/Invulnerabilidade/Combustível
 		if(game.getHealth_item().isActive()) game.getHealth_item().draw(canvas,paint);
 		if(game.getSlowmotion_item().isActive()) game.getSlowmotion_item().draw(canvas,paint);
@@ -100,59 +86,59 @@ public class GameView extends View {
 		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
 	}
 
-//	@Override
-//	public boolean onTouchEvent(MotionEvent event) {
-//
-//
-//		if(event.getAction() == MotionEvent.ACTION_DOWN) {
-//			if(event.getX() > this.getWidth()/2) 
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-100,game.getGlobalAccelaration_y());
-//			else 
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+100,game.getGlobalAccelaration_y());
-//
-//			return true;
-//		}
-//
-//		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
-//			if(event.getY() < this.getHeight()/6 && game.getPlayer().getFuel() > 0)  {
-//				game.getPlayer().setMotion(UP_DIRECTION);
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()+10);
-//				game.getPlayer().addFuel(-0.05f*game.getGlobalAccelaration_y());
-//			}
-//
-//			else if(event.getY() > 5*this.getHeight()/6 && game.getPlayer().getFuel() > 0 ) {
-//				game.getPlayer().setMotion(DOWN_DIRECTION);
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()-10);
-//				game.getPlayer().addFuel(0.05f*game.getGlobalAccelaration_y());
-//			}
-//
-//			else if(event.getX() > this.getWidth()/2) {
-//				game.getPlayer().setMotion(RIGHT_DIRECTION);
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-10,game.getGlobalAccelaration_y());
-//			}		
-//			else if(event.getX() < this.getWidth()/2 ){
-//				game.getPlayer().setMotion(LEFT_DIRECTION);
-//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+10,game.getGlobalAccelaration_y());
-//			}
-//			
-//			
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//		}
-//
-//		if(event.getAction() == MotionEvent.ACTION_UP) {
-//			Log.e("coiso", "Levantou");
-//			game.setGlobalAccelaration(0,0);
-//			game.getPlayer().setMotion(NO_ACCEL);
-//		}
-//
-//		return true;
-//	}
-//
-//
+	//	@Override
+	//	public boolean onTouchEvent(MotionEvent event) {
+	//
+	//
+	//		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+	//			if(event.getX() > this.getWidth()/2) 
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-100,game.getGlobalAccelaration_y());
+	//			else 
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+100,game.getGlobalAccelaration_y());
+	//
+	//			return true;
+	//		}
+	//
+	//		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
+	//			if(event.getY() < this.getHeight()/6 && game.getPlayer().getFuel() > 0)  {
+	//				game.getPlayer().setMotion(UP_DIRECTION);
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()+10);
+	//				game.getPlayer().addFuel(-0.05f*game.getGlobalAccelaration_y());
+	//			}
+	//
+	//			else if(event.getY() > 5*this.getHeight()/6 && game.getPlayer().getFuel() > 0 ) {
+	//				game.getPlayer().setMotion(DOWN_DIRECTION);
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()-10);
+	//				game.getPlayer().addFuel(0.05f*game.getGlobalAccelaration_y());
+	//			}
+	//
+	//			else if(event.getX() > this.getWidth()/2) {
+	//				game.getPlayer().setMotion(RIGHT_DIRECTION);
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-10,game.getGlobalAccelaration_y());
+	//			}		
+	//			else if(event.getX() < this.getWidth()/2 ){
+	//				game.getPlayer().setMotion(LEFT_DIRECTION);
+	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+10,game.getGlobalAccelaration_y());
+	//			}
+	//			
+	//			
+	//			try {
+	//				Thread.sleep(3000);
+	//			} catch (InterruptedException e) {
+	//				// TODO Auto-generated catch block
+	//				e.printStackTrace();
+	//			}
+	//
+	//		}
+	//
+	//		if(event.getAction() == MotionEvent.ACTION_UP) {
+	//			Log.e("coiso", "Levantou");
+	//			game.setGlobalAccelaration(0,0);
+	//			game.getPlayer().setMotion(NO_ACCEL);
+	//		}
+	//
+	//		return true;
+	//	}
+	//
+	//
 }

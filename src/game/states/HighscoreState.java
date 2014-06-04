@@ -12,10 +12,10 @@ public class HighscoreState implements GameState, Serializable {
 
 	public HighscoreState() {
 		highscores = new ArrayList<ArrayList<String>>();
-		
+
 		initializeArray();
 	}
-	
+
 	public void initializeArray() {
 		for(int i=0; i<10; i++)
 			addHighscore("default", 0);
@@ -50,7 +50,7 @@ public class HighscoreState implements GameState, Serializable {
 
 	private int getScoreIndex(int score) {
 		int i=0;
-		
+
 		for(ArrayList<String> s : highscores) {
 			if(Integer.parseInt(s.get(1)) < score)
 				return i;
