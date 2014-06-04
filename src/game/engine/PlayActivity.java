@@ -81,7 +81,7 @@ public class PlayActivity extends Activity {
 	public void askName() {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-		alert.setTitle("Name");
+		alert.setTitle("New Highscore!");
 		alert.setMessage("Insert your name: ");
 
 		// Set an EditText view to get user input 

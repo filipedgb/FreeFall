@@ -16,6 +16,7 @@ public class GameLoop extends Thread {
 	private static GameLoop current_instance = null;
 
 	private static Handler h;
+	private static boolean askingName = true;
 
 	private static float points;
 	/**
@@ -47,19 +48,19 @@ public class GameLoop extends Thread {
 			current_instance.running = false;
 			current_instance = null;
 			points = p;
-
-			Thread t = new Thread() {
-				public void run() {
-					try {
-						h.post(askName);
-					}
-					catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			};
-
+			
 			if(PlayActivity.getSingleInstance().getHighscores().getScoreIndex((int) points) < 10) {
+				askingName=true;
+				Thread t = new Thread() {
+					public void run() {
+						try {
+							h.post(askName);
+						}
+						catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				};
 				t.run();
 			}
 		}
@@ -67,7 +68,10 @@ public class GameLoop extends Thread {
 
 	private final static Runnable askName = new Runnable() {
 		public void run() {
-			PlayActivity.getSingleInstance().askName();
+			if(askingName) {
+				PlayActivity.getSingleInstance().askName();
+				askingName = false;
+			}
 		}
 	};
 
