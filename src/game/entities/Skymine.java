@@ -13,9 +13,11 @@ public class Skymine extends Item {
 
 	@Override
 	public void caught(Player player) {
-		if(this.colide(player)) {
-			player.setMalfunctioning(true);
-			disabler(25);	
+		if(!player.isInvulnerable()) {
+			if(this.colide(player)) {
+				player.setMalfunctioning(true);
+				disabler(25);	
+			}
 		}
 	}
 
