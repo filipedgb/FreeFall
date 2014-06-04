@@ -4,6 +4,11 @@ import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa um objeto (representado por nuvens) que causa dano ao jogador 
+ * @author André Pires, Filipe Gama
+ * @see GameObject
+ */
 public class Obstacle extends GameObject {
 
 	private boolean fast = false;

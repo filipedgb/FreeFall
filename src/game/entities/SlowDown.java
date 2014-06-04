@@ -4,6 +4,11 @@ import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa o item "slowmotion", que, quando "apanhado" causa um decrescimo de velocidade do jogo 
+ * @author André Pires, Filipe Gama
+ * @see Item
+ */
 public class SlowDown extends Item  {
 
 	public SlowDown(float x, float y) {
@@ -15,7 +20,7 @@ public class SlowDown extends Item  {
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(bmp, getX(), getY(), paint);	
 	}
-	
+
 	/**
 	 * Caso o jogador apanhe (colida) com este item, a velocidade global é reduzida. 
 	 */
@@ -25,6 +30,5 @@ public class SlowDown extends Item  {
 			GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x(), GameObject.getGlobalVelocity_y()/2);
 			disabler(25);	
 		}
-		
 	}	
 }

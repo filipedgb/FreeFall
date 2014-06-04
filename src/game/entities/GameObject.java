@@ -6,6 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa um objeto do jogo
+ * @author André Pires, Filipe Gama
+ *
+ */
 public abstract class GameObject {
 	private int height;
 	private int width;

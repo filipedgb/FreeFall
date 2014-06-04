@@ -9,6 +9,11 @@ import game.entities.*;
 import android.content.Context;
 import android.os.Vibrator;
 
+/**
+ * Estado que representa o jogo em si
+ * @author André Pires, Filipe Gama
+ * @see GameState
+ */
 public class PlayState implements GameState {
 
 	private ArrayList<Obstacle> objects = new ArrayList<Obstacle>();
@@ -19,9 +24,9 @@ public class PlayState implements GameState {
 	private Fuel fuel_item;
 	private Skymine sky_mine;
 	private float points;
-	
+
 	private int direction = -1;
-	
+
 	private boolean gameStarted = false;
 	private GameView current_view;
 	Vibrator v;
@@ -50,7 +55,6 @@ public class PlayState implements GameState {
 	/**
 	 * Função que determina posições iniciais dos obstáculos, chamada no init
 	 */
-
 	private void randomizeObstacles() {
 		int x;
 		for (int i = 0; i < 10; i++) {
@@ -60,11 +64,14 @@ public class PlayState implements GameState {
 		}		
 	}
 
+	/**
+	 * Atualiza todos os objetos do jogo, quando esta a decorrer o jogo em si
+	 */
 	public void update() {
 		if (gameStarted==false) {
 			return;
 		}
-		
+
 		// Verifica se jogador perdeu
 		if(player.getLifepoints() > 0) {
 			if(player.isBoost()) points += 0.5;
@@ -73,35 +80,34 @@ public class PlayState implements GameState {
 		else {
 			GameLoop.stopThread(points);
 		}
-		
+
 		//Verifica velocidade máxima horizontal 
 		if(GameObject.getGlobalVelocity_x() > 10) player.addHealthPoints(-1);
-		
+
 		//Verifica movimentos do player
 		switch(direction) {
-			case (0): //Left 
-				getPlayer().setMotion(0);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
-				break;
-			case (1): //Down
-				getPlayer().setMotion(1);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
-				getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
-				break;
-			case (2)://Up
-				getPlayer().setMotion(2);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
-				getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
-				break;
-			case (3): //Right
-				getPlayer().setMotion(3);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
-				break;
-			case (-1): //No acceleration
-				GameObject.setGlobalAccelaration(0,0);
-				getPlayer().setMotion(-1);
-				break;
-		
+		case (0): //Left 
+			getPlayer().setMotion(0);
+		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
+		break;
+		case (1): //Down
+			getPlayer().setMotion(1);
+		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
+		getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
+		break;
+		case (2)://Up
+			getPlayer().setMotion(2);
+		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
+		getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
+		break;
+		case (3): //Right
+			getPlayer().setMotion(3);
+		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
+		break;
+		case (-1): //No acceleration
+			GameObject.setGlobalAccelaration(0,0);
+		getPlayer().setMotion(-1);
+		break;
 		}
 
 		// Verifica se foi apanhado algum item
@@ -111,7 +117,7 @@ public class PlayState implements GameState {
 		if(sky_mine.isActive()) sky_mine.caught(player);
 		if(slowmotion_item.isActive()) slowmotion_item.caught(player);
 
-		
+
 		//actualiza os items
 		health_item.updateItem();
 		fuel_item.updateItem();
@@ -120,8 +126,6 @@ public class PlayState implements GameState {
 		sky_mine.updateItem();
 		slowmotion_item.updateItem();
 		player.update();
-
-
 
 		// Counter para o bonus de invulnerabilidade
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
