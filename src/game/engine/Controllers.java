@@ -41,44 +41,26 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	@Override
 	public boolean onTouch(View arg0, MotionEvent event) {		
 		if(event.getAction() == MotionEvent.ACTION_DOWN) {
-			if(event.getX() > current_gameview.getWidth()/2) 
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()-100,current_game.getGlobalAccelaration_y());
-			else 
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()+100,current_game.getGlobalAccelaration_y());
-
-			return true;
+			if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0)
+				current_game.setDirection(UP_DIRECTION);
+		
+			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) 
+				current_game.setDirection(DOWN_DIRECTION);
+			
+			else if(event.getX() > current_gameview.getWidth()/2)
+				current_game.setDirection(RIGHT_DIRECTION);
+	
+			else if(event.getX() < current_gameview.getWidth()/2 )
+				current_game.setDirection(LEFT_DIRECTION);
+			
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
-			counter ++;
-
-			if(counter %10 != 0) return true;
-
-			if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0)  {
-				current_game.getPlayer().setMotion(UP_DIRECTION);
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x(),current_game.getGlobalAccelaration_y()+10);
-				current_game.getPlayer().addFuel(-0.05f*current_game.getGlobalAccelaration_y());
-			}
-
-			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) {
-				current_game.getPlayer().setMotion(DOWN_DIRECTION);
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x(),current_game.getGlobalAccelaration_y()-10);
-				current_game.getPlayer().addFuel(0.05f*current_game.getGlobalAccelaration_y());
-			}
-
-			else if(event.getX() > current_gameview.getWidth()/2) {
-				current_game.getPlayer().setMotion(RIGHT_DIRECTION);
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()-10,current_game.getGlobalAccelaration_y());
-			}		
-			else if(event.getX() < current_gameview.getWidth()/2 ){
-				current_game.getPlayer().setMotion(LEFT_DIRECTION);
-				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()+10,current_game.getGlobalAccelaration_y());
-			}
+			
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_UP) {
-			GameObject.setGlobalAccelaration(0,0);
-			current_game.getPlayer().setMotion(NO_ACCEL);
+			current_game.setDirection(NO_ACCEL);
 		}
 
 		return true;

@@ -20,7 +20,9 @@ public class PlayState implements GameState {
 	private Fuel fuel_item;
 	private Skymine sky_mine;
 	private float points;
-
+	
+	private int direction = -1;
+	
 	private boolean gameStarted = false;
 	private GameView current_view;
 	Vibrator v;
@@ -43,7 +45,6 @@ public class PlayState implements GameState {
 		nodamage_item = new Invulnerability((int)rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
 		fuel_item = new Fuel((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
 		sky_mine = new Skymine((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
-
 		gameStarted = true;
 	}
 
@@ -64,13 +65,40 @@ public class PlayState implements GameState {
 		if (gameStarted==false) {
 			return;
 		}
-
+		
 		// Verifica se jogador perdeu
 		if(player.getLifepoints() > 0) points += 0.1;
 		else {
 			PlayActivity.getSingleInstance().addH("eu", (int) points);
 			PlayActivity.getSingleInstance().saveHighscores();
 			GameLoop.stopThread();
+		}
+		
+		//Verifica movimentos do player
+		switch(direction) {
+			case (0): //Left 
+				getPlayer().setMotion(0);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
+				break;
+			case (1): //Down
+				getPlayer().setMotion(1);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
+				getPlayer().addFuel(0.05f*getGlobalAccelaration_y());
+				break;
+			case (2)://Up
+				getPlayer().setMotion(2);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
+				getPlayer().addFuel(-0.05f*getGlobalAccelaration_y());
+				break;
+			case (3): //Right
+				getPlayer().setMotion(3);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
+				break;
+			case (-1): //No acceleration
+				GameObject.setGlobalAccelaration(0,0);
+				getPlayer().setMotion(-1);
+				break;
+		
 		}
 
 		// Verifica se foi apanhado algum item
@@ -100,6 +128,10 @@ public class PlayState implements GameState {
 		nodamage_item.move();
 		fuel_item.move();
 		sky_mine.move();
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 
 	public float getGlobalAccelaration_x() {
