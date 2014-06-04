@@ -20,6 +20,7 @@ public class Tools {
 	private static Bitmap fuel;
 	private static Bitmap skymine;
 	private static Bitmap slowmo;
+	private static Bitmap boost;
 
 	public static float getDrawUnity() {
 		return drawUnity;
@@ -88,8 +89,16 @@ public class Tools {
 
 		health = BitmapFactory.decodeResource(res, R.drawable.health);
 		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		
+		boost = BitmapFactory.decodeResource(res, R.drawable.boostbonus);
+		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+
 	}
 
+
+	public static Bitmap getBoost() {
+		return boost;
+	}
 
 	public static void init(int width, int height) {
 		screenWithd = width;

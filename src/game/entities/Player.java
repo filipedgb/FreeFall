@@ -23,6 +23,16 @@ public class Player extends GameObject {
 	
 	private boolean malfunctioning = false;
 	private int malfunc_ticks = 0;
+	
+	private boolean boost = false;
+
+	public boolean isBoost() {
+		return boost;
+	}
+
+	public void setBoost(boolean boost) {
+		this.boost = boost;
+	}
 
 	public Player(int x, int y) {
 		super(x, y, screen_width/6, screen_width/6);
