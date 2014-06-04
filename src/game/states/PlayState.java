@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.util.Log;
+import game.engine.GameLoop;
 import game.engine.GameView;
 import game.entities.Fuel;
 import game.entities.Health;
@@ -81,6 +82,7 @@ public class PlayState implements GameState{
 		
 		
 		if(player.getLifepoints() > 0) points += 0.1;
+		else GameLoop.stopThread();
 					
 		// Verifica se foi apanhado algum item
 		
@@ -104,7 +106,7 @@ public class PlayState implements GameState{
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move();
 			if(objects.get(i).damage(player)) {
-				 //v.vibrate(20);
+				 v.vibrate(20);
 
 			};
 
