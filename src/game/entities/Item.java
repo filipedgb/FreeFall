@@ -22,9 +22,16 @@ public abstract class Item extends GameObject {
 	public Item(float x, float y) {
 		super(x,y,(int)Tools.getDrawUnity(1),(int) Tools.getDrawUnity(1));
 	}
-
+	
+	/**
+	 * Recebe um jogador e é suposto definir aquilo que lhe acontece quando o item(this) é apanhado
+	 * @param player
+	 */
 	public abstract void caught(Player player);
 	
+	/**
+	 * Função que tem como unico objectivo actualizar o contador
+	 */
 	public void updateItem() {
 		if(ticks > 0) ticks--;
 		else if (ticks == 0) {
@@ -32,12 +39,14 @@ public abstract class Item extends GameObject {
 		}
 	}
 
-
+	/**
+	 * Função que tem como objectivo inicializar o contador 
+	 * @param numSeconds - numero de segundos que se pretende que o item esteja desactivado apos ser apanhado
+	 */
 	public void disabler(int numSeconds) {
 		number_ticks =  (int) (numSeconds*Tools.getFPS());
 		ticks  = (int) (numSeconds*Tools.getFPS()); 
 		this.setActive(false);
-		Log.e("DESATIVOU", "DESATIVOU");
 	
 	}
 }

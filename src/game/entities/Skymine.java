@@ -10,7 +10,12 @@ public class Skymine extends Item {
 		super(x, y);
 		this.bmp = Tools.getSkymine();
 	}
-
+	
+	
+	/**
+	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning (controlos trocados).
+	 * Recebe um player e é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
+	 */
 	@Override
 	public void caught(Player player) {
 		if(!player.isInvulnerable()) {

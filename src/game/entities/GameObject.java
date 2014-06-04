@@ -133,8 +133,6 @@ public abstract class GameObject {
 	 * Como o jogador está em queda livre, os objectos sobem. Quando ultrapassam o 2*(topo do ecrã), a sua posição
 	 * é recalculada aleatoriamente numa posição abaixo do ecrã.   
 	 */
-	
-	
 	public void move() {
 	
 		accelaration_x = global_accelaration_x;
