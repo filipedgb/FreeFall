@@ -6,6 +6,7 @@ import java.util.Random;
 import android.util.Log;
 import game.engine.GameLoop;
 import game.engine.GameView;
+import game.engine.PlayActivity;
 import game.entities.Fuel;
 import game.entities.Health;
 import game.entities.Invulnerability;
@@ -27,7 +28,7 @@ public class PlayState implements GameState{
 	private Fuel fuel_item;
 	private Skymine sky_mine;
 	private float points;
-	
+
 	private boolean gameStarted = false;
 	private GameView current_view;
 	Vibrator v;
@@ -37,15 +38,15 @@ public class PlayState implements GameState{
 		v = (Vibrator) current_view.getContext().getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
-	
+
 	/**
 	 * Função que inicializa os objectos todos da cena, com posições aleatórias
 	 */
-	
+
 	public void init() {
 		randomizeObstacles();	
 		Random rand = new Random();
-	
+
 		player = new Player(current_view.getWidth()/2-50, current_view.getHeight()/3);
 		health_item = new Health((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
 		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
@@ -70,85 +71,79 @@ public class PlayState implements GameState{
 			objects.add(new Obstacle(x, current_view.getHeight()+y));
 		}		
 	}
-	
-	
+
+
 
 	public void update() {
 		if (gameStarted==false) {
 			return;
 		}
-		
-		 // Verifica se jogador perdeu
-		
-		
+
+		// Verifica se jogador perdeu
 		if(player.getLifepoints() > 0) points += 0.1;
-		else GameLoop.stopThread();
-					
+		else {
+			PlayActivity.getSingleInstance().addH("eu", (int) points);
+			PlayActivity.getSingleInstance().saveHighscores();
+			GameLoop.stopThread();
+		}
+
 		// Verifica se foi apanhado algum item
-		
 		if(health_item.isActive()) health_item.caught(player);
 		if(nodamage_item.isActive()) nodamage_item.caught(player);
 		if(fuel_item.isActive()) fuel_item.caught(player);
 
 		// Counter para o bonus de invulnerabilidade
-		
-		
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
 		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
-		
-//		if(//slowmotion_item.colide(player)) {
-//			decreaseVelocity();
-//		}
-		
-		// Move todos os obstáculos e verifica e o jogador colide com algum deles
-		
 
+		//		if(//slowmotion_item.colide(player)) {
+		//			decreaseVelocity();
+		//		}
+
+		// Move todos os obstáculos e verifica e o jogador colide com algum deles
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move();
 			if(objects.get(i).damage(player)) {
-				 v.vibrate(20);
+				v.vibrate(20);
 
 			};
-
 		}
-		
+
 		// Move os restantes objectos do jogo
-	
-					
 		health_item.move();
 		//slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
 		nodamage_item.move();
 		fuel_item.move();
 		sky_mine.move();
 
-	
-	
+
+
 	}
-	
+
 	public float getGlobalAccelaration_x() {
 		return health_item.getAccelaration_x();
 	}
 	public float getGlobalAccelaration_y() {
 		return health_item.getAccelaration_y();
 	}
-	
-	
+
+
 	public Skymine getSky_mine() {
 		return sky_mine;
 	}
 
-	
-//
-//	private void decreaseVelocity() {
-//		for(int i = 0; i < objects.size(); i++){
-//			objects.get(i).setVelocity_y(-20);
-//		}
-//		
-//		health_item.setVelocity_y(-20);
-//		//slowmotion_item.setVelocity_y(-20);
-//		nodamage_item.setVelocity_y(-20);
-//		
-//	}
+
+	//
+	//	private void decreaseVelocity() {
+	//		for(int i = 0; i < objects.size(); i++){
+	//			objects.get(i).setVelocity_y(-20);
+	//		}
+	//		
+	//		health_item.setVelocity_y(-20);
+	//		//slowmotion_item.setVelocity_y(-20);
+	//		nodamage_item.setVelocity_y(-20);
+	//		
+	//	}
 
 	public SlowDown getSlowmotion_item() {
 		return slowmotion_item;
