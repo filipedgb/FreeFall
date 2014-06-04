@@ -9,12 +9,17 @@ import java.io.ObjectOutputStream;
 import game.config.R;
 import game.states.HighscoreState;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 
 public class PlayActivity extends Activity {
 
@@ -22,8 +27,26 @@ public class PlayActivity extends Activity {
 
 	private MediaPlayer mediaPlayer;
 	private HighscoreState highscores;
+	
+	private static boolean clicked = false; 
+
+	/**
+	 * @return the highscores
+	 */
+	public HighscoreState getHighscores() {
+		return highscores;
+	}
+
+	/**
+	 * @param highscores the highscores to set
+	 */
+	public void setHighscores(HighscoreState highscores) {
+		this.highscores = highscores;
+	}
 
 	private static PlayActivity singleInstance = null;
+	
+	private static String currentPlayerName = null;
 
 	public static PlayActivity getSingleInstance()  {
 		return singleInstance; 
@@ -62,6 +85,37 @@ public class PlayActivity extends Activity {
 		}
 	}
 
+	public void askName() {
+		setClicked(false);
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		alert.setTitle("Name");
+		alert.setMessage("Insert your name: ");
+
+		// Set an EditText view to get user input 
+		final EditText input = new EditText(this);
+		alert.setView(input);
+		
+		Log.e("ask name", "here");
+
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				String value = input.getText().toString();
+				setCurrentPlayerName(value);
+				addH(value, (int) GameLoop.getPoints());
+				saveHighscores();
+			}
+		});
+
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				setCurrentPlayerName(null);
+			}
+		});
+		
+		alert.show();
+	}
+
 	public void addH (String name, int score) {
 		highscores.addHighscore(name, score);
 	}
@@ -87,11 +141,27 @@ public class PlayActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		GameLoop.stopThread();
+		GameLoop.stopThread(0);
 		super.onBackPressed();
 	}
 
 	public void playHitSound() {
 		mediaPlayer.start();
+	}
+
+	public static String getCurrentPlayerName() {
+		return currentPlayerName;
+	}
+
+	public static void setCurrentPlayerName(String currentPlayerName) {
+		PlayActivity.currentPlayerName = currentPlayerName;
+	}
+
+	public static boolean isClicked() {
+		return clicked;
+	}
+
+	public static void setClicked(boolean clicked) {
+		PlayActivity.clicked = clicked;
 	}
 }

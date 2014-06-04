@@ -48,7 +48,7 @@ public class HighscoreState implements GameState, Serializable {
 		}
 	}
 
-	private int getScoreIndex(int score) {
+	public int getScoreIndex(int score) {
 		int i=0;
 
 		for(ArrayList<String> s : highscores) {

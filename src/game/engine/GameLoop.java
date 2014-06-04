@@ -1,5 +1,7 @@
 package game.engine;
 
+import android.os.Handler;
+import android.util.Log;
 import game.states.PlayState;
 
 public class GameLoop extends Thread {
@@ -14,21 +16,61 @@ public class GameLoop extends Thread {
 	private PlayState current_gamestate;
 	private static GameLoop current_instance = null;
 
+	private static Handler h;
+
+	private static float points;
+	/**
+	 * @return the points
+	 */
+	public static float getPoints() {
+		return points;
+	}
+
+	/**
+	 * @param points the points to set
+	 */
+	public static void setPoints(float points) {
+		GameLoop.points = points;
+	}
+
 	public GameLoop(GameView gameview,PlayState gamestate) {
-		stopThread();
+		stopThread(0);
 		current_instance = this;
 		current_gameview = gameview;
 		current_gamestate = gamestate;
 		this.setPriority(Thread.MIN_PRIORITY);
+		h = new Handler();
 		this.start();
 	}
 
-	public static void stopThread() {
+	public static void stopThread(float p) {
 		if(current_instance != null) {
 			current_instance.running = false;
 			current_instance = null;
+			points = p;
+
+			Thread t = new Thread() {
+				public void run() {
+					try {
+						h.post(askName);
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			};
+
+			if(PlayActivity.getSingleInstance().getHighscores().getScoreIndex((int) points) < 10) {
+				t.run();
+			}
 		}
 	}
+
+	private final static Runnable askName = new Runnable() {
+		public void run() {
+			PlayActivity.getSingleInstance().askName();
+		}
+	};
 
 	public void run() {
 		while (running) {
@@ -44,6 +86,7 @@ public class GameLoop extends Thread {
 				}
 			}
 		}
+
 	}
 
 }
