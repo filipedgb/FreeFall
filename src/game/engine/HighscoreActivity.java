@@ -13,6 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+/**
+ * Representa o menu de consulta dos highscores
+ * @author André Pires, Filipe Gama
+ * @see Activity
+ */
 public class HighscoreActivity extends Activity {
 	private HighscoreState highscores;
 	public static final String filename = "FreeFallHighscore";
@@ -31,6 +36,9 @@ public class HighscoreActivity extends Activity {
 		updateHighscore();
 	}
 
+	/**
+	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna do telemovel
+	 */
 	public void loadHighscores() {
 		File file = getFileStreamPath(filename);
 
@@ -56,6 +64,9 @@ public class HighscoreActivity extends Activity {
 		this.highscores = highscores;
 	}
 
+	/**
+	 * Atualiza os highscores a mostrar
+	 */
 	public void updateHighscore() {
 		ArrayList<ArrayList<String>> h = highscores.getHighscores();
 

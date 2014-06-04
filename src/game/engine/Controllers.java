@@ -5,11 +5,16 @@ import game.states.PlayState;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+/**
+ * Esta classe representa os controlos do jogo, ou seja, verifica a interação que o utilizador fez com o telemovel
+ * e faz as alterações necessárias ao jogo 
+ * @author André Pires, Filipe Gama
+ * @see OnTouchListener, SensorEventListener
+ */
 public class Controllers implements OnTouchListener, SensorEventListener {
 
 	private GameView current_gameview;
@@ -51,7 +56,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) {
 				if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(UP_DIRECTION);
 				else { current_game.setDirection(DOWN_DIRECTION);
-					current_game.getPlayer().setBoost(true);
+				current_game.getPlayer().setBoost(true);
 				}
 
 			}

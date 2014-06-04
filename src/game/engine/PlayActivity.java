@@ -19,6 +19,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 
+/**
+ * Esta classe representa a classe de jogo
+ * @author André Pires, Filipe Gama
+ * @see Activity
+ */
 public class PlayActivity extends Activity {
 
 	private SensorManager sensorManager;
@@ -67,6 +72,9 @@ public class PlayActivity extends Activity {
 		loadHighscores();
 	}
 
+	/**
+	 * Guarda os highscores num ficheiro na memoria interna do telemovel
+	 */
 	public void saveHighscores() {
 		try {
 			FileOutputStream fos = openFileOutput(HighscoreActivity.filename, MODE_WORLD_READABLE); 
@@ -78,6 +86,9 @@ public class PlayActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Funcao que permite perguntar o nome ao jogador atraves dum input
+	 */
 	public void askName() {
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -108,6 +119,9 @@ public class PlayActivity extends Activity {
 		highscores.addHighscore(name, score);
 	}
 
+	/**
+	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna do telemovel
+	 */
 	public void loadHighscores() {
 		File file = getFileStreamPath(HighscoreActivity.filename);
 

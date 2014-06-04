@@ -4,6 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+/**
+ * Classe utilizada para manipulacao de sprites, ou seja, conjunto de imagens usadas no jogo
+ * @author André Pires, Filipe Gama
+ * 
+ */
 public class Sprite {
 
 	private int x, y, height , width, currentframe =0, direction;
@@ -34,7 +39,7 @@ public class Sprite {
 	public void setDirection(int direction) {
 		this.direction = direction;
 	}
-	
+
 	/**
 	 * Função que automaticamente recorta a spritesheet de forma a ficarmos só com a parte que interessa
 	 * @param canvas - onde vai ser desenhada a animação
@@ -51,8 +56,8 @@ public class Sprite {
 
 		canvas.drawBitmap(spritesheet, src, dst,null);
 	}
-	
-	
+
+
 	/**
 	 * Função que actualiza a imgem (de forma a ficar animada)
 	 */
