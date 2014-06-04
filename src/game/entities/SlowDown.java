@@ -1,5 +1,6 @@
 package game.entities;
 
+import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,7 +9,7 @@ public class SlowDown extends Item  {
 
 	public SlowDown(float x, float y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		this.bmp = Tools.getSlowmo();
 	}
 
 

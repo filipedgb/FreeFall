@@ -10,19 +10,21 @@ import game.entities.Health;
 import game.entities.Invulnerability;
 import game.entities.Obstacle;
 import game.entities.Player;
+import game.entities.Skymine;
+import game.entities.SlowDown;
 import android.content.Context;
 import android.os.Vibrator;
 
-//import game.entities.SlowDown;
 
 public class PlayState implements GameState{
 
 	private ArrayList<Obstacle> objects = new ArrayList<Obstacle>();
 	private Player player;
 	private Health health_item;
-//	private SlowDown //slowmotion_item;
+	private SlowDown slowmotion_item;
 	private Invulnerability nodamage_item;
 	private Fuel fuel_item;
+	private Skymine sky_mine;
 	private float points;
 	
 	private boolean gameStarted = false;
@@ -45,11 +47,15 @@ public class PlayState implements GameState{
 	
 		player = new Player(current_view.getWidth()/2-50, current_view.getHeight()/3);
 		health_item = new Health((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
-		//slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
+		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
 		nodamage_item = new Invulnerability((int)rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
 		fuel_item = new Fuel((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
+		sky_mine = new Skymine((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
+
 		gameStarted = true;
 	}
+
+
 
 	/**
 	 * Função que determina posições iniciais dos obstáculos, chamada no init
@@ -98,7 +104,8 @@ public class PlayState implements GameState{
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move();
 			if(objects.get(i).damage(player)) {
-				 v.vibrate(20);
+				 //v.vibrate(20);
+
 			};
 
 		}
@@ -110,6 +117,7 @@ public class PlayState implements GameState{
 		//slowmotion_item.move(current_view.getHeight(), current_view.getWidth());
 		nodamage_item.move();
 		fuel_item.move();
+		sky_mine.move();
 
 	
 	
@@ -123,6 +131,11 @@ public class PlayState implements GameState{
 	}
 	
 	
+	public Skymine getSky_mine() {
+		return sky_mine;
+	}
+
+	
 //
 //	private void decreaseVelocity() {
 //		for(int i = 0; i < objects.size(); i++){
@@ -134,14 +147,14 @@ public class PlayState implements GameState{
 //		nodamage_item.setVelocity_y(-20);
 //		
 //	}
-/*
+
 	public SlowDown getSlowmotion_item() {
-		return //slowmotion_item;
+		return slowmotion_item;
 	}
 
-	public void setSlowmotion_item(SlowDown //slowmotion_item) {
-		this.//slowmotion_item = //slowmotion_item;
-	}*/
+	public void setSlowmotion_item(SlowDown slowmotion_item) {
+		this.slowmotion_item = slowmotion_item;
+	}
 
 	public Health getHealth_item() {
 		return health_item;

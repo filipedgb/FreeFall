@@ -1,6 +1,7 @@
 package game.entities;
 
 import game.config.R;
+import game.engine.Tools;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,14 +13,7 @@ public class Health extends Item {
 	public Health(float x, float y) {
 		super(x, y);
 		this.value = 200;
-				
-		if (bmp==null) {
-			//instancio a imagem do resource
-			bmp = BitmapFactory.decodeResource(res, R.drawable.health);
-			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, this.getWidth(), this.getHeight(), true);
-		}
-		
+		this.bmp = Tools.getHealth();
 	}
 
 	@Override

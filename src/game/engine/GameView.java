@@ -9,7 +9,7 @@ import android.view.*;
 
 public class GameView extends View {
 	private Paint paint;
-	private PlayState game;
+	private PlayState game = null;
 	private final int LEFT_DIRECTION = 0;
 	private final int DOWN_DIRECTION = 1;
 	private final int UP_DIRECTION = 2;
@@ -19,8 +19,14 @@ public class GameView extends View {
 	public GameView(Context context) {
 		super(context);
 		GameObject.setRes(this.getResources());
-
 		paint = new Paint();
+
+	//	init();
+	//	tthis.setOnTouchListener(new Controllers(this,game));his.setOnTouchListener(new Controllers(this,game));
+	}
+	
+	public void init() {
+		Tools.loadImages(this.getResources());
 		game = new PlayState(this);
 		new GameLoop(this,game);
 		this.setOnTouchListener(new Controllers(this,game));
@@ -32,11 +38,17 @@ public class GameView extends View {
 
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
-		if (game.isGameStarted() ==false) {
+		
+		if(game == null) {
+			Tools.init(this.getWidth(),this.getHeight());
 			GameObject.setScreen_height(this.getHeight());
 			Log.e("gameview", "" + this.getHeight());
 			GameObject.setScreen_width(this.getWidth());
-			Tools.init(this.getWidth(),this.getHeight());
+			init();
+		}
+		
+		if (game.isGameStarted() ==false) {
+			
 			game.init();
 		}
 
@@ -52,11 +64,12 @@ public class GameView extends View {
 
 		// Desenha barra de vida 
 
+		
 		paint.setColor(Color.GREEN);
 
 		canvas.drawRect(Tools.getDrawUnity(4),
 				Tools.getDrawUnity(1),
-				Tools.getDrawUnity(6)+(game.getPlayer().getHealthFrac()*Tools.getDrawUnity(4)),
+				Tools.getDrawUnity(4)+(game.getPlayer().getHealthFrac()*Tools.getDrawUnity(4)),
 				Tools.getDrawUnity(1)+Tools.getDrawUnity((float) 0.5),
 				paint);
 
@@ -66,18 +79,19 @@ public class GameView extends View {
 
 		canvas.drawRect(Tools.getDrawUnity(4),
 				Tools.getDrawUnity((float)1.75),
-				Tools.getDrawUnity(6)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(4)),
+				Tools.getDrawUnity(4)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(4)),
 				Tools.getDrawUnity((float)1.75)+Tools.getDrawUnity((float) 0.5),
 				paint);
 
 		// Desenha jogador
 		game.getPlayer().draw(canvas,paint);
-
+		
 		// Desenha items que podem ser apanhados - Vida/Invulnerabilidade/Combustível
 		if(game.getHealth_item().isActive()) game.getHealth_item().draw(canvas,paint);
-		//		game.getSlowmotion_item().draw(canvas,paint);
+		if(game.getSlowmotion_item().isActive()) game.getSlowmotion_item().draw(canvas,paint);
 		if(game.getNodamage_item().isActive())game.getNodamage_item().draw(canvas,paint);
 		if(game.getFuel_item().isActive())game.getFuel_item().draw(canvas,paint);
+		if(game.getSky_mine().isActive())game.getSky_mine().draw(canvas,paint);
 
 		// Desenha a pontuação
 		paint.setAntiAlias(true);

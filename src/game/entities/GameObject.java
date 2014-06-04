@@ -22,6 +22,8 @@ public abstract class GameObject {
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
 	protected float resistence ;
+	protected Bitmap bmp;
+
 	
 	protected static Resources res;
 	protected static int screen_height;
@@ -65,7 +67,6 @@ public abstract class GameObject {
 	public static void setScreen_width(int screen_width) {
 		GameObject.screen_width = screen_width;
 	}
-	protected Bitmap bmp;
 
 
 	public static Resources getRes() {
