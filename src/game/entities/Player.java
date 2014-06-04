@@ -39,7 +39,7 @@ public class Player extends GameObject {
 		}
 
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
-		player_animation = new Sprite(x,y,screen_height,screen_width,player_spritesheet);	
+		player_animation = new Sprite(x,y,screen_height,screen_width,5,4,player_spritesheet);	
 	}
 
 	public float getHealthFrac() {
