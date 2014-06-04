@@ -15,6 +15,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 	private GameView current_gameview;
 	private PlayState current_game;
+	private int counter = 0;
 	
 	private boolean controllerSensor = false;
 		
@@ -43,12 +44,12 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	@Override
 	public boolean onTouch(View arg0, MotionEvent event) {
 
-		try {
-			Thread.sleep(70);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(70);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		if(event.getAction() == MotionEvent.ACTION_DOWN) {
 			if(event.getX() > current_gameview.getWidth()/2) 
@@ -60,6 +61,10 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 		}
 
 		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
+			counter ++;
+			
+			if(counter %10 != 0) return true;
+			
 			if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0)  {
 				current_game.getPlayer().setMotion(UP_DIRECTION);
 				GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x(),current_game.getGlobalAccelaration_y()+10);

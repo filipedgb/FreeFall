@@ -1,5 +1,6 @@
 package game.engine;
 
+import android.util.Log;
 import game.states.PlayState;
 
 public class GameLoop extends Thread {
@@ -12,15 +13,25 @@ public class GameLoop extends Thread {
 	
 	private GameView current_gameview;
 	private PlayState current_gamestate;
+	private static GameLoop current_instance = null;
 
 	
 	public GameLoop(GameView gameview,PlayState gamestate) {
+		stopThread();
+		current_instance = this;
 		current_gameview = gameview;
 		current_gamestate = gamestate;
 		this.setPriority(Thread.MIN_PRIORITY);
 		this.start();
 	}
 	
+	public static void stopThread() {
+		if(current_instance != null) {
+			current_instance.running = false;
+			current_instance = null;
+			
+		}
+	}
 
 	public void run() {
 		while (running) {

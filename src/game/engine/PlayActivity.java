@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -38,6 +39,14 @@ public class PlayActivity extends Activity {
 		setContentView(game_view);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		GameLoop.stopThread();
+		super.onBackPressed();
+		Log.e("entrou","backbutton");
+	}
+
 	public void playHitSound() {
 		mediaPlayer.start();
 	}

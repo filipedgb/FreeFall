@@ -58,9 +58,9 @@ public class Tools {
 		res = resources;
 		
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
-		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(5), (int) getDrawUnity(5), true);
 		
-		invulnerable = BitmapFactory.decodeResource(res, R.drawable.invulnerability);
+		invulnerable = BitmapFactory.decodeResource(res, R.drawable.invulnerable);
 		invulnerable = Bitmap.createScaledBitmap(invulnerable, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
 		
 		fuel = BitmapFactory.decodeResource(res, R.drawable.fuel);
