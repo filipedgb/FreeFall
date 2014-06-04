@@ -4,17 +4,21 @@ import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa o item "mina", que causa a troca dos controlos do jogo ao ser "apanhado"
+ * @author André Pires, Filipe Gama
+ * @see Item
+ */
 public class Skymine extends Item {
 
 	public Skymine(float x, float y) {
 		super(x, y);
 		this.bmp = Tools.getSkymine();
 	}
-	
-	
+
 	/**
-	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning (controlos trocados).
-	 * Recebe um player e é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
+	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning (controlos trocados). 
+	 * @param player é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
 	 */
 	@Override
 	public void caught(Player player) {

@@ -4,6 +4,11 @@ import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa o item de combustivel, se o jogador apanhar este item ganha combustivel
+ * @author André Pires, Filipe Gama
+ * @see Item
+ */
 public class Fuel extends Item {
 
 	public Fuel(float x, float y) {
@@ -20,8 +25,7 @@ public class Fuel extends Item {
 	public void caught(Player player) {
 		if(this.colide(player)) {
 			player.addFuel(value);
-			disabler(25);
-			
+			disabler(25);			
 		}		
 	}
 

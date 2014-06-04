@@ -8,6 +8,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa o jogador
+ * @author André Pires, Filipe Gama
+ * @see GameObject
+ */
 public class Player extends GameObject {
 
 	private int lifepoints;
@@ -100,6 +105,9 @@ public class Player extends GameObject {
 		else player_animation.draw(canvas);
 	}
 
+	/**
+	 * Movimenta o jogador
+	 */
 	@Override
 	public void move() {
 		resistence = (float) (-0.9*velocity_x);
@@ -119,6 +127,10 @@ public class Player extends GameObject {
 		return fuel;
 	}
 
+	/**
+	 * Adiciona vida ao jogador
+	 * @param value vida a ganhar (pode ser positivo ou negativo)
+	 */
 	public void addHealthPoints(float value) {
 		if(value > 0 && lifepoints <= max_life) { 
 			if(lifepoints+value > max_life) lifepoints = max_life;
@@ -131,6 +143,10 @@ public class Player extends GameObject {
 		}
 	}
 
+	/**
+	 * Adiciona combustivel ao jogador
+	 * @param value combustivel a ganhar (pode ser positivo ou negativo)
+	 */
 	public void addFuel(float value) {
 		if(value > 0 && fuel <= max_fuel) { 
 			if(fuel+value > max_fuel) fuel = max_fuel;

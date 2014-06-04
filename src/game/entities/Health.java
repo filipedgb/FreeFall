@@ -4,6 +4,11 @@ import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+/**
+ * Esta classe representa o item de vida, o jogador ao apanhar este item ganha vida 
+ * @author André Pires, Filipe Gama
+ * @see Item
+ */
 public class Health extends Item {
 
 	public Health(float x, float y) {
