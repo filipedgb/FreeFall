@@ -74,6 +74,9 @@ public class PlayState implements GameState {
 			GameLoop.stopThread(points);
 		}
 		
+		//Verifica velocidade máxima horizontal 
+		if(GameObject.getGlobalVelocity_x() > 10) player.addHealthPoints(-1);
+		
 		//Verifica movimentos do player
 		switch(direction) {
 			case (0): //Left 
