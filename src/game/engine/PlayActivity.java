@@ -15,8 +15,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -27,8 +25,7 @@ public class PlayActivity extends Activity {
 
 	private MediaPlayer mediaPlayer;
 	private HighscoreState highscores;
-	
-	private static boolean clicked = false; 
+	private static PlayActivity singleInstance = null;
 
 	/**
 	 * @return the highscores
@@ -43,10 +40,6 @@ public class PlayActivity extends Activity {
 	public void setHighscores(HighscoreState highscores) {
 		this.highscores = highscores;
 	}
-
-	private static PlayActivity singleInstance = null;
-	
-	private static String currentPlayerName = null;
 
 	public static PlayActivity getSingleInstance()  {
 		return singleInstance; 
@@ -86,7 +79,6 @@ public class PlayActivity extends Activity {
 	}
 
 	public void askName() {
-		setClicked(false);
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
 		alert.setTitle("Name");
@@ -95,13 +87,10 @@ public class PlayActivity extends Activity {
 		// Set an EditText view to get user input 
 		final EditText input = new EditText(this);
 		alert.setView(input);
-		
-		Log.e("ask name", "here");
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String value = input.getText().toString();
-				setCurrentPlayerName(value);
 				addH(value, (int) GameLoop.getPoints());
 				saveHighscores();
 			}
@@ -109,10 +98,9 @@ public class PlayActivity extends Activity {
 
 		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				setCurrentPlayerName(null);
 			}
 		});
-		
+
 		alert.show();
 	}
 
@@ -147,21 +135,5 @@ public class PlayActivity extends Activity {
 
 	public void playHitSound() {
 		mediaPlayer.start();
-	}
-
-	public static String getCurrentPlayerName() {
-		return currentPlayerName;
-	}
-
-	public static void setCurrentPlayerName(String currentPlayerName) {
-		PlayActivity.currentPlayerName = currentPlayerName;
-	}
-
-	public static boolean isClicked() {
-		return clicked;
-	}
-
-	public static void setClicked(boolean clicked) {
-		PlayActivity.clicked = clicked;
 	}
 }
