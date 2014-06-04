@@ -5,6 +5,7 @@ import game.states.PlayState;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -47,18 +48,18 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) {
 				if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(UP_DIRECTION);
-				current_game.setDirection(DOWN_DIRECTION);
+				else current_game.setDirection(DOWN_DIRECTION);
 
 			}
 
 			else if(event.getX() > current_gameview.getWidth()/2){
 				if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(LEFT_DIRECTION);
-				current_game.setDirection(RIGHT_DIRECTION);
+				else current_game.setDirection(RIGHT_DIRECTION);
 			}
 
 			else if(event.getX() < current_gameview.getWidth()/2 ){
-				if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(RIGHT_DIRECTION);
-				current_game.setDirection(LEFT_DIRECTION);
+				if(current_game.getPlayer().isMalfunctioning())current_game.setDirection(RIGHT_DIRECTION);
+				else current_game.setDirection(LEFT_DIRECTION);
 			}
 		}
 
