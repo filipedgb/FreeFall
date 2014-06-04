@@ -103,6 +103,7 @@ public class PlayState implements GameState {
 		if(nodamage_item.isActive()) nodamage_item.caught(player);
 		if(fuel_item.isActive()) fuel_item.caught(player);
 		if(sky_mine.isActive()) sky_mine.caught(player);
+		if(slowmotion_item.isActive()) slowmotion_item.caught(player);
 
 		
 		//actualiza os items
@@ -111,6 +112,7 @@ public class PlayState implements GameState {
 		nodamage_item.updateItem();
 		slowmotion_item.updateItem();
 		sky_mine.updateItem();
+		slowmotion_item.updateItem();
 		player.update();
 
 
