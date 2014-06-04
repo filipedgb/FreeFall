@@ -1,5 +1,6 @@
 package game.engine;
 
+import game.config.R;
 import game.entities.GameObject;
 import game.states.PlayState;
 import android.content.Context;
@@ -9,6 +10,8 @@ import android.view.*;
 public class GameView extends View {
 	private Paint paint;
 	private PlayState game = null;
+	private Bitmap malfunction;
+	private Sprite malfunction_anim;
 
 	public GameView(Context context) {
 		super(context);
@@ -21,6 +24,10 @@ public class GameView extends View {
 		game = new PlayState(this);
 		new GameLoop(this,game);
 		this.setOnTouchListener(new Controllers(this,game));
+		
+		malfunction = BitmapFactory.decodeResource(getResources(), R.drawable.malfunc_sprite);
+		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
+		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int) Tools.getScreenHeight(),(int) Tools.getScreenWithd(),3,2,malfunction);	
 	}
 
 	public PlayState getGame() {
@@ -43,7 +50,11 @@ public class GameView extends View {
 
 		// Desenha o fundo
 		canvas.drawColor(Color.argb(255, 135, 206, 235));
-
+		
+		// Desenha malfunction sprite
+		
+		malfunction_anim.draw(canvas);
+		
 		// Desenha os obstáculos
 		for (int i = 0; i < game.getObjects().size(); i++) {
 			game.getObjects().get(i).draw(canvas, paint);

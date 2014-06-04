@@ -8,30 +8,20 @@ import android.graphics.Rect;
 public class Sprite {
 
 	private int x, y, height , width, currentframe =0, direction;
+	private int rows, columns;
 
 	Bitmap spritesheet;
 
-	public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
-	{
-		int width = bm.getWidth();
-		int height = bm.getHeight();
-		float scaleWidth = ((float) newWidth) / width;
-		float scaleHeight = ((float) newHeight) / height;
-		// create a matrix for the manipulation
-		Matrix matrix = new Matrix();
-		// resize the bit map
-		matrix.postScale(scaleWidth, scaleHeight);
-		// recreate the new Bitmap
-		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-		return resizedBitmap;
-	}
 
-	public Sprite (int x, int y , int view_height, int view_width, Bitmap spritesheet) {
+
+	public Sprite (int x, int y , int view_height, int view_width, int columns, int rows, Bitmap spritesheet) {
 		this.spritesheet = spritesheet;
-		height = spritesheet.getHeight()/4;
-		width = spritesheet.getWidth()/5;
+		height = spritesheet.getHeight()/rows;
+		width = spritesheet.getWidth()/columns;
 		this.x = x;
 		this.y = y;
+		this.rows = rows;
+		this.columns = this.columns;
 	}
 
 	public void setDirection(int direction) {
@@ -56,6 +46,6 @@ public class Sprite {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		currentframe = ++currentframe%4;
+		currentframe = ++currentframe%rows;
 	}
 }
