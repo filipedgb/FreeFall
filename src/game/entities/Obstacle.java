@@ -28,6 +28,11 @@ public class Obstacle extends GameObject {
 		this.fast = fast;
 	}
 
+	/**
+	 * Função que recebe um jogador e lhe tira vida se houver colisão desse jogador com o obstaculo(this).
+	 * @param player - objecto do jogador actual
+	 * @return - true se houver colisão, falso se não
+	 */
 	public boolean damage(Player player) {
 		if(this.colide(player)) {
 			player.addHealthPoints(-damage);

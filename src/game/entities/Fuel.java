@@ -12,6 +12,10 @@ public class Fuel extends Item {
 		this.bmp  = Tools.getFuel();
 	}
 
+	/**
+	 * Esta função recebe o jogador e adiciona-lhe o valor de "value" ao atributo fuel, através da funçao addFuel.
+	 * Chama a função disabler que inicia um contador para o tempo que o item vai estar desativado depois de apanhado 
+	 */
 	@Override
 	public void caught(Player player) {
 		if(this.colide(player)) {

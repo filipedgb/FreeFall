@@ -12,7 +12,16 @@ public class Sprite {
 	Bitmap spritesheet;
 
 
-
+	/**
+	 * Construtor da sprite.
+	 * @param x - posição x 
+	 * @param y - posição y
+	 * @param view_height - altura do ecrã
+	 * @param view_width - largura do ecrã
+	 * @param columns - colunas da spritesheet
+	 * @param rows - linhas da spritesheet
+	 * @param spritesheet - spritesheet (imagem, bitmap)
+	 */
 	public Sprite (int x, int y , int view_height, int view_width, int columns, int rows, Bitmap spritesheet) {
 		this.spritesheet = spritesheet;
 		height = spritesheet.getHeight()/rows;
@@ -25,6 +34,11 @@ public class Sprite {
 	public void setDirection(int direction) {
 		this.direction = direction;
 	}
+	
+	/**
+	 * Função que automaticamente recorta a spritesheet de forma a ficarmos só com a parte que interessa
+	 * @param canvas - onde vai ser desenhada a animação
+	 */
 
 	public void draw(Canvas canvas) {
 		update();
@@ -37,7 +51,11 @@ public class Sprite {
 
 		canvas.drawBitmap(spritesheet, src, dst,null);
 	}
-
+	
+	
+	/**
+	 * Função que actualiza a imgem (de forma a ficar animada)
+	 */
 	private void update() {
 		try {
 			Thread.sleep(50);

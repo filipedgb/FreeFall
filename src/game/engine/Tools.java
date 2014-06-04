@@ -55,6 +55,15 @@ public class Tools {
 		return slowmo;
 	}
 	
+	/**
+	 *  Esta função foi retirada da internet sem sofrer qualquer tipo de alteração.
+	 *  O seu objectivo é simplesmente o de redimensionar um bitmap (sem estragar a qualidade do mesmo)
+	 *  
+	 * @param bm
+	 * @param newHeight
+	 * @param newWidth
+	 * @return
+	 */
 	public static Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
 	{
 		int width = bm.getWidth();
@@ -69,6 +78,11 @@ public class Tools {
 		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
 		return resizedBitmap;
 	}
+	
+	/**
+	 * Função que carrega as imagens todas logo no início do jogo.
+	 * @param resources
+	 */
 
 	public static void loadImages(Resources resources) {
 		res = resources;

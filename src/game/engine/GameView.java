@@ -18,7 +18,13 @@ public class GameView extends View {
 		GameObject.setRes(this.getResources());
 		paint = new Paint();
 	}
-
+	
+	/**
+	 * Inicializa tudo o que é preciso na view. Um estado do jogo (onde se encontra a lógica)
+	 * O gameloop, que é uma thread responsável por actualizar e desenhar o jogo
+	 * O listener, tanto de acelerometro como touch.
+	 * Inicializa também uma sprite -> a animação de quando a nave entra em "malfunctioning"
+	 */
 	public void init() {
 		Tools.loadImages(this.getResources());
 		game = new PlayState(this);
@@ -34,6 +40,10 @@ public class GameView extends View {
 		return game;
 	}
 
+	
+	/**
+	 *  Desenha tudo o que se encontra na view do jogo. (Comentários dentro da função )
+	 */
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
 
@@ -119,59 +129,4 @@ public class GameView extends View {
 		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
 	}
 
-	//	@Override
-	//	public boolean onTouchEvent(MotionEvent event) {
-	//
-	//
-	//		if(event.getAction() == MotionEvent.ACTION_DOWN) {
-	//			if(event.getX() > this.getWidth()/2) 
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-100,game.getGlobalAccelaration_y());
-	//			else 
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+100,game.getGlobalAccelaration_y());
-	//
-	//			return true;
-	//		}
-	//
-	//		if(event.getAction() == MotionEvent.ACTION_MOVE) { 
-	//			if(event.getY() < this.getHeight()/6 && game.getPlayer().getFuel() > 0)  {
-	//				game.getPlayer().setMotion(UP_DIRECTION);
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()+10);
-	//				game.getPlayer().addFuel(-0.05f*game.getGlobalAccelaration_y());
-	//			}
-	//
-	//			else if(event.getY() > 5*this.getHeight()/6 && game.getPlayer().getFuel() > 0 ) {
-	//				game.getPlayer().setMotion(DOWN_DIRECTION);
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x(),game.getGlobalAccelaration_y()-10);
-	//				game.getPlayer().addFuel(0.05f*game.getGlobalAccelaration_y());
-	//			}
-	//
-	//			else if(event.getX() > this.getWidth()/2) {
-	//				game.getPlayer().setMotion(RIGHT_DIRECTION);
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()-10,game.getGlobalAccelaration_y());
-	//			}		
-	//			else if(event.getX() < this.getWidth()/2 ){
-	//				game.getPlayer().setMotion(LEFT_DIRECTION);
-	//				game.setGlobalAccelaration(game.getGlobalAccelaration_x()+10,game.getGlobalAccelaration_y());
-	//			}
-	//			
-	//			
-	//			try {
-	//				Thread.sleep(3000);
-	//			} catch (InterruptedException e) {
-	//				// TODO Auto-generated catch block
-	//				e.printStackTrace();
-	//			}
-	//
-	//		}
-	//
-	//		if(event.getAction() == MotionEvent.ACTION_UP) {
-	//			Log.e("coiso", "Levantou");
-	//			game.setGlobalAccelaration(0,0);
-	//			game.getPlayer().setMotion(NO_ACCEL);
-	//		}
-	//
-	//		return true;
-	//	}
-	//
-	//
-}
+	}
