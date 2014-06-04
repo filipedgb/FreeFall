@@ -69,9 +69,7 @@ public class PlayState implements GameState {
 		// Verifica se jogador perdeu
 		if(player.getLifepoints() > 0) points += 0.1;
 		else {
-			PlayActivity.getSingleInstance().addH("eu", (int) points);
-			PlayActivity.getSingleInstance().saveHighscores();
-			GameLoop.stopThread();
+			GameLoop.stopThread(points);
 		}
 		
 		//Verifica movimentos do player
