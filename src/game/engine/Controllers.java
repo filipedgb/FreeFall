@@ -30,7 +30,9 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 	/**
 	 *  Se o jogador clica na metade direita do ecrã, o jogador move-se para a direita
-	 *  A aceleração tem um pico inicial (event ACTION_DOWN) e depois aumenta consoante o tempo que o jogador mantiver o ecrã premido (event ACTION_MOVE)
+	 *  A aceleração tem um pico inicial (event ACTION_DOWN) e depois aumenta consoante o tempo que o jogador mantiver o ecrã premido
+	 *  
+	 *  Quando o jogador levanta o dedo é desativada a flag hold e o jogador para de se mover.
 	 *  	 
 	 *  Se o jogador clicar na parte de cima do ecrã, pode contrariar a gravidade, abrandando até poder mesmo começar a subir
 	 *  
@@ -48,7 +50,9 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 			else if(event.getY() > 5*current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0 ) {
 				if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(UP_DIRECTION);
-				else current_game.setDirection(DOWN_DIRECTION);
+				else { current_game.setDirection(DOWN_DIRECTION);
+					current_game.getPlayer().setBoost(true);
+				}
 
 			}
 
@@ -69,6 +73,8 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			current_game.setDirection(NO_ACCEL);
+			current_game.getPlayer().setBoost(false);
+
 		}
 
 		return true;

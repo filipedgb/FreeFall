@@ -51,6 +51,9 @@ public class GameView extends View {
 		// Desenha o fundo
 		canvas.drawColor(Color.argb(255, 135, 206, 235));
 		
+		// Desenha bonus points
+		if(game.getPlayer().isBoost()) canvas.drawBitmap(Tools.getBoost(), Tools.getDrawUnity(8), Tools.getDrawUnity(3), paint);
+		
 		// Desenha malfunction sprite
 		
 		if(game.getPlayer().isMalfunctioning())	malfunction_anim.draw(canvas);
@@ -60,22 +63,40 @@ public class GameView extends View {
 			game.getObjects().get(i).draw(canvas, paint);
 		}
 
+		//Desenha barras por baixo
+		paint.setColor(Color.MAGENTA);
+
+		canvas.drawRect(Tools.getDrawUnity(2),
+				Tools.getDrawUnity((float)1.5),
+				Tools.getDrawUnity(2)+Tools.getDrawUnity(7),
+				Tools.getDrawUnity((float)1.5)+Tools.getDrawUnity((float) 0.5),
+				paint);
+	
 		// Desenha barra de vida 
 		paint.setColor(Color.GREEN);
 
-		canvas.drawRect(Tools.getDrawUnity(4),
-				Tools.getDrawUnity(1),
-				Tools.getDrawUnity(4)+(game.getPlayer().getHealthFrac()*Tools.getDrawUnity(4)),
-				Tools.getDrawUnity(1)+Tools.getDrawUnity((float) 0.5),
+		canvas.drawRect(Tools.getDrawUnity(2),
+				Tools.getDrawUnity((float)1.5),
+				Tools.getDrawUnity(2)+(game.getPlayer().getHealthFrac()*Tools.getDrawUnity(7)),
+				Tools.getDrawUnity((float)1.5)+Tools.getDrawUnity((float) 0.5),
+				paint);
+		
+		//Desenha barras por baixo
+		paint.setColor(Color.GRAY);
+
+		canvas.drawRect(Tools.getDrawUnity(2),
+				Tools.getDrawUnity((float)2.25),
+				Tools.getDrawUnity(2)+Tools.getDrawUnity(7),
+				Tools.getDrawUnity((float)2.25)+Tools.getDrawUnity((float) 0.5),
 				paint);
 
 		paint.setColor(Color.BLUE);
 
 		// Desenha barra de fuel
-		canvas.drawRect(Tools.getDrawUnity(4),
-				Tools.getDrawUnity((float)1.75),
-				Tools.getDrawUnity(4)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(4)),
-				Tools.getDrawUnity((float)1.75)+Tools.getDrawUnity((float) 0.5),
+		canvas.drawRect(Tools.getDrawUnity(2),
+				Tools.getDrawUnity((float)2.25),
+				Tools.getDrawUnity(2)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(7)),
+				Tools.getDrawUnity((float)2.25)+Tools.getDrawUnity((float) 0.5),
 				paint);
 
 		// Desenha jogador

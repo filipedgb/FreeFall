@@ -66,7 +66,10 @@ public class PlayState implements GameState {
 		}
 		
 		// Verifica se jogador perdeu
-		if(player.getLifepoints() > 0) points += 0.1;
+		if(player.getLifepoints() > 0) {
+			if(player.isBoost()) points += 0.5;
+			else points += 0.1;
+		}
 		else {
 			GameLoop.stopThread(points);
 		}
@@ -80,12 +83,12 @@ public class PlayState implements GameState {
 			case (1): //Down
 				getPlayer().setMotion(1);
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
-				getPlayer().addFuel(0.05f*getGlobalAccelaration_y());
+				getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
 				break;
 			case (2)://Up
 				getPlayer().setMotion(2);
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
-				getPlayer().addFuel(-0.05f*getGlobalAccelaration_y());
+				getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
 				break;
 			case (3): //Right
 				getPlayer().setMotion(3);
