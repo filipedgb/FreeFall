@@ -1,6 +1,7 @@
 package game.entities;
 
 import game.config.R;
+import game.engine.Tools;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,13 +15,7 @@ public class Obstacle extends GameObject {
 	
 	public Obstacle(int x, int y) {
 		super(x, y , screen_height/3,  screen_height/3);
-		if (bmp==null) {
-			//instancio a imagem do resource
-			bmp = BitmapFactory.decodeResource(res, R.drawable.nuvem);
-			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, this.getHeight(), this.getWidth(), true);
-		}
-		
+		this.bmp = Tools.getCloud();		
 		damage = 3;
 	}
 	

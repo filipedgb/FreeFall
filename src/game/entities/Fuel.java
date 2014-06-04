@@ -1,6 +1,7 @@
 package game.entities;
 
 import game.config.R;
+import game.engine.Tools;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,12 +12,7 @@ public class Fuel extends Item {
 	public Fuel(float x, float y) {
 		super(x, y);
 		this.value = 100;
-		if (bmp==null) {
-			//instancio a imagem do resource
-			bmp = BitmapFactory.decodeResource(res, R.drawable.fuel);
-			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, this.getWidth(), this.getHeight(), true);
-		}
+		this.bmp  = Tools.getFuel();
 	}
 
 
