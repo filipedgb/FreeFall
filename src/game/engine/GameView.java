@@ -4,7 +4,6 @@ import game.entities.GameObject;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
-import android.util.Log;
 import android.view.*;
 
 public class GameView extends View {
@@ -34,7 +33,6 @@ public class GameView extends View {
 		if(game == null) {
 			Tools.init(this.getWidth(),this.getHeight());
 			GameObject.setScreen_height(this.getHeight());
-			Log.e("gameview", "" + this.getHeight());
 			GameObject.setScreen_width(this.getWidth());
 			init();
 		}
