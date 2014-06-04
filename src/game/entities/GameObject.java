@@ -132,9 +132,7 @@ public abstract class GameObject {
 	public void move() {
 		accelaration_x = global_accelaration_x;
 		accelaration_y = global_accelaration_y;
-
-		velocity_x = global_velocity_x;
-		velocity_y = global_velocity_y;
+	
 
 		resistence = (float) (-0.9*velocity_x);
 
