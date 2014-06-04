@@ -10,7 +10,7 @@ public class Obstacle extends GameObject {
 	private int damage;
 
 	public Obstacle(int x, int y) {
-		super(x, y , screen_height/3,  screen_height/3);
+		super(x, y , (int) Tools.getDrawUnity(7), (int) Tools.getDrawUnity(7));
 		this.bmp = Tools.getCloud();		
 		damage = 3;
 	}

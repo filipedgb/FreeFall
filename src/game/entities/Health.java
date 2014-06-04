@@ -16,7 +16,7 @@ public class Health extends Item {
 	public void caught(Player player) {
 		if(this.colide(player)) {
 			player.addHealthPoints(value);
-			active = false;
+			disabler(25);
 		}
 	}
 

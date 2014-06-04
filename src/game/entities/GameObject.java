@@ -51,6 +51,10 @@ public abstract class GameObject {
 	public boolean isActive() {
 		return active;
 	}
+	
+	public void setActive(boolean bool) {
+		active = bool;
+	}
 
 	public static int getScreen_height() {
 		return screen_height;
@@ -129,7 +133,10 @@ public abstract class GameObject {
 	 * Como o jogador está em queda livre, os objectos sobem. Quando ultrapassam o 2*(topo do ecrã), a sua posição
 	 * é recalculada aleatoriamente numa posição abaixo do ecrã.   
 	 */
+	
+	
 	public void move() {
+	
 		accelaration_x = global_accelaration_x;
 		accelaration_y = global_accelaration_y;
 	
@@ -146,6 +153,8 @@ public abstract class GameObject {
 		if (getY()>-screen_height) {
 			setY(getY() + velocity_y/Tools.getFPS());
 			setX(getX() + velocity_x/Tools.getFPS());
+	 
+			
 		} else {
 			int x = (int) (Math.random()*3*screen_width);
 			int y = (int) (Math.random()*screen_height);
