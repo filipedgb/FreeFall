@@ -18,31 +18,29 @@ import android.widget.TextView;
 
 public class HighscoreActivity extends Activity {
 	private HighscoreState highscores;
-	private final String filename = "FreeFallHighscore";
+	public static final String filename = "FreeFallHighscore";
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		highscores = new HighscoreState();
-
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.highscore);
 
-		File file = getFileStreamPath(filename);
-
-		if(file.exists()) {
-			loadHighscores();
-			Log.e("load", "loads");
-		}
-
+		loadHighscores();
 		updateHighscore();
 	}
 
 	public void loadHighscores() {
+		File file = getFileStreamPath(filename);
+
+		if(!file.exists()) {
+			highscores = new HighscoreState();
+		}
+
 		try {
 			FileInputStream fis = openFileInput(filename);
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -52,18 +50,7 @@ public class HighscoreActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-
-	public void saveHighscores() {
-		try {
-			FileOutputStream fos = openFileOutput(filename, MODE_WORLD_READABLE); 
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(highscores);
-			oos.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	public HighscoreState getHighscores() {
 		return highscores;
 	}
