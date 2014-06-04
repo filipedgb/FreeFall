@@ -2,13 +2,12 @@ package game.engine;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 
 public class Sprite {
 
 	private int x, y, height , width, currentframe =0, direction;
-	private int rows, columns;
+	private int rows;
 
 	Bitmap spritesheet;
 
@@ -21,7 +20,6 @@ public class Sprite {
 		this.x = x;
 		this.y = y;
 		this.rows = rows;
-		this.columns = this.columns;
 	}
 
 	public void setDirection(int direction) {

@@ -16,7 +16,8 @@ public class Fuel extends Item {
 	public void caught(Player player) {
 		if(this.colide(player)) {
 			player.addFuel(value);
-			active = false;
+			disabler(25);
+			
 		}		
 	}
 
@@ -24,4 +25,6 @@ public class Fuel extends Item {
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(bmp, getX(), getY(), paint);
 	}
+
+
 }
