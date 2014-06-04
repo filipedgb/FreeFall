@@ -2,16 +2,13 @@ package game.engine;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import game.config.R;
 import game.states.HighscoreState;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -50,7 +47,7 @@ public class HighscoreActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public HighscoreState getHighscores() {
 		return highscores;
 	}

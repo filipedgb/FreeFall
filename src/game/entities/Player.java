@@ -7,8 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
-
 
 public class Player extends GameObject {
 
@@ -23,7 +21,6 @@ public class Player extends GameObject {
 	private Bitmap player_spritesheet;
 	private int motion;
 
-
 	public Player(int x, int y) {
 		super(x, y, screen_width/6, screen_width/6);
 		lifepoints = max_life;
@@ -34,34 +31,29 @@ public class Player extends GameObject {
 		invulnerable_ticks = 0;
 		motion = -1;
 
-		
 		if (bmp==null) {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.alien);
 			//redimensiona imagem
 			bmp = Bitmap.createScaledBitmap(bmp, 50, 50, true);
 		}
-		
+
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
-		player_animation = new Sprite(x,y,screen_height,screen_width,player_spritesheet);
-	
+		player_animation = new Sprite(x,y,screen_height,screen_width,player_spritesheet);	
 	}
-	
 
 	public float getHealthFrac() {
 		return (float) lifepoints/max_life;
 	}
-	
+
 	public float getFuelFrac() {
-		return  (float) fuel/max_fuel;
-		
+		return  (float) fuel/max_fuel;	
 	}
-	
+
 	public void setMotion(int motion) {
 		player_animation.setDirection(motion);
 		this.motion = motion;
 	}
-
 
 	public Player() {
 		this(0,0);
@@ -75,16 +67,10 @@ public class Player extends GameObject {
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
-		//paint.setColor(Color.RED);
-		//canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
-		Log.e("PLAYER","" + motion);
-		
 		if(motion == -1) canvas.drawBitmap(bmp, getX(), getY(), paint);
 		else player_animation.draw(canvas);
-
 	}
-	
-	
+
 	@Override
 	public void move() {
 		resistence = (float) (-0.9*velocity_x);
@@ -109,27 +95,25 @@ public class Player extends GameObject {
 			if(lifepoints+value > 1000) lifepoints = max_life;
 			else lifepoints += value;
 		}
-		
+
 		else if(value < 0 && lifepoints > 0 && !invulnerable) {
 			if(lifepoints+value < 0) lifepoints = 0;
 			else lifepoints += value;
 		}
 	}
-	
+
 	public void addFuel(float value) {
 		if(value > 0 && fuel <= max_fuel) { 
 			if(fuel+value > 1000) fuel = max_fuel;
 			else fuel += value;
 		}
-		
+
 		else if(value < 0 && fuel > 0) {
 			if(fuel+value < 0) fuel = 0;
 			else fuel += value;
 		}	
 	}
-	
-	
-	
+
 	public static int getMax_life() {
 		return max_life;
 	}
@@ -138,16 +122,15 @@ public class Player extends GameObject {
 		invulnerable = x;
 		invulnerable_ticks = 100;
 	}
-	
+
 	public boolean isInvulnerable() {
 		return invulnerable;
 	}
 
 	public int getInvulnerable_ticks() {
-		// TODO Auto-generated method stub
 		return invulnerable_ticks;
 	}
-	
+
 	public void decrement_ticks() {
 		invulnerable_ticks--;
 	}
@@ -155,6 +138,4 @@ public class Player extends GameObject {
 	public static int getMax_fuel() {
 		return max_fuel;
 	}
-
-
 }

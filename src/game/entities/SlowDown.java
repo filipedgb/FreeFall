@@ -12,24 +12,13 @@ public class SlowDown extends Item  {
 		this.bmp = Tools.getSlowmo();
 	}
 
-
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		paint.setColor(Color.BLUE);
-		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);
-		
+		canvas.drawRect(getX(),getY(),getX()+getWidth(), getY()+getHeight(),paint);		
 	}
-
 
 	@Override
 	public void caught(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	
-	
+	}	
 }

@@ -12,14 +12,10 @@ public class Skymine extends Item {
 	}
 
 	@Override
-	public void caught(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void caught(Player player) {}
 
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(bmp, getX(), getY(), paint);
 	}
-
 }
