@@ -3,6 +3,11 @@ package game.engine;
 import android.os.Handler;
 import game.states.PlayState;
 
+/**
+ * Esta classe representa uma thread que esta sempre a correr enquanto o jogo esta a decorrer
+ * @author André Pires, Filipe Gama
+ * @see Thread
+ */
 public class GameLoop extends Thread {
 
 	private int FRAMES_PER_SECOND = (int) Tools.getFPS();
@@ -43,12 +48,16 @@ public class GameLoop extends Thread {
 		this.start();
 	}
 
+	/**
+	 * Termina a thread e verifica se é necessario guardar os scores
+	 * @param p score a verificar
+	 */
 	public static void stopThread(float p) {
 		if(current_instance != null) {
 			current_instance.running = false;
 			current_instance = null;
 			points = p;
-			
+
 			if(PlayActivity.getSingleInstance().getHighscores().getScoreIndex((int) points) < 10) {
 				askingName=true;
 				Thread t = new Thread() {
@@ -66,6 +75,9 @@ public class GameLoop extends Thread {
 		}
 	}
 
+	/**
+	 * Serve para perguntar o nome ao jogador caso entre no highscore
+	 */
 	private final static Runnable askName = new Runnable() {
 		public void run() {
 			if(askingName) {
@@ -75,6 +87,9 @@ public class GameLoop extends Thread {
 		}
 	};
 
+	/**
+	 * Funcao que esta a decorrer durante o jogo, que atualiza o display
+	 */
 	public void run() {
 		while (running) {
 			current_gamestate.update();
@@ -89,7 +104,6 @@ public class GameLoop extends Thread {
 				}
 			}
 		}
-
 	}
 
 }

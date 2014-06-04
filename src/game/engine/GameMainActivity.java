@@ -10,6 +10,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+/**
+ * Esta classe representa o menu do jogo, que, consoante o que o jogador escolher,
+ * pode jogar o jogo em si, pode verificar o highscore, ir para as opções, ou sair
+ * @author André Pires, Filipe Gama
+ * @see Activity
+ */
 public class GameMainActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override

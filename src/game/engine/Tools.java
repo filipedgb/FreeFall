@@ -6,6 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
+/**
+ * Classe com a funcao de guardar dados sobre o ecra do telemovel, e das imagens do jogo
+ * @author André Pires, Filipe Gama
+ *
+ */
 public class Tools {
 
 	private static float screenWithd;
@@ -54,7 +59,7 @@ public class Tools {
 	public static Bitmap getSlowmo() {
 		return slowmo;
 	}
-	
+
 	/**
 	 *  Esta função foi retirada da internet sem sofrer qualquer tipo de alteração.
 	 *  O seu objectivo é simplesmente o de redimensionar um bitmap (sem estragar a qualidade do mesmo)
@@ -78,7 +83,7 @@ public class Tools {
 		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
 		return resizedBitmap;
 	}
-	
+
 	/**
 	 * Função que carrega as imagens todas logo no início do jogo.
 	 * @param resources
@@ -104,13 +109,11 @@ public class Tools {
 
 		health = BitmapFactory.decodeResource(res, R.drawable.health);
 		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
-		
+
 		boost = BitmapFactory.decodeResource(res, R.drawable.boostbonus);
-		
+
 		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
 		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
-		
-
 	}
 
 
