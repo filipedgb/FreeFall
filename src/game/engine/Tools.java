@@ -21,6 +21,7 @@ public class Tools {
 	private static Bitmap skymine;
 	private static Bitmap slowmo;
 	private static Bitmap boost;
+	private static Bitmap invulnerableword;
 
 	public static float getDrawUnity() {
 		return drawUnity;
@@ -91,7 +92,10 @@ public class Tools {
 		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
 		
 		boost = BitmapFactory.decodeResource(res, R.drawable.boostbonus);
-		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		
+		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
+		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
+		
 
 	}
 
@@ -120,5 +124,9 @@ public class Tools {
 
 	public static float getFPS() {
 		return FPS;
+	}
+
+	public static Bitmap getInvulnerableword() {
+		return invulnerableword;
 	}
 }

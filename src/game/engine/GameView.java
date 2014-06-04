@@ -51,6 +51,9 @@ public class GameView extends View {
 		// Desenha o fundo
 		canvas.drawColor(Color.argb(255, 135, 206, 235));
 		
+		// Desenha invulnerável bonus
+		if(game.getPlayer().isInvulnerable()) canvas.drawBitmap(Tools.getInvulnerableword(), Tools.getDrawUnity(3), Tools.getDrawUnity(4), paint);
+		
 		// Desenha bonus points
 		if(game.getPlayer().isBoost()) canvas.drawBitmap(Tools.getBoost(), Tools.getDrawUnity(8), Tools.getDrawUnity(3), paint);
 		
