@@ -18,5 +18,10 @@ public class SlowDown extends Item  {
 
 	@Override
 	public void caught(Player player) {
+		if(this.colide(player)) {
+			GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x(), GameObject.getGlobalVelocity_y()/2);
+			disabler(25);	
+		}
+		
 	}	
 }
