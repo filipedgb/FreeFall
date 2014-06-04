@@ -71,8 +71,10 @@ public final class R {
         public static final int main=0x7f030001;
     }
     public static final class raw {
-        public static final int hithurt=0x7f040000;
-        public static final int powerup=0x7f040001;
+        public static final int malfunction=0x7f040000;
+        public static final int nodamage=0x7f040001;
+        public static final int powerup=0x7f040002;
+        public static final int powerup2=0x7f040003;
     }
     public static final class string {
         public static final int About=0x7f050005;

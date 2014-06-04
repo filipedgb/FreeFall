@@ -1,5 +1,6 @@
 package game.entities;
 
+import game.engine.PlayActivity;
 import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -24,6 +25,7 @@ public class Fuel extends Item {
 	@Override
 	public void caught(Player player) {
 		if(this.colide(player)) {
+			PlayActivity.getSingleInstance().playFuel();
 			player.addFuel(value);
 			disabler(25);			
 		}		
