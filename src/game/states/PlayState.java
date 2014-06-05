@@ -12,6 +12,7 @@ import game.entities.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.util.Log;
 
 /**
  * Estado que representa o jogo em si
@@ -124,7 +125,7 @@ public class PlayState implements GameState {
 		//Verifica movimentos do player
 		switch(direction) {
 		case (0): //Left 
-			getPlayer().setMotion(0);
+			getPlayer().setMotion(2);
 			GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
 			break;
 		case (1): //Down
@@ -133,7 +134,7 @@ public class PlayState implements GameState {
 			getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
 			break;
 		case (2)://Up
-			getPlayer().setMotion(2);
+			getPlayer().setMotion(0);
 			GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
 			getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
 			break;
@@ -175,8 +176,9 @@ public class PlayState implements GameState {
 		// Move todos os obstáculos e verifica e o jogador colide com algum deles
 		for(int i = 0; i < objects.size(); i++){
 			objects.get(i).move();
+			objects.get(i).updateItem();
 			if(objects.get(i).damage(player)) {
-				v.vibrate(20);
+				v.vibrate(250);
 			};
 		}
 
@@ -220,7 +222,7 @@ public class PlayState implements GameState {
 	}
 
 	private void decreaseVelocity() {
-		GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x() , GameObject.getGlobalVelocity_y()/5);	
+		
 	}
 
 	public SlowDown getSlowmotion_item() {

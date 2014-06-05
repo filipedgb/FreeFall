@@ -53,11 +53,11 @@ public class Player extends GameObject {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.alien);
 			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, 50, 50, true);
+			bmp = Bitmap.createScaledBitmap(bmp, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4), true);
 		}
 
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
-		player_animation = new Sprite(x,y,screen_height,screen_width,5,4,player_spritesheet);	
+		player_animation = new Sprite(x,y,(int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4),5,4,player_spritesheet);	
 	}
 	
 	/**
