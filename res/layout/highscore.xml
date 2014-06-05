@@ -44,7 +44,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <TextView            
             android:gravity="center"
             android:hint="s"
             android:padding="3dip"
@@ -71,7 +71,7 @@
         <TextView
             android:id="@+id/name1"
             android:layout_gravity="center_vertical"
-            android:gravity="right"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -107,7 +107,7 @@
         <TextView
             android:id="@+id/name2"
             android:layout_gravity="center_vertical"
-            android:gravity="right"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -143,6 +143,7 @@
         <TextView
             android:id="@+id/name3"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -177,6 +178,7 @@
         <TextView
             android:id="@+id/name4"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -211,6 +213,7 @@
         <TextView
             android:id="@+id/name5"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -245,6 +248,7 @@
         <TextView
             android:id="@+id/name6"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -279,6 +283,7 @@
         <TextView
             android:id="@+id/name7"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -313,6 +318,7 @@
         <TextView
             android:id="@+id/name8"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -347,6 +353,7 @@
         <TextView
             android:id="@+id/name9"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -381,6 +388,7 @@
         <TextView
             android:id="@+id/name10"
             android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:padding="3dip"
             android:textSize="20sp"
             android:textStyle="bold" />
