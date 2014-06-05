@@ -5,6 +5,7 @@ import game.entities.GameObject;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
+import android.util.Log;
 import android.view.*;
 
 /**
@@ -17,6 +18,7 @@ public class GameView extends View {
 	private PlayState game = null;
 	private Bitmap malfunction;
 	private Sprite malfunction_anim;
+
 
 	public GameView(Context context) {
 		super(context);
@@ -62,9 +64,13 @@ public class GameView extends View {
 		if (!game.isGameStarted()) {
 			game.init();
 		}
+		
+	
 
 		// Desenha o fundo
-		canvas.drawColor(Color.argb(255, 135, 206, 235));
+		if(game.getLevel() == 1) canvas.drawColor(Color.argb(255, 0, 0, 0));
+		else if(game.getLevel() == 2)  canvas.drawColor(Color.argb(255, 0, 23, 78));
+		else if (game.getLevel() == 3) canvas.drawColor(Color.argb(255, 135, 206, 235));
 
 		// Desenha invulnerável bonus
 		if(game.getPlayer().isInvulnerable()) canvas.drawBitmap(Tools.getInvulnerableword(), Tools.getDrawUnity(3), Tools.getDrawUnity(4), paint);

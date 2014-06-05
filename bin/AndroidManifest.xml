@@ -23,6 +23,7 @@
         <activity android:name="game.engine.PlayActivity"></activity>
         <activity android:name="game.engine.HighscoreActivity"></activity>
         <activity android:name="game.engine.OptionsActivity"></activity>
+        <activity android:name="game.engine.LevelActivity"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,12 @@ import java.util.Random;
 
 import game.engine.GameLoop;
 import game.engine.GameView;
+import game.engine.LevelActivity;
+import game.engine.PlayActivity;
+import game.engine.Tools;
 import game.entities.*;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Vibrator;
 
 /**
@@ -23,7 +27,9 @@ public class PlayState implements GameState {
 	private Invulnerability nodamage_item;
 	private Fuel fuel_item;
 	private Skymine sky_mine;
-	private float points;
+	private float points = 1;
+	private int level = 1;
+	private boolean changelevel = false;
 
 	private int direction = -1;
 
@@ -71,6 +77,34 @@ public class PlayState implements GameState {
 		if (gameStarted==false) {
 			return;
 		}
+		
+			
+		//verifica nivel 
+		if(points >= 200 && level < 3)  {
+			Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
+			Tools.setLevel(level);
+			PlayActivity.getSingleInstance().startActivity(intent);
+			GameLoop.getCurrent_instance().setRunning(false);
+			level = 3 ;
+
+		}
+		else if(points >= 100 && level < 2) {
+			Tools.setLevel(level);
+			Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
+			PlayActivity.getSingleInstance().startActivity(intent);
+			GameLoop.getCurrent_instance().setRunning(false);
+			level = 2 ;
+
+		}
+		
+		switch(level) {
+			case(2):
+				Obstacle.setCurrent_bmp(Tools.getAsteroid());
+				break;
+			case(3):
+				Obstacle.setCurrent_bmp(Tools.getCloud());
+				break;
+		}
 
 		// Verifica se jogador perdeu
 		if(player.getLifepoints() > 0) {
@@ -88,26 +122,26 @@ public class PlayState implements GameState {
 		switch(direction) {
 		case (0): //Left 
 			getPlayer().setMotion(0);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
-		break;
+			GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
+			break;
 		case (1): //Down
 			getPlayer().setMotion(1);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
-		getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
-		break;
+			GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
+			getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
+			break;
 		case (2)://Up
 			getPlayer().setMotion(2);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
-		getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
-		break;
+			GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
+			getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
+			break;
 		case (3): //Right
 			getPlayer().setMotion(3);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
-		break;
+			GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
+			break;
 		case (-1): //No acceleration
 			GameObject.setGlobalAccelaration(0,0);
-		getPlayer().setMotion(-1);
-		break;
+			getPlayer().setMotion(-1);
+			break;
 		}
 
 		// Verifica se foi apanhado algum item
@@ -149,6 +183,22 @@ public class PlayState implements GameState {
 		nodamage_item.move();
 		fuel_item.move();
 		sky_mine.move();
+	}
+
+	public boolean isChangelevel() {
+		return changelevel;
+	}
+
+	public void setChangelevel(boolean changelevel) {
+		this.changelevel = changelevel;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public void setDirection(int direction) {

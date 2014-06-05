@@ -30,6 +30,7 @@ public abstract class GameObject {
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
 	protected float resistence ;
+	
 	protected Bitmap bmp;
 
 	protected static Resources res;
@@ -189,6 +190,16 @@ public abstract class GameObject {
 	public void setAccelaration_x(float accelaration_x) {
 		this.accelaration_x = accelaration_x;
 	}
+
+	public Bitmap getBmp() {
+		return bmp;
+	}
+
+
+	public void setBmp(Bitmap bmp) {
+		this.bmp = bmp;
+	}
+
 
 	public float getVelocity_x() {
 		return velocity_x;
