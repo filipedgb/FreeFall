@@ -30,45 +30,51 @@ public final class R {
         public static final int slowmo=0x7f020010;
     }
     public static final class id {
+        public static final int RelativeLayout1=0x7f060024;
         public static final int TableLayout1=0x7f060000;
-        public static final int about_button=0x7f060021;
-        public static final int date1=0x7f060003;
-        public static final int date10=0x7f06001e;
-        public static final int date2=0x7f060006;
-        public static final int date3=0x7f060009;
-        public static final int date4=0x7f06000c;
-        public static final int date5=0x7f06000f;
-        public static final int date6=0x7f060012;
-        public static final int date7=0x7f060015;
-        public static final int date8=0x7f060018;
-        public static final int date9=0x7f06001b;
-        public static final int exit_button=0x7f06001f;
-        public static final int highscore_button=0x7f060022;
-        public static final int name1=0x7f060001;
-        public static final int name10=0x7f06001c;
-        public static final int name2=0x7f060004;
-        public static final int name3=0x7f060007;
-        public static final int name4=0x7f06000a;
-        public static final int name5=0x7f06000d;
-        public static final int name6=0x7f060010;
-        public static final int name7=0x7f060013;
-        public static final int name8=0x7f060016;
-        public static final int name9=0x7f060019;
-        public static final int score1=0x7f060002;
-        public static final int score10=0x7f06001d;
-        public static final int score2=0x7f060005;
-        public static final int score3=0x7f060008;
-        public static final int score4=0x7f06000b;
-        public static final int score5=0x7f06000e;
-        public static final int score6=0x7f060011;
-        public static final int score7=0x7f060014;
-        public static final int score8=0x7f060017;
-        public static final int score9=0x7f06001a;
-        public static final int start_button=0x7f060020;
+        public static final int date1=0x7f060004;
+        public static final int date10=0x7f06001f;
+        public static final int date2=0x7f060007;
+        public static final int date3=0x7f06000a;
+        public static final int date4=0x7f06000d;
+        public static final int date5=0x7f060010;
+        public static final int date6=0x7f060013;
+        public static final int date7=0x7f060016;
+        public static final int date8=0x7f060019;
+        public static final int date9=0x7f06001c;
+        public static final int exit_button=0x7f060020;
+        public static final int highscore_button=0x7f060023;
+        public static final int name1=0x7f060002;
+        public static final int name10=0x7f06001d;
+        public static final int name2=0x7f060005;
+        public static final int name3=0x7f060008;
+        public static final int name4=0x7f06000b;
+        public static final int name5=0x7f06000e;
+        public static final int name6=0x7f060011;
+        public static final int name7=0x7f060014;
+        public static final int name8=0x7f060017;
+        public static final int name9=0x7f06001a;
+        public static final int options_button=0x7f060022;
+        public static final int score1=0x7f060003;
+        public static final int score10=0x7f06001e;
+        public static final int score2=0x7f060006;
+        public static final int score3=0x7f060009;
+        public static final int score4=0x7f06000c;
+        public static final int score5=0x7f06000f;
+        public static final int score6=0x7f060012;
+        public static final int score7=0x7f060015;
+        public static final int score8=0x7f060018;
+        public static final int score9=0x7f06001b;
+        public static final int start_button=0x7f060021;
+        public static final int textView1=0x7f060001;
+        public static final int textView2=0x7f060027;
+        public static final int toggleButton1=0x7f060026;
+        public static final int toggleButton2=0x7f060025;
     }
     public static final class layout {
         public static final int highscore=0x7f030000;
         public static final int main=0x7f030001;
+        public static final int options=0x7f030002;
     }
     public static final class raw {
         public static final int malfunction=0x7f040000;
@@ -77,10 +83,11 @@ public final class R {
         public static final int powerup2=0x7f040003;
     }
     public static final class string {
-        public static final int About=0x7f050005;
         public static final int Exit=0x7f050004;
         public static final int Highscore=0x7f050002;
+        public static final int Options=0x7f050005;
         public static final int Play=0x7f050003;
+        public static final int Sound=0x7f050006;
         public static final int app_name=0x7f050001;
         public static final int hello=0x7f050000;
     }

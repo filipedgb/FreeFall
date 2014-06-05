@@ -54,5 +54,16 @@ public class GameMainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		//start button
+		Button buttonOptions = (Button) findViewById(R.id.options_button);
+
+		buttonOptions.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(GameMainActivity.this, OptionsActivity.class);
+				startActivity(intent);
+			}
+		});
+
 	}
 }
