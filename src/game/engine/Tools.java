@@ -75,8 +75,6 @@ public class Tools {
 	public static void loadImages(Resources resources) {
 		res = resources;
 
-		levelone = BitmapFactory.decodeResource(res, R.drawable.levelum);
-		levelone = Bitmap.createScaledBitmap(levelone, (int) screenWithd, (int) screenHeight, true);
 		
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
 		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
