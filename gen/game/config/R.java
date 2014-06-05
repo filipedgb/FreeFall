@@ -13,21 +13,25 @@ public final class R {
     public static final class drawable {
         public static final int alien=0x7f020000;
         public static final int alien_anim=0x7f020001;
-        public static final int boostbonus=0x7f020002;
-        public static final int fuel=0x7f020003;
-        public static final int gameplay1=0x7f020004;
-        public static final int health=0x7f020005;
-        public static final int highscoremenu=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int invulnerability=0x7f020008;
-        public static final int invulnerable=0x7f020009;
-        public static final int invulnerableword=0x7f02000a;
-        public static final int mainmenu=0x7f02000b;
-        public static final int mainmenu2=0x7f02000c;
-        public static final int malfunc_sprite=0x7f02000d;
-        public static final int mine=0x7f02000e;
-        public static final int nuvem=0x7f02000f;
-        public static final int slowmo=0x7f020010;
+        public static final int asteroid=0x7f020002;
+        public static final int boostbonus=0x7f020003;
+        public static final int fuel=0x7f020004;
+        public static final int gameplay1=0x7f020005;
+        public static final int health=0x7f020006;
+        public static final int highscoremenu=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int invulnerability=0x7f020009;
+        public static final int invulnerable=0x7f02000a;
+        public static final int invulnerableword=0x7f02000b;
+        public static final int level2=0x7f02000c;
+        public static final int levelum=0x7f02000d;
+        public static final int mainmenu=0x7f02000e;
+        public static final int mainmenu2=0x7f02000f;
+        public static final int malfunc_sprite=0x7f020010;
+        public static final int mine=0x7f020011;
+        public static final int nuvem=0x7f020012;
+        public static final int satelite=0x7f020013;
+        public static final int slowmo=0x7f020014;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060024;
@@ -73,8 +77,10 @@ public final class R {
     }
     public static final class layout {
         public static final int highscore=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int options=0x7f030002;
+        public static final int level1=0x7f030001;
+        public static final int level2=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int options=0x7f030004;
     }
     public static final class raw {
         public static final int malfunction=0x7f040000;

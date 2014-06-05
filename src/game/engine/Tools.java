@@ -27,37 +27,20 @@ public class Tools {
 	private static Bitmap slowmo;
 	private static Bitmap boost;
 	private static Bitmap invulnerableword;
+	private static Bitmap satelite;
+	private static Bitmap asteroid;
+	private static Bitmap levelone;
+	
+	private static int level;
 
-	public static float getDrawUnity() {
-		return drawUnity;
+
+
+	public static void setLevel(int level) {
+		Tools.level = level;
 	}
 
-	public static Resources getRes() {
-		return res;
-	}
-
-	public static Bitmap getCloud() {
-		return cloud;
-	}
-
-	public static Bitmap getHealth() {
-		return health;
-	}
-
-	public static Bitmap getInvulnerable() {
-		return invulnerable;
-	}
-
-	public static Bitmap getFuel() {
-		return fuel;
-	}
-
-	public static Bitmap getSkymine() {
-		return skymine;
-	}
-
-	public static Bitmap getSlowmo() {
-		return slowmo;
+	public static int getLevel() {
+		return level;
 	}
 
 	/**
@@ -92,8 +75,18 @@ public class Tools {
 	public static void loadImages(Resources resources) {
 		res = resources;
 
+		levelone = BitmapFactory.decodeResource(res, R.drawable.levelum);
+		levelone = Bitmap.createScaledBitmap(levelone, (int) screenWithd, (int) screenHeight, true);
+		
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
 		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
+		
+		satelite = BitmapFactory.decodeResource(res, R.drawable.satelite);
+		satelite = Bitmap.createScaledBitmap(satelite, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
+		
+		asteroid = BitmapFactory.decodeResource(res, R.drawable.asteroid);
+		asteroid = Bitmap.createScaledBitmap(asteroid, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
+
 
 		invulnerable = BitmapFactory.decodeResource(res, R.drawable.invulnerable);
 		invulnerable = Bitmap.createScaledBitmap(invulnerable, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
@@ -114,8 +107,50 @@ public class Tools {
 
 		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
 		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
+		
+		
 	}
 
+
+	public static float getDrawUnity() {
+		return drawUnity;
+	}
+
+	public static Resources getRes() {
+		return res;
+	}
+
+	public static Bitmap getCloud() {
+		return cloud;
+	}
+
+	public static Bitmap getHealth() {
+		return health;
+	}
+
+	public static Bitmap getInvulnerable() {
+		return invulnerable;
+	}
+
+	public static Bitmap getFuel() {
+		return fuel;
+	}
+
+	public static Bitmap getSkymine() {
+		return skymine;
+	}
+
+	public static Bitmap getSlowmo() {
+		return slowmo;
+	}
+
+	public static Bitmap getSatelite() {
+		return satelite;
+	}
+
+	public static void setSatelite(Bitmap satelite) {
+		Tools.satelite = satelite;
+	}
 
 	public static Bitmap getBoost() {
 		return boost;
@@ -129,6 +164,14 @@ public class Tools {
 
 	public static float getScreenWithd() {
 		return screenWithd;
+	}
+
+	public static Bitmap getLevelone() {
+		return levelone;
+	}
+
+	public static void setLevelone(Bitmap levelone) {
+		Tools.levelone = levelone;
 	}
 
 	public static float getScreenHeight() {
@@ -145,5 +188,9 @@ public class Tools {
 
 	public static Bitmap getInvulnerableword() {
 		return invulnerableword;
+	}
+
+	public static Bitmap getAsteroid() {
+		return asteroid;
 	}
 }
