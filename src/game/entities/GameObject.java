@@ -153,6 +153,10 @@ public abstract class GameObject {
 		if(velocity_y >= terminal_velocity) {
 			accelaration_y = 0;
 		}
+		
+		if(velocity_x >= terminal_velocity) {
+			accelaration_x = 0;
+		}
 
 		if (getY()>-screen_height) {
 			setY(getY() + velocity_y/Tools.getFPS());

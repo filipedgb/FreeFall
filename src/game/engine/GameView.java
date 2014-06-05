@@ -5,7 +5,6 @@ import game.entities.GameObject;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
-import android.util.Log;
 import android.view.*;
 
 /**

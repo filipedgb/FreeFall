@@ -80,7 +80,7 @@ public class PlayState implements GameState {
 		
 			
 		//verifica nivel 
-		if(points >= 200 && level < 3)  {
+		if(points >= 400 && level < 3)  {
 			Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
 			Tools.setLevel(level);
 			PlayActivity.getSingleInstance().startActivity(intent);
@@ -88,7 +88,7 @@ public class PlayState implements GameState {
 			level = 3 ;
 
 		}
-		else if(points >= 100 && level < 2) {
+		else if(points >= 200 && level < 2) {
 			Tools.setLevel(level);
 			Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
 			PlayActivity.getSingleInstance().startActivity(intent);

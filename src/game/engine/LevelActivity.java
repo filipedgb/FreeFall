@@ -3,7 +3,6 @@ package game.engine;
 import game.config.R;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -23,12 +22,14 @@ public class LevelActivity extends Activity {
 
 
 
+
+
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
+	public void onBackPressed() {
 		// TODO Auto-generated method stub
+		super.onBackPressed();
 		GameLoop.getCurrent_instance().refresh();
 		finish();
-		return super.onTouchEvent(event);
 	}
 	
 	
