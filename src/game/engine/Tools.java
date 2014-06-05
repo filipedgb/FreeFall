@@ -96,19 +96,19 @@ public class Tools {
 		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
 
 		invulnerable = BitmapFactory.decodeResource(res, R.drawable.invulnerable);
-		invulnerable = Bitmap.createScaledBitmap(invulnerable, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		invulnerable = Bitmap.createScaledBitmap(invulnerable, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		fuel = BitmapFactory.decodeResource(res, R.drawable.fuel);
-		fuel = Bitmap.createScaledBitmap(fuel, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		fuel = Bitmap.createScaledBitmap(fuel, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		skymine = BitmapFactory.decodeResource(res, R.drawable.mine);
-		skymine = Bitmap.createScaledBitmap(skymine, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		skymine = Bitmap.createScaledBitmap(skymine, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		slowmo = BitmapFactory.decodeResource(res, R.drawable.slowmo);
-		slowmo = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		slowmo = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		health = BitmapFactory.decodeResource(res, R.drawable.health);
-		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(2), (int) getDrawUnity(2), true);
+		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		boost = BitmapFactory.decodeResource(res, R.drawable.boostbonus);
 
