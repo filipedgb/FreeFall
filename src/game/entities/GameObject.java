@@ -150,13 +150,6 @@ public abstract class GameObject {
 		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
 		velocity_y = velocity_y + (accelaration_y + gravity_constant)/Tools.getFPS();
 
-		if(velocity_y >= terminal_velocity) {
-			accelaration_y = 0;
-		}
-		
-		if(velocity_x >= terminal_velocity) {
-			accelaration_x = 0;
-		}
 
 		if (getY()>-screen_height) {
 			setY(getY() + velocity_y/Tools.getFPS());

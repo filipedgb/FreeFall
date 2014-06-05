@@ -14,11 +14,15 @@ public class Obstacle extends GameObject {
 	private boolean fast = false;
 	private int damage;
 	private static Bitmap current_bmp;
+	private boolean canColide = true;
+	
+	protected int ticks;
+	protected int number_ticks = 0;
 	
 	public Obstacle(int x, int y) {
 		super(x, y , (int) Tools.getDrawUnity(7), (int) Tools.getDrawUnity(7));
 		this.bmp = Tools.getSatelite();		
-		damage = 3;
+		damage = 50;
 		current_bmp = bmp;
 	}
 	
@@ -61,11 +65,26 @@ public class Obstacle extends GameObject {
 	 * @return - true se houver colisão, falso se não
 	 */
 	public boolean damage(Player player) {
-		if(this.colide(player)) {
+		if(this.colide(player) && canColide) {
+			disableColide(0.5f);
 			player.addHealthPoints(-damage);
 			return true;
 		}
 		return false;
+	}
+	
+	public void disableColide(float numSeconds) {
+		number_ticks =  (int) (numSeconds * Tools.getFPS());
+		ticks  = (int) (numSeconds * Tools.getFPS()); 
+		canColide = false;
+	}
+	
+	public void updateItem() {
+		if(ticks > 0) ticks--;
+		else if (ticks == 0) {
+			ticks = number_ticks;
+			canColide = true;
+		}
 	}
 
 	public void draw(Canvas canvas, Paint paint) {

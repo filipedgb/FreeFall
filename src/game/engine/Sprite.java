@@ -13,7 +13,8 @@ public class Sprite {
 
 	private int x, y, height , width, currentframe =0, direction;
 	private int rows;
-
+	private int scale_height, scale_width;
+	
 	Bitmap spritesheet;
 
 
@@ -27,10 +28,12 @@ public class Sprite {
 	 * @param rows - linhas da spritesheet
 	 * @param spritesheet - spritesheet (imagem, bitmap)
 	 */
-	public Sprite (int x, int y , int view_height, int view_width, int columns, int rows, Bitmap spritesheet) {
+	public Sprite (int x, int y , int scale_height, int scale_width, int columns, int rows, Bitmap spritesheet) {
 		this.spritesheet = spritesheet;
 		height = spritesheet.getHeight()/rows;
 		width = spritesheet.getWidth()/columns;
+		this.scale_height = scale_height;
+		this.scale_width = scale_width;
 		this.x = x;
 		this.y = y;
 		this.rows = rows;
@@ -52,7 +55,7 @@ public class Sprite {
 		int srcY = direction*height;
 
 		Rect src = new Rect(srcX,srcY,srcX+width,srcY+height);
-		Rect dst = new Rect(x,y, x+width, y+height);
+		Rect dst = new Rect(x,y, x+scale_width, y+scale_height);
 
 		canvas.drawBitmap(spritesheet, src, dst,null);
 	}
