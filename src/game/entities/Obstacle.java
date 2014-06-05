@@ -4,8 +4,6 @@ import game.engine.Tools;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
-
 /**
  * Esta classe representa um objeto (representado por nuvens) que causa dano ao jogador 
  * @author André Pires, Filipe Gama
@@ -23,18 +21,30 @@ public class Obstacle extends GameObject {
 		damage = 3;
 		current_bmp = bmp;
 	}
+	
+	public Obstacle(int x, int y, int damage) {
+		this(x, y);
+		this.damage = damage;	
+	}
 
+	/**
+	 * Criado para efeitos de teste
+	 * @param x posicao
+	 * @param y posicao
+	 * @param damage dano que tira ao jogador
+	 * @param teste
+	 */
+	public Obstacle(int x, int y, int damage, boolean teste) {
+		super(x, y , (int) Tools.getDrawUnity(7), (int) Tools.getDrawUnity(7));
+		this.damage = damage;	
+	}
+	
 	public static Bitmap getCurrent_bmp() {
 		return current_bmp;
 	}
 
 	public static void setCurrent_bmp(Bitmap current_bmp) {
 		Obstacle.current_bmp = current_bmp;
-	}
-
-	public Obstacle(int x, int y, int damage) {
-		this(x, y);
-		this.damage = damage;	
 	}
 
 	public boolean isFast() {

@@ -33,8 +33,6 @@ public class Tools {
 	
 	private static int level;
 
-
-
 	public static void setLevel(int level) {
 		Tools.level = level;
 	}
@@ -74,8 +72,7 @@ public class Tools {
 
 	public static void loadImages(Resources resources) {
 		res = resources;
-
-		
+	
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
 		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
 		
@@ -105,8 +102,6 @@ public class Tools {
 
 		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
 		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
-		
-		
 	}
 
 
