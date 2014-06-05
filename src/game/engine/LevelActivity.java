@@ -8,7 +8,6 @@ import android.view.WindowManager;
 
 public class LevelActivity extends Activity {
 	
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,19 +19,11 @@ public class LevelActivity extends Activity {
 		if(Tools.getLevel() == 2) setContentView(R.layout.level2);
 	}
 
-
-
-
-
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 		GameLoop.getCurrent_instance().refresh();
 		finish();
-	}
-	
-	
-	
-	
+	}	
 }

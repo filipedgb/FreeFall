@@ -71,9 +71,13 @@ public class HighscoreState implements GameState, Serializable {
 
 		for(ArrayList<String> s : highscores) {
 			if(Integer.parseInt(s.get(1)) < score)
-				return i;
+				break;
 			i++;
 		}
 		return i;
+	}
+
+	public int numHighscores() {
+		return highscores.size();
 	}
 }

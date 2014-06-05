@@ -17,6 +17,16 @@ public class Health extends Item {
 		this.value = 200;
 		this.bmp = Tools.getHealth();
 	}
+	
+	/**
+	 * Criado para efeitos de teste
+	 * @param x
+	 * @param y
+	 */
+	public Health(float x, float y, boolean teste) {
+		super(x, y);
+		this.value = 200;
+	}
 
 	/**
 	 * Esta função recebe o jogador e adiciona-lhe o valor de "value" ao atributo lifepoints através de addHealthPoints
@@ -26,6 +36,16 @@ public class Health extends Item {
 	public void caught(Player player) {
 		if(this.colide(player)) {
 			PlayActivity.getSingleInstance().playHealth();
+			player.addHealthPoints(value);
+			disabler(25);
+		}
+	}
+	/**
+	 * Funcao criada para efeitos de teste
+	 */
+	@Override
+	public void caught(Player player, boolean teste) {
+		if(this.colide(player)) {
 			player.addHealthPoints(value);
 			disabler(25);
 		}

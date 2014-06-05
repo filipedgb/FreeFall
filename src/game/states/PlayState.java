@@ -49,12 +49,15 @@ public class PlayState implements GameState {
 		randomizeObstacles();	
 		Random rand = new Random();
 
-		player = new Player(current_view.getWidth()/2-50, current_view.getHeight()/3);
-		health_item = new Health((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
-		slowmotion_item = new SlowDown((int)(Math.random()*(current_view.getWidth()-25)),(int) Math.random()*100 + current_view.getHeight());
-		nodamage_item = new Invulnerability((int)rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
-		fuel_item = new Fuel((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
-		sky_mine = new Skymine((int) rand.nextInt(current_view.getWidth()-25),rand.nextInt(current_view.getHeight())+current_view.getHeight());
+		int w = current_view.getWidth();
+		int h = current_view.getHeight();
+		
+		player = new Player(w/2 - 50, h/3);
+		health_item = new Health((int) rand.nextInt(w - 25), rand.nextInt(h) + h);
+		slowmotion_item = new SlowDown((int) rand.nextInt(w - 25), rand.nextInt(h) + h);
+		nodamage_item = new Invulnerability((int) rand.nextInt(w - 25), rand.nextInt(h) + h);
+		fuel_item = new Fuel((int) rand.nextInt(w - 25), rand.nextInt(h) + h);
+		sky_mine = new Skymine((int) rand.nextInt(w - 25), rand.nextInt(h) + h);
 		gameStarted = true;
 	}
 
@@ -64,9 +67,9 @@ public class PlayState implements GameState {
 	private void randomizeObstacles() {
 		int x;
 		for (int i = 0; i < 10; i++) {
-			int y = (int) (Math.random() *200);
-			x = (int) (Math.random()*(6*current_view.getWidth())-3*current_view.getWidth());
-			objects.add(new Obstacle(x, current_view.getHeight()+y));
+			int y = (int) (Math.random() * 200);
+			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view.getWidth());
+			objects.add(new Obstacle(x, current_view.getHeight() + y));
 		}		
 	}
 

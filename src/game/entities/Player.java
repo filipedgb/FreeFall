@@ -49,8 +49,7 @@ public class Player extends GameObject {
 		invulnerable_ticks = 0;
 		motion = -1;
 		
-
-		if (bmp==null) {
+		if (bmp == null) {
 			//instancio a imagem do resource
 			bmp = BitmapFactory.decodeResource(res, R.drawable.alien);
 			//redimensiona imagem
@@ -59,6 +58,20 @@ public class Player extends GameObject {
 
 		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
 		player_animation = new Sprite(x,y,screen_height,screen_width,5,4,player_spritesheet);	
+	}
+	
+	/**
+	 * Criado para efeitos de teste
+	 */
+	public Player(boolean teste) {
+		super(0, 0, screen_width/6, screen_width/6);
+		lifepoints = max_life;
+		fuel = max_fuel;
+		turbo_enabled = false;
+		accelaration_y = 0;
+		invulnerable = false;
+		invulnerable_ticks = 0;
+		motion = -1;	
 	}
 	
 	public boolean isMalfunctioning() {

@@ -1,14 +1,21 @@
 package game.tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import game.entities.*;
+import game.states.*;
 
 public class GeneralTests {
 
 	@Test
 	public void init() {
 		// verifica inicializações do jogo
+		HighscoreState h = new HighscoreState();
+		Player p = new Player(true);
+		
+		assertEquals(h.numHighscores(),10);
+		assertEquals(p.getLifepoints(), Player.getMax_life());
 	}
 	
 	@Test
@@ -27,8 +34,7 @@ public class GeneralTests {
 	}
 	
 	@Test 
-	void velocity() {
+	public void velocity() {
 		// verifica se velocidade funciona como esperados
 	}
-	
 }

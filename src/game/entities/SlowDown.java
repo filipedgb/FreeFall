@@ -15,6 +15,15 @@ public class SlowDown extends Item  {
 		super(x, y);
 		this.bmp = Tools.getSlowmo();
 	}
+	/**
+	 * Criado para efeitos de teste
+	 * @param x
+	 * @param y
+	 * @param teste
+	 */
+	public SlowDown(float x, float y, boolean teste) {
+		super(x, y);
+	}
 
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
@@ -26,6 +35,17 @@ public class SlowDown extends Item  {
 	 */
 	@Override
 	public void caught(Player player) {
+		if(this.colide(player)) {
+			GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x(), GameObject.getGlobalVelocity_y()/2);
+			disabler(25);	
+		}
+	}
+
+	/**
+	 * Funcao criada para efeitos de teste
+	 */
+	@Override
+	public void caught(Player player, boolean teste) {
 		if(this.colide(player)) {
 			GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x(), GameObject.getGlobalVelocity_y()/2);
 			disabler(25);	

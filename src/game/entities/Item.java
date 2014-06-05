@@ -34,6 +34,13 @@ public abstract class Item extends GameObject {
 	public abstract void caught(Player player);
 
 	/**
+	 * Funcao criada para efeitos de teste
+	 * @param player
+	 * @param teste
+	 */
+	public abstract void caught(Player player, boolean teste);
+	
+	/**
 	 * Função que tem como unico objectivo actualizar o contador
 	 */
 	public void updateItem() {
@@ -48,9 +55,8 @@ public abstract class Item extends GameObject {
 	 * @param numSeconds - numero de segundos que se pretende que o item esteja desactivado apos ser apanhado
 	 */
 	public void disabler(int numSeconds) {
-		number_ticks =  (int) (numSeconds*Tools.getFPS());
-		ticks  = (int) (numSeconds*Tools.getFPS()); 
-		this.setActive(false);
-
+		number_ticks =  (int) (numSeconds * Tools.getFPS());
+		ticks  = (int) (numSeconds * Tools.getFPS()); 
+		this.setActive(false); 
 	}
 }

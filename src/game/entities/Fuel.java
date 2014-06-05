@@ -19,6 +19,17 @@ public class Fuel extends Item {
 	}
 
 	/**
+	 * Criado para efeitos de teste
+	 * @param x
+	 * @param y
+	 * @param teste
+	 */
+	public Fuel(float x, float y, boolean teste) {
+		super(x,y);
+		this.value = 100;
+	}
+
+	/**
 	 * Esta função recebe o jogador e adiciona-lhe o valor de "value" ao atributo fuel, através da funçao addFuel.
 	 * Chama a função disabler que inicia um contador para o tempo que o item vai estar desativado depois de apanhado 
 	 */
@@ -34,6 +45,14 @@ public class Fuel extends Item {
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(bmp, getX(), getY(), paint);
+	}
+
+	@Override
+	public void caught(Player player, boolean teste) {
+		if(this.colide(player)) {
+			player.addFuel(value);
+			disabler(25);			
+		}		
 	}
 
 

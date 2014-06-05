@@ -18,6 +18,16 @@ public class Skymine extends Item {
 	}
 
 	/**
+	 * Funcao criada para efeitos de teste
+	 * @param x
+	 * @param y
+	 * @param teste
+	 */
+	public Skymine(float x, float y, boolean teste) {
+		super(x, y);
+	}
+
+	/**
 	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning (controlos trocados). 
 	 * @param player é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
 	 */
@@ -35,5 +45,19 @@ public class Skymine extends Item {
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(bmp, getX(), getY(), paint);
+	}
+
+	/**
+	 * Funcao criada para efeitos de teste
+	 */
+	@Override
+	public void caught(Player player, boolean teste) {
+		if(!player.isInvulnerable()) {
+			if(this.colide(player)) {
+				player.setMalfunctioning(true);
+				disabler(25);	
+			}
+		}
+
 	}
 }
