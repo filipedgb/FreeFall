@@ -13,7 +13,7 @@ import android.graphics.Matrix;
  */
 public class Tools {
 
-	private static float screenWithd;
+	private static float screenWidth;
 	private static float screenHeight;
 	private static float drawUnity;
 	private static float FPS = 75;
@@ -150,13 +150,13 @@ public class Tools {
 	}
 
 	public static void init(int width, int height) {
-		screenWithd = width;
+		screenWidth = width;
 		screenHeight = height;
-		drawUnity = screenWithd/20;
+		drawUnity = screenWidth/20;
 	}
 
-	public static float getScreenWithd() {
-		return screenWithd;
+	public static float getScreenWidth() {
+		return screenWidth;
 	}
 
 	public static Bitmap getLevelone() {

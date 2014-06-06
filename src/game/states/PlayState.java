@@ -3,16 +3,11 @@ package game.states;
 import java.util.ArrayList;
 import java.util.Random;
 
-import game.engine.GameLoop;
-import game.engine.GameView;
-import game.engine.LevelActivity;
-import game.engine.PlayActivity;
-import game.engine.Tools;
+import game.engine.*;
 import game.entities.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
-import android.util.Log;
 
 /**
  * Estado que representa o jogo em si
