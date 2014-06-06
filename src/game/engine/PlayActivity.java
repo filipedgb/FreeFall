@@ -20,7 +20,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 /**
- * Esta classe representa a classe de jogo
+ * Esta classe representa a classe de jogo, para esta classe foi usado o padrao de desenho Singleton
  * @author André Pires, Filipe Gama
  * @see Activity
  */

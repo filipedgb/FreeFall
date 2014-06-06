@@ -129,5 +129,13 @@ public class PlayerTests {
 	@Test
 	public void colidesWithMine() {
 		// jogador fica com os controlos trocados 
+		Player p = new Player(true);
+		Skymine s = new Skymine(p.getX(),p.getY(), true);
+
+		assertFalse(p.isMalfunctioning());
+		assertTrue(s.colide(p));
+		s.caught(p,true);
+
+		assertTrue(p.isMalfunctioning());
 	}
 }

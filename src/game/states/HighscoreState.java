@@ -57,6 +57,8 @@ public class HighscoreState implements GameState, Serializable {
 		if((i = getScoreIndex(score)) < 10) {
 			highscores.trimToSize();
 			highscores.add(i, h);
+			while(highscores.size() > 10)
+				highscores.remove(10);
 		}
 	}
 
