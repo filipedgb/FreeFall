@@ -39,7 +39,7 @@ public class GameView extends View {
 
 		malfunction = BitmapFactory.decodeResource(getResources(), R.drawable.malfunc_sprite);
 		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
-		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(15),(int)Tools.getDrawUnity(3),3,2,malfunction);	
+		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int)Tools.getDrawUnity(15),3,2,malfunction);	
 	}
 
 	public PlayState getGame() {
