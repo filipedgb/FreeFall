@@ -8,54 +8,6 @@ import game.entities.*;
 public class PlayerTests {
 
 	//GAMEPLAY
-
-	@Test
-	public void moveLeft() { 
-		// jogador move-se para a esquerda. Verificar posição, velocidade e aceleração
-		Player p = new Player(true);
-
-		float pX = p.getX();
-		float pY = p.getY();
-		float vX = p.getVelocity_x();
-		float vY = p.getVelocity_y();
-		float aX = p.getAccelaration_x();
-		float aY = p.getAccelaration_y();
-
-		//move left
-		//	p.move(-20,0);
-
-		//assertTrue(pX > p.getX());
-		//assertTrue(pY == p.getY());
-	}
-
-	@Test
-	public void moveRight() { 
-		// jogador move-se para a direita. Verificar posição, velocidade e aceleração
-		Player p = new Player(true);
-
-		float pX = p.getX();
-		float pY = p.getY();
-		float vX = p.getVelocity_x();
-		float vY = p.getVelocity_y();
-		float aX = p.getAccelaration_x();
-		float aY = p.getAccelaration_y();
-
-		//move right
-		//p.move(20,0);
-
-		//assertTrue(pX < p.getX());
-		//assertTrue(pY == p.getY());
-	}
-
-	@Test 
-	public void movesUp() {
-		// jogador gasta combustível para contrariar a gravidade, abrandando a queda
-	}
-
-	public void movesDown() {
-		// jogador pode arriscar acelerar ainda mais a sua queda para ganhar mais pontos 
-	}
-
 	@Test
 	public void gameOver() {
 		// jogador fica sem vida
@@ -73,6 +25,7 @@ public class PlayerTests {
 
 		//verifica se perde vida toda
 		assertTrue(life > p.getLifepoints());
+		assertEquals(p.getLifepoints(),0);
 	}
 
 	// BONUS E OBSTACULOS
@@ -109,7 +62,6 @@ public class PlayerTests {
 	@Test
 	public void picksFuel() {
 		// jogador apanha um bonus de combustivel
-		// jogador apanha um bonus de vida (ganha vida)
 		Player p = new Player(true);
 
 		int fuel = p.getFuel();

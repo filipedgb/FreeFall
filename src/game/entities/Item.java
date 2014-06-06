@@ -24,7 +24,7 @@ public abstract class Item extends GameObject {
 	}
 
 	public Item(float x, float y) {
-		super(x,y,(int)Tools.getDrawUnity(1),(int) Tools.getDrawUnity(1));
+		super(x, y, (int) Tools.getDrawUnity(1),(int) Tools.getDrawUnity(1));
 	}
 
 	/**
@@ -39,7 +39,7 @@ public abstract class Item extends GameObject {
 	 * @param teste
 	 */
 	public abstract void caught(Player player, boolean teste);
-	
+
 	/**
 	 * Função que tem como unico objectivo actualizar o contador
 	 */
