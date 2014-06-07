@@ -32,14 +32,16 @@ public class Skymine extends Item {
 	 * @param player é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
 	 */
 	@Override
-	public void caught(Player player) {
+	public boolean caught(Player player) {
 		if(!player.isInvulnerable()) {
 			if(this.colide(player)) {
 				if(!Tools.isMute()) PlayActivity.getSingleInstance().playMalfunc();
 				player.setMalfunctioning(true);
 				disabler(25);	
+				return true;
 			}
 		}
+		return false;
 	}
 
 	@Override

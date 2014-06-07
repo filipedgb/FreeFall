@@ -34,7 +34,7 @@ public class Player extends GameObject {
 	}
 
 	public Player(int x, int y) {
-		super(x, y, (int) Tools.getScreenHeight()/6, (int) Tools.getScreenWidth());
+		super(x, y, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4));
 		lifepoints = max_life;
 		fuel = max_fuel;
 		turbo_enabled = false;
@@ -50,7 +50,7 @@ public class Player extends GameObject {
 	 * Criado para efeitos de teste
 	 */
 	public Player(boolean teste) {
-		super(0, 0, (int) Tools.getScreenHeight()/6, (int) Tools.getScreenWidth());
+		super(0, 0, (int) Tools.getDrawUnity(4), (int) Tools.getScreenWidth());
 		lifepoints = max_life;
 		fuel = max_fuel;
 		turbo_enabled = false;

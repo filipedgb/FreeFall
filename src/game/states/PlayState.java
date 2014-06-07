@@ -26,6 +26,8 @@ public class PlayState {
 	private boolean gameStarted = false;
 	private GameView current_view;
 	private Vibrator v;
+	private int max_velocity_x = 150;
+	private int max_velocity_y = 700;
 
 	public PlayState(GameView gameView) {
 		current_view = gameView;
@@ -42,7 +44,7 @@ public class PlayState {
 		int w = current_view.getWidth();
 		int h = current_view.getHeight();
 
-		player = new Player(w/2 - 50, h/3);
+		player = new Player(w/2 - (int) Tools.getDrawUnity(4)/2, h/3);
 		itens.add(new Health((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
 		itens.add(new SlowDown((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
 		itens.add(new Invulnerability((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
@@ -104,28 +106,47 @@ public class PlayState {
 		//Verifica movimentos do player
 		switch(direction) {
 		case (0): //Left 
-			getPlayer().setMotion(2);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+10,getGlobalAccelaration_y());
-		break;
+			if(Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
+				getPlayer().setMotion(2);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+Tools.getDrawUnity(0.5f),getGlobalAccelaration_y());
+			}
+			break;
 		case (1): //Down
-			getPlayer().setMotion(1);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-10);
-		getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
-		break;
+			if(Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+				getPlayer().setMotion(1);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-Tools.getDrawUnity(0.5f));
+				getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
+			}
+			break;
+			
 		case (2)://Up
-			getPlayer().setMotion(0);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+10);
-		getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
-		break;
+			if(Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+				getPlayer().setMotion(0);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+Tools.getDrawUnity(0.5f));
+			}
+			getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
+			break;
 		case (3): //Right
-			getPlayer().setMotion(3);
-		GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-10,getGlobalAccelaration_y());
-		break;
+			if(Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x){
+				getPlayer().setMotion(3);
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-Tools.getDrawUnity(0.5f),getGlobalAccelaration_y());
+			}
+			break;
 		case (-1): //No acceleration
 			GameObject.setGlobalAccelaration(0,0);
-		getPlayer().setMotion(-1);
-		break;
+			getPlayer().setMotion(-1);
+			break;
 		}
+		
+			
+		//Verifica se foi apanhado o slow down 
+		if(itens.get(1).isActive()) {
+			if(itens.get(1).caught(player)) {
+				for(Item x: itens) x.setVelocity_y(x.getVelocity_y()/2);
+				for(Obstacle x: objects) x.setVelocity_y(x.getVelocity_y()/2);
+			}
+		}
+	
 
 		// Verifica se foi apanhado algum item		
 		for(Item x:itens) {
@@ -136,6 +157,7 @@ public class PlayState {
 
 		player.update();
 
+		
 		// Counter para o bonus de invulnerabilidade
 		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
 		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);

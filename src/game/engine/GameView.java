@@ -43,12 +43,16 @@ public class GameView extends View {
 
 	/**
 	 *  Desenha tudo o que se encontra na view do jogo. (Comentários dentro da função )
+	 *  
+	 *  Verifica o que deve ser a altura e a largura (landscape/portrait)
+	 *  
 	 */
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
 
 		if(game == null) {
-			Tools.init(this.getWidth(),this.getHeight());
+			if(this.getHeight() > this.getWidth()) Tools.init(this.getWidth(),this.getHeight());
+			else Tools.init(this.getHeight(), this.getWidth());
 //			GameObject.setScreen_height(this.getHeight());
 //			GameObject.setScreen_width(this.getWidth());
 			init();
