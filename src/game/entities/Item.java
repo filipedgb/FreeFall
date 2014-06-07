@@ -30,8 +30,9 @@ public abstract class Item extends GameObject {
 	/**
 	 * Recebe um jogador e é suposto definir aquilo que lhe acontece quando o item(this) é apanhado
 	 * @param player
+	 * @return 
 	 */
-	public abstract void caught(Player player);
+	public abstract boolean caught(Player player);
 
 	/**
 	 * Funcao criada para efeitos de teste

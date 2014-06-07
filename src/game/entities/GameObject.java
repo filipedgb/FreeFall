@@ -42,6 +42,22 @@ public abstract class GameObject {
 	protected float velocity_y = 0;
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
+	public static float getGlobal_velocity_x() {
+		return global_velocity_x;
+	}
+
+	public static void setGlobal_velocity_x(float global_velocity_x) {
+		GameObject.global_velocity_x = global_velocity_x;
+	}
+
+	public static float getGlobal_velocity_y() {
+		return global_velocity_y;
+	}
+
+	public static void setGlobal_velocity_y(float global_velocity_y) {
+		GameObject.global_velocity_y = global_velocity_y;
+	}
+
 	protected float resistence ;
 	protected Bitmap bmp;
 

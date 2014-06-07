@@ -34,11 +34,12 @@ public class SlowDown extends Item  {
 	 * Caso o jogador apanhe (colida) com este item, a velocidade global é reduzida. 
 	 */
 	@Override
-	public void caught(Player player) {
+	public boolean caught(Player player) {
 		if(this.colide(player)) {
-			GameObject.setGlobalVelocity(GameObject.getGlobalVelocity_x(), GameObject.getGlobalVelocity_y()/2);
 			disabler(25);	
+			return true;
 		}
+		return false;
 	}
 
 	/**

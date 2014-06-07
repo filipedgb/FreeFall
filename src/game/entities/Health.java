@@ -33,12 +33,14 @@ public class Health extends Item {
 	 * Chama a função disabler que inicia um contador para o tempo que o item vai estar desativado depois de apanhado 
 	 */
 	@Override
-	public void caught(Player player) {
+	public boolean caught(Player player) {
 		if(this.colide(player)) {
 			if(!Tools.isMute()) PlayActivity.getSingleInstance().playHealth();
 			player.addHealthPoints(value);
 			disabler(25);
+			return true;
 		}
+		return false;
 	}
 	/**
 	 * Funcao criada para efeitos de teste
