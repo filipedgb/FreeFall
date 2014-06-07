@@ -28,10 +28,38 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	private final int RIGHT_DIRECTION = 3;
 	private final int NO_ACCEL = -1;
 
-	public Controllers(GameView view, PlayState game) {
+	private static Controllers controllerInstance = new Controllers();
+
+	private Controllers() {
+		// prevenir que não são instanciados mais controllers
+	}
+
+
+
+	public boolean isControllerSensor() {
+		return controllerSensor;
+	}
+
+
+
+	public void setControllerSensor(boolean controllerSensor) {
+		this.controllerSensor = controllerSensor;
+	}
+
+
+
+	public static Controllers getControllerInstance() {
+		return controllerInstance;
+	}
+
+
+	public void controllerInit(GameView view, PlayState game) {
 		current_gameview = view;
 		current_game = game;
-	}	
+	}
+
+
+
 
 	/**
 	 *  Se o jogador clica na metade direita do ecrã, o jogador move-se para a direita
@@ -47,7 +75,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent event) {
-		if(!controllerSensor) {
+		if(current_game != null) {
 
 			if(event.getAction() == MotionEvent.ACTION_DOWN) {
 				if(event.getY() < current_gameview.getHeight()/6 && current_game.getPlayer().getFuel() > 0) {
@@ -63,12 +91,12 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 				}
 
-				else if(event.getX() > current_gameview.getWidth()/2){
+				else if(event.getX() > current_gameview.getWidth()/2 && !controllerSensor){
 					if(current_game.getPlayer().isMalfunctioning()) current_game.setDirection(LEFT_DIRECTION);
 					else current_game.setDirection(RIGHT_DIRECTION);
 				}
 
-				else if(event.getX() < current_gameview.getWidth()/2 ){
+				else if(event.getX() < current_gameview.getWidth()/2 && !controllerSensor){
 					if(current_game.getPlayer().isMalfunctioning())current_game.setDirection(RIGHT_DIRECTION);
 					else current_game.setDirection(LEFT_DIRECTION);
 				}
@@ -89,9 +117,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 	}
 
-	@Override
-	public void onAccuracyChanged(Sensor arg0, int arg1) {
-	}
+
 
 	/**
 	 * Acelerómetro 
@@ -102,24 +128,39 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 		/**
 		 * se o jogador tiver escolhido para usar acelerómetro controllerSensor = true
 		 */
-		if(controllerSensor) {
-			// check sensor type
-			if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER){
-				float x=event.values[0];
+		if(controllerSensor && current_game != null) {
+			if(current_game.isGameStarted()) {
 
-				if(x > 0) {
-					if (current_game.isGameStarted()) { 
-						current_game.getPlayer().setMotion(LEFT_DIRECTION);
-						GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()-10,current_game.getGlobalAccelaration_y());
-					}	
-				}
-				else if(x < 0){
-					if(current_game.isGameStarted()) {
-						current_game.getPlayer().setMotion(RIGHT_DIRECTION);
-						GameObject.setGlobalAccelaration(current_game.getGlobalAccelaration_x()+10,current_game.getGlobalAccelaration_y());
+				// check sensor type
+				if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER){
+					float x=event.values[0];
+
+					if(x > 0.5) {
+						if (current_game.isGameStarted()) { 
+							if(current_game.getPlayer().isMalfunctioning())current_game.setDirection(RIGHT_DIRECTION);
+							else current_game.setDirection(LEFT_DIRECTION);
+						}	
+					}
+					else if(x < -0.5){
+						if(current_game.isGameStarted()) {
+							if(current_game.getPlayer().isMalfunctioning())current_game.setDirection(LEFT_DIRECTION);
+							else current_game.setDirection(RIGHT_DIRECTION);
+						}
+					}
+					
+					else {
+						current_game.setDirection(NO_ACCEL);
 					}
 				}
 			}
 		}
+	}
+
+
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
 	}
 }
