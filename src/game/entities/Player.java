@@ -88,7 +88,6 @@ public class Player extends GameObject {
 		else malfunctioning = false;
 	}
 
-
 	public float getHealthFrac() {
 		return (float) lifepoints/max_life;
 	}

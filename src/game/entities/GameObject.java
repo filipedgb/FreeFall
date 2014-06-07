@@ -16,6 +16,20 @@ public abstract class GameObject {
 	private int width;
 
 	protected static float global_accelaration_x = 0;
+	/**
+	 * @return the global_accelaration_x
+	 */
+	public static float getGlobal_accelaration_x() {
+		return global_accelaration_x;
+	}
+	
+	/**
+	 * @return the global_accelaration_y
+	 */
+	public static float getGlobal_accelaration_y() {
+		return global_accelaration_y;
+	}
+
 	protected static float global_accelaration_y = 0;
 
 	protected static float global_velocity_x = 0;
@@ -24,8 +38,8 @@ public abstract class GameObject {
 	protected float x;
 	protected float y;
 	protected float terminal_velocity = 50;
-	protected float accelaration_y;
 	protected float gravity_constant = -9.8f;
+	protected float accelaration_y;
 	protected float velocity_y = 0;
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
@@ -140,22 +154,17 @@ public abstract class GameObject {
 	 * é recalculada aleatoriamente numa posição abaixo do ecrã.   
 	 */
 	public void move() {
-	
 		accelaration_x = global_accelaration_x;
 		accelaration_y = global_accelaration_y;
-	
-
+		
 		resistence = (float) (-0.9*velocity_x);
 
 		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
 		velocity_y = velocity_y + (accelaration_y + gravity_constant)/Tools.getFPS();
 
-
 		if (getY()>-screen_height) {
 			setY(getY() + velocity_y/Tools.getFPS());
-			setX(getX() + velocity_x/Tools.getFPS());
-	 
-			
+			setX(getX() + velocity_x/Tools.getFPS());			
 		} else {
 			int x = (int) (Math.random()*3*screen_width);
 			int y = (int) (Math.random()*screen_height);
@@ -249,8 +258,8 @@ public abstract class GameObject {
 	}
 
 	public static void setGlobalVelocity(float x, float y) {
-		GameObject.global_accelaration_x = x;
-		GameObject.global_accelaration_y = y;
+		GameObject.global_velocity_x = x;
+		GameObject.global_velocity_y = y;
 	}
 
 }
