@@ -18,8 +18,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:text="Sensor"
-        android:textOff="Sensor"
-        android:textOn="Touch" />
+        android:textOff="Touch"
+        android:textOn="Sensor" />
 
     <ToggleButton
         android:id="@+id/toggleButton1"
@@ -29,8 +29,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
         android:text="@string/Sound"
-        android:textOff="Sound Off"
-        android:textOn="Sound On" />
+        android:textOff="Sound On"
+        android:textOn="Sound Off" />
 
     <TextView
         android:id="@+id/textView1"

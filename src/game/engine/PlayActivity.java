@@ -21,7 +21,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 /**
- * Esta classe representa a classe de jogo, para esta classe foi usado o padrao de desenho Singleton
+ * Esta classe representa a classe de jogo, para esta classe foi usado o padrao
+ * de desenho Singleton
+ * 
  * @author André Pires, Filipe Gama
  * @see Activity
  */
@@ -33,9 +35,9 @@ public class PlayActivity extends Activity {
 	private MediaPlayer health_powerup;
 	private MediaPlayer fuel_powerup;
 	private MediaPlayer nodamage;
-	
+
 	private boolean mute = false;
-	
+
 	private HighscoreState highscores;
 	private static PlayActivity singleInstance = null;
 
@@ -47,14 +49,15 @@ public class PlayActivity extends Activity {
 	}
 
 	/**
-	 * @param highscores the highscores to set
+	 * @param highscores
+	 *            the highscores to set
 	 */
 	public void setHighscores(HighscoreState highscores) {
 		this.highscores = highscores;
 	}
 
-	public static PlayActivity getSingleInstance()  {
-		return singleInstance; 
+	public static PlayActivity getSingleInstance() {
+		return singleInstance;
 	}
 
 	@Override
@@ -62,22 +65,25 @@ public class PlayActivity extends Activity {
 		GameView game_view = new GameView(getBaseContext());
 
 		super.onCreate(savedInstanceState);
-		sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
 		malfunction = MediaPlayer.create(getBaseContext(), R.raw.malfunction);
 		health_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup);
 		fuel_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup2);
 		nodamage = MediaPlayer.create(getBaseContext(), R.raw.nodamage);
-		
-		if(mute) muteSounds();
+
+		if (mute)
+			muteSounds();
 
 		singleInstance = this;
 
-		sensorManager.registerListener(Controllers.getControllerInstance(),sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+		sensorManager.registerListener(Controllers.getControllerInstance(),
+				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(game_view);
 
 		loadHighscores();
@@ -88,7 +94,8 @@ public class PlayActivity extends Activity {
 	 */
 	public void saveHighscores() {
 		try {
-			FileOutputStream fos = openFileOutput(HighscoreActivity.filename, MODE_WORLD_READABLE); 
+			FileOutputStream fos = openFileOutput(HighscoreActivity.filename,
+					MODE_WORLD_READABLE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(highscores);
 			oos.close();
@@ -106,7 +113,7 @@ public class PlayActivity extends Activity {
 		alert.setTitle("New Highscore!");
 		alert.setMessage("Insert your name: ");
 
-		// Set an EditText view to get user input 
+		// Set an EditText view to get user input
 		final EditText input = new EditText(this);
 		alert.setView(input);
 
@@ -118,25 +125,27 @@ public class PlayActivity extends Activity {
 			}
 		});
 
-		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-			}
-		});
+		alert.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				});
 
 		alert.show();
 	}
 
-	public void addH (String name, int score) {
+	public void addH(String name, int score) {
 		highscores.addHighscore(name, score);
 	}
 
 	/**
-	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna do telemovel
+	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna
+	 * do telemovel
 	 */
 	public void loadHighscores() {
 		File file = getFileStreamPath(HighscoreActivity.filename);
 
-		if(!file.exists()) {
+		if (!file.exists()) {
 			highscores = new HighscoreState();
 		}
 
@@ -152,16 +161,14 @@ public class PlayActivity extends Activity {
 		}
 	}
 
-	
 	public void muteSounds() {
 		Log.e("mute", "lol");
-		malfunction.setVolume(0,0);
-		health_powerup.setVolume(0,0);
-		fuel_powerup.setVolume(0,0);
-		nodamage.setVolume(0,0);
+		malfunction.setVolume(0, 0);
+		health_powerup.setVolume(0, 0);
+		fuel_powerup.setVolume(0, 0);
+		nodamage.setVolume(0, 0);
 	}
-	
-	
+
 	@Override
 	public void onBackPressed() {
 		GameLoop.stopThread(0);
@@ -171,15 +178,15 @@ public class PlayActivity extends Activity {
 	public void playMalfunc() {
 		malfunction.start();
 	}
-	
+
 	public void playHealth() {
 		health_powerup.start();
 	}
-	
+
 	public void playFuel() {
 		fuel_powerup.start();
 	}
-	
+
 	public void playNoDamage() {
 		nodamage.start();
 	}

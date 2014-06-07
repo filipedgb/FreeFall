@@ -11,6 +11,7 @@ import android.os.Vibrator;
 
 /**
  * Estado que representa o jogo em si
+ * 
  * @author André Pires, Filipe Gama
  * @see GameState
  */
@@ -31,23 +32,25 @@ public class PlayState {
 
 	public PlayState(GameView gameView) {
 		current_view = gameView;
-		v = (Vibrator) current_view.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+		v = (Vibrator) current_view.getContext().getSystemService(
+				Context.VIBRATOR_SERVICE);
 	}
 
 	/**
 	 * Função que inicializa os objectos todos da cena, com posições aleatórias
 	 */
 	public void init() {
-		randomizeObstacles();	
+		randomizeObstacles();
 		Random rand = new Random();
 
 		int w = current_view.getWidth();
 		int h = current_view.getHeight();
 
-		player = new Player(w/2 - (int) Tools.getDrawUnity(4)/2, h/3);
+		player = new Player(w / 2 - (int) Tools.getDrawUnity(4) / 2, h / 3);
 		itens.add(new Health((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
 		itens.add(new SlowDown((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
-		itens.add(new Invulnerability((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
+		itens.add(new Invulnerability((int) rand.nextInt(w - 25), rand
+				.nextInt(h) + h));
 		itens.add(new Fuel((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
 		itens.add(new Skymine((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
 
@@ -61,131 +64,148 @@ public class PlayState {
 		int x, y;
 		for (int i = 0; i < 10; i++) {
 			y = (int) (Math.random() * 200);
-			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view.getWidth());
+			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view
+					.getWidth());
 			objects.add(new Obstacle(x, current_view.getHeight() + y));
-		}		
+		}
 	}
 
 	/**
 	 * Atualiza todos os objetos do jogo, quando esta a decorrer o jogo em si
 	 */
 	public void update() {
-		if (gameStarted==false) {
+		if (gameStarted == false) {
 			return;
 		}
 
-		//verifica nivel 
-		if(points >= 400 && level < 3)  {
+		// verifica nivel
+		if (points >= 400 && level < 3) {
 			changeLevel(3);
-		}
-		else if(points >= 200 && level < 2) {
+		} else if (points >= 200 && level < 2) {
 			changeLevel(2);
 		}
 
-		switch(level) {
-		case(2):
+		switch (level) {
+		case (2):
 			Obstacle.setCurrent_bmp(Tools.getAsteroid());
-		break;
-		case(3):
+			break;
+		case (3):
 			Obstacle.setCurrent_bmp(Tools.getCloud());
-		break;
+			break;
+		default:
+			break;
 		}
 
 		// Verifica se jogador perdeu
-		if(player.getLifepoints() > 0) {
-			if(player.isBoost()) points += 0.5;
-			else points += 0.1;
-		}
-		else {
+		if (player.getLifepoints() > 0) {
+			if (player.isBoost())
+				points += 0.5;
+			else
+				points += 0.1;
+		} else {
 			GameLoop.stopThread(points);
 		}
 
-		//Verifica velocidade máxima horizontal 
-		if(GameObject.getGlobalVelocity_x() > 10) player.addHealthPoints(-1);
+		// Verifica velocidade máxima horizontal
+		if (GameObject.getGlobalVelocity_x() > 10)
+			player.addHealthPoints(-1);
 
-		//Verifica movimentos do player
-		switch(direction) {
-		case (0): //Left 
-			if(Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
+		// Verifica movimentos do player
+		switch (direction) {
+		case (0): // Left
+			if (Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
 				getPlayer().setMotion(2);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()+Tools.getDrawUnity(0.5f),getGlobalAccelaration_y());
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
+						+ Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
 			break;
-		case (1): //Down
-			if(Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+		case (1): // Down
+			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
 				getPlayer().setMotion(1);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()-Tools.getDrawUnity(0.5f));
-				getPlayer().addFuel(0.01f*getGlobalAccelaration_y());
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
+						getGlobalAccelaration_y() - Tools.getDrawUnity(0.5f));
+				getPlayer().addFuel(0.01f * getGlobalAccelaration_y());
 			}
 			break;
-			
-		case (2)://Up
-			if(Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+
+		case (2):// Up
+			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
 				getPlayer().setMotion(0);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),getGlobalAccelaration_y()+Tools.getDrawUnity(0.5f));
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
+						getGlobalAccelaration_y() + Tools.getDrawUnity(0.5f));
 			}
-			getPlayer().addFuel(-0.01f*getGlobalAccelaration_y());
+			getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
 			break;
-		case (3): //Right
-			if(Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x){
+		case (3): // Right
+			if (Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
 				getPlayer().setMotion(3);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()-Tools.getDrawUnity(0.5f),getGlobalAccelaration_y());
+				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
+						- Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
 			break;
-		case (-1): //No acceleration
-			GameObject.setGlobalAccelaration(0,0);
+		case (-1): // No acceleration
+			GameObject.setGlobalAccelaration(0, 0);
 			getPlayer().setMotion(-1);
 			break;
 		}
-		
-			
-		//Verifica se foi apanhado o slow down 
-		if(itens.get(1).isActive()) {
-			if(itens.get(1).caught(player)) {
-				for(Item x: itens) x.setVelocity_y(x.getVelocity_y()/2);
-				for(Obstacle x: objects) x.setVelocity_y(x.getVelocity_y()/2);
+
+		// Verifica se foi apanhado o slow down
+		if (itens.get(1).isActive()) {
+			if (itens.get(1).caught(player)) {
+				for (Item x : itens)
+					x.setVelocity_y(x.getVelocity_y() / 2);
+				for (Obstacle x : objects)
+					x.setVelocity_y(x.getVelocity_y() / 2);
 			}
 		}
-	
 
-		// Verifica se foi apanhado algum item		
-		for(Item x:itens) {
-			if(x.isActive()) x.caught(player);
-			//atualiza os itens
+		// Verifica se foi apanhado algum item
+		for (Item x : itens) {
+			if (x.isActive())
+				x.caught(player);
+			// atualiza os itens
 			x.updateItem();
 		}
 
 		player.update();
 
-		
 		// Counter para o bonus de invulnerabilidade
-		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable()) player.decrement_ticks(); 
-		if(player.getInvulnerable_ticks() == 0) player.setInvulnerable(false);
+		if (player.getInvulnerable_ticks() > 0 && player.isInvulnerable())
+			player.decrement_ticks();
+		if (player.getInvulnerable_ticks() == 0)
+			player.setInvulnerable(false);
 
-		// Move todos os obstáculos e verifica e o jogador colide com algum deles
-		for(int i = 0; i < objects.size(); i++){
+		// Move todos os obstáculos e verifica e o jogador colide com algum
+		// deles
+		for (int i = 0; i < objects.size(); i++) {
 			objects.get(i).move();
 			objects.get(i).updateItem();
-			if(objects.get(i).damage(player) && !player.isInvulnerable()) {
+			if (objects.get(i).damage(player) && !player.isInvulnerable()) {
 				v.vibrate(250);
-			};
+			}
+			;
 		}
 
-		//move os itens
-		for(Item x: itens)
+		// move os itens
+		for (Item x : itens)
 			x.move();
 	}
 
-
+	/**
+	 * Modifica o nivel
+	 * 
+	 * @param lvl
+	 */
 	public void changeLevel(int lvl) {
-		Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
+		Intent intent = new Intent(PlayActivity.getSingleInstance()
+				.getBaseContext(), LevelActivity.class);
 		Tools.setLevel(level);
 		PlayActivity.getSingleInstance().startActivity(intent);
 		GameLoop.getCurrent_instance().setRunning(false);
 		level = lvl;
 	}
 
-	//GETTERS AND SETTERS
+	// GETTERS AND SETTERS
 
 	public boolean isChangelevel() {
 		return changelevel;
@@ -210,6 +230,7 @@ public class PlayState {
 	public float getGlobalAccelaration_x() {
 		return GameObject.getGlobal_accelaration_x();
 	}
+
 	public float getGlobalAccelaration_y() {
 		return GameObject.getGlobal_accelaration_y();
 	}
@@ -290,7 +311,8 @@ public class PlayState {
 	}
 
 	/**
-	 * @param itens the itens to set
+	 * @param itens
+	 *            the itens to set
 	 */
 	public void setItens(ArrayList<Item> itens) {
 		this.itens = itens;

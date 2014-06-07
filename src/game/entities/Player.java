@@ -1,12 +1,12 @@
 package game.entities;
 
-
 import game.engine.Tools;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
  * Esta classe representa o jogador
+ * 
  * @author André Pires, Filipe Gama
  * @see GameObject
  */
@@ -22,7 +22,7 @@ public class Player extends GameObject {
 	private int motion;
 	private boolean malfunctioning = false;
 	private int malfunc_ticks = 0;
-	
+
 	private boolean boost = false;
 
 	public boolean isBoost() {
@@ -45,7 +45,7 @@ public class Player extends GameObject {
 		bmp = Tools.getPlayer();
 
 	}
-	
+
 	/**
 	 * Criado para efeitos de teste
 	 */
@@ -57,29 +57,31 @@ public class Player extends GameObject {
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
-		motion = -1;	
+		motion = -1;
 	}
-	
+
 	public boolean isMalfunctioning() {
 		return malfunctioning;
 	}
 
 	public void setMalfunctioning(boolean malfunctioning) {
 		this.malfunctioning = malfunctioning;
-		malfunc_ticks = (int) (5*Tools.getFPS());
+		malfunc_ticks = (int) (5 * Tools.getFPS());
 	}
-	
+
 	public void update() {
-		if(malfunc_ticks > 0) malfunc_ticks--;
-		else malfunctioning = false;
+		if (malfunc_ticks > 0)
+			malfunc_ticks--;
+		else
+			malfunctioning = false;
 	}
 
 	public float getHealthFrac() {
-		return (float) lifepoints/max_life;
+		return (float) lifepoints / max_life;
 	}
 
 	public float getFuelFrac() {
-		return  (float) fuel/max_fuel;	
+		return (float) fuel / max_fuel;
 	}
 
 	public void setMotion(int motion) {
@@ -88,7 +90,7 @@ public class Player extends GameObject {
 	}
 
 	public Player() {
-		this(0,0);
+		this(0, 0);
 		lifepoints = 1000;
 		fuel = 100;
 		turbo_enabled = false;
@@ -99,8 +101,10 @@ public class Player extends GameObject {
 	}
 
 	public void draw(Canvas canvas, Paint paint) {
-		if(motion == -1) canvas.drawBitmap(bmp, getX(), getY(), paint);
-		else Tools.getPlayer_animation().draw(canvas, (int) x, (int) y);
+		if (motion == -1)
+			canvas.drawBitmap(bmp, getX(), getY(), paint);
+		else
+			Tools.getPlayer_animation().draw(canvas, (int) x, (int) y);
 	}
 
 	/**
@@ -108,13 +112,14 @@ public class Player extends GameObject {
 	 */
 	@Override
 	public void move() {
-		resistence = (float) (-0.9*velocity_x);
+		resistence = (float) (-0.9 * velocity_x);
 
-		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
-		velocity_y = velocity_y + accelaration_y/Tools.getFPS();
+		velocity_x = velocity_x + (accelaration_x + resistence)
+				/ Tools.getFPS();
+		velocity_y = velocity_y + accelaration_y / Tools.getFPS();
 
-		setY(getY() + velocity_y/Tools.getFPS());
-		setX(getX() + velocity_x/Tools.getFPS());
+		setY(getY() + velocity_y / Tools.getFPS());
+		setX(getX() + velocity_x / Tools.getFPS());
 	}
 
 	public int getLifepoints() {
@@ -127,34 +132,46 @@ public class Player extends GameObject {
 
 	/**
 	 * Adiciona vida ao jogador
-	 * @param value vida a ganhar (pode ser positivo ou negativo)
+	 * 
+	 * @param value
+	 *            vida a ganhar (pode ser positivo ou negativo)
 	 */
 	public void addHealthPoints(float value) {
-		if(value > 0 && lifepoints <= max_life) { 
-			if(lifepoints+value > max_life) lifepoints = max_life;
-			else lifepoints += value;
+		if (value > 0 && lifepoints <= max_life) {
+			if (lifepoints + value > max_life)
+				lifepoints = max_life;
+			else
+				lifepoints += value;
 		}
 
-		else if(value < 0 && lifepoints > 0 && !invulnerable) {
-			if(lifepoints+value < 0) lifepoints = 0;
-			else lifepoints += value;
+		else if (value < 0 && lifepoints > 0 && !invulnerable) {
+			if (lifepoints + value < 0)
+				lifepoints = 0;
+			else
+				lifepoints += value;
 		}
 	}
 
 	/**
 	 * Adiciona combustivel ao jogador
-	 * @param value combustivel a ganhar (pode ser positivo ou negativo)
+	 * 
+	 * @param value
+	 *            combustivel a ganhar (pode ser positivo ou negativo)
 	 */
 	public void addFuel(float value) {
-		if(value > 0 && fuel <= max_fuel) { 
-			if(fuel+value > max_fuel) fuel = max_fuel;
-			else fuel += value;
+		if (value > 0 && fuel <= max_fuel) {
+			if (fuel + value > max_fuel)
+				fuel = max_fuel;
+			else
+				fuel += value;
 		}
 
-		else if(value < 0 && fuel > 0) {
-			if(fuel+value < 0) fuel = 0;
-			else fuel += value;
-		}	
+		else if (value < 0 && fuel > 0) {
+			if (fuel + value < 0)
+				fuel = 0;
+			else
+				fuel += value;
+		}
 	}
 
 	public static int getMax_life() {
@@ -163,7 +180,7 @@ public class Player extends GameObject {
 
 	public void setInvulnerable(boolean x) {
 		invulnerable = x;
-		invulnerable_ticks = (int) (4*Tools.getFPS());
+		invulnerable_ticks = (int) (4 * Tools.getFPS());
 	}
 
 	public boolean isInvulnerable() {
