@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/landscapemainmenu"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/highscore_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/start_button"
+        android:layout_below="@+id/start_button"
+        android:layout_marginTop="24dp"
+        android:minHeight="75dp"
+        android:minWidth="250dp"
+        android:text="@string/Highscore" />
+
+    <Button
+        android:id="@+id/options_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/highscore_button"
+        android:layout_below="@+id/highscore_button"
+        android:layout_marginTop="29dp"
+        android:minHeight="75dp"
+        android:minWidth="250dp"
+        android:text="@string/Options" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/options_button"
+        android:layout_below="@+id/options_button"
+        android:layout_marginTop="27dp"
+        android:minHeight="75dp"
+        android:minWidth="250dp"
+        android:text="@string/Exit" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="296dp"
+        android:layout_marginTop="292dp"
+        android:minHeight="75dp"
+        android:minWidth="250dp"
+        android:text="@string/Play" />
+
+</RelativeLayout>

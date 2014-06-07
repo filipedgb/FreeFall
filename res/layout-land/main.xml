@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/landscapemainmenu"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/highscore_button"
+        android:layout_alignBottom="@+id/highscore_button"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="24dp"
+        android:minHeight="10dp"
+        android:minWidth="100dp"
+        android:text="@string/Play" />
+
+    <Button
+        android:id="@+id/highscore_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/start_button"
+        android:minHeight="10dp"
+        android:minWidth="100dp"
+        android:text="@string/Highscore" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/options_button"
+        android:layout_alignBottom="@+id/options_button"
+        android:layout_alignLeft="@+id/highscore_button"
+        android:minHeight="10dp"
+        android:minWidth="100dp"
+        android:text="@string/Exit" />
+
+    <Button
+        android:id="@+id/options_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp"
+        android:layout_toLeftOf="@+id/highscore_button"
+        android:minHeight="10dp"
+        android:minWidth="100dp"
+        android:text="@string/Options" />
+
+</RelativeLayout>
