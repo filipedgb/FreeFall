@@ -7,9 +7,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
 /**
- * Classe com a funcao de guardar dados sobre o ecra do telemovel, e das imagens do jogo
+ * Classe com a funcao de guardar dados sobre o ecra do telemovel, e das imagens
+ * do jogo
+ * 
  * @author André Pires, Filipe Gama
- *
+ * 
  */
 public class Tools {
 
@@ -20,7 +22,7 @@ public class Tools {
 	private static Resources res;
 	private static boolean mute = false;
 
-	private static Bitmap cloud ;
+	private static Bitmap cloud;
 	private static Bitmap health;
 	private static Bitmap invulnerable;
 	private static Bitmap fuel;
@@ -37,7 +39,6 @@ public class Tools {
 	private static Sprite player_animation;
 	private static Sprite malfunction_anim;
 
-	
 	private static int level;
 
 	public static void setLevel(int level) {
@@ -49,16 +50,16 @@ public class Tools {
 	}
 
 	/**
-	 *  Esta função foi retirada da internet sem sofrer qualquer tipo de alteração.
-	 *  O seu objectivo é simplesmente o de redimensionar um bitmap (sem estragar a qualidade do mesmo)
-	 *  
+	 * Esta função foi retirada da internet sem sofrer qualquer tipo de
+	 * alteração. O seu objectivo é simplesmente o de redimensionar um bitmap
+	 * (sem estragar a qualidade do mesmo)
+	 * 
 	 * @param bm
 	 * @param newHeight
 	 * @param newWidth
 	 * @return
 	 */
-	public static Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
-	{
+	public static Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
 		int width = bm.getWidth();
 		int height = bm.getHeight();
 		float scaleWidth = ((float) newWidth) / width;
@@ -68,57 +69,76 @@ public class Tools {
 		// resize the bit map
 		matrix.postScale(scaleWidth, scaleHeight);
 		// recreate the new Bitmap
-		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height,
+				matrix, false);
 		return resizedBitmap;
 	}
 
 	/**
 	 * Função que carrega as imagens todas logo no início do jogo.
+	 * 
 	 * @param resources
 	 */
 
 	public static void loadImages(Resources resources) {
 		res = resources;
-	
+
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
-		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
-		
+		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7),
+				(int) getDrawUnity(7), true);
+
 		satelite = BitmapFactory.decodeResource(res, R.drawable.satelite);
-		satelite = Bitmap.createScaledBitmap(satelite, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
-		
+		satelite = Bitmap.createScaledBitmap(satelite, (int) getDrawUnity(7),
+				(int) getDrawUnity(7), true);
+
 		asteroid = BitmapFactory.decodeResource(res, R.drawable.asteroid);
-		asteroid = Bitmap.createScaledBitmap(asteroid, (int) getDrawUnity(7), (int) getDrawUnity(7), true);
+		asteroid = Bitmap.createScaledBitmap(asteroid, (int) getDrawUnity(7),
+				(int) getDrawUnity(7), true);
 
-
-		invulnerable = BitmapFactory.decodeResource(res, R.drawable.invulnerable);
-		invulnerable = Bitmap.createScaledBitmap(invulnerable, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
+		invulnerable = BitmapFactory.decodeResource(res,
+				R.drawable.invulnerable);
+		invulnerable = Bitmap.createScaledBitmap(invulnerable,
+				(int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
 
 		fuel = BitmapFactory.decodeResource(res, R.drawable.fuel);
-		fuel = Bitmap.createScaledBitmap(fuel, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
+		fuel = Bitmap.createScaledBitmap(fuel, (int) getDrawUnity(1.5f),
+				(int) getDrawUnity(1.5f), true);
 
 		skymine = BitmapFactory.decodeResource(res, R.drawable.mine);
-		skymine = Bitmap.createScaledBitmap(skymine, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
+		skymine = Bitmap.createScaledBitmap(skymine, (int) getDrawUnity(1.5f),
+				(int) getDrawUnity(1.5f), true);
 
 		slowmo = BitmapFactory.decodeResource(res, R.drawable.slowmo);
-		slowmo = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
+		slowmo = Bitmap.createScaledBitmap(slowmo, (int) getDrawUnity(1.5f),
+				(int) getDrawUnity(1.5f), true);
 
 		health = BitmapFactory.decodeResource(res, R.drawable.health);
-		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(1.5f), (int) getDrawUnity(1.5f), true);
+		health = Bitmap.createScaledBitmap(health, (int) getDrawUnity(1.5f),
+				(int) getDrawUnity(1.5f), true);
 
 		boost = BitmapFactory.decodeResource(res, R.drawable.boostbonus);
 
-		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
-		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
-		
-		malfunction = BitmapFactory.decodeResource(res, R.drawable.malfunc_sprite);
-		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
-		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int)Tools.getDrawUnity(15),3,2,malfunction);
-		
+		invulnerableword = BitmapFactory.decodeResource(res,
+				R.drawable.invulnerableword);
+		invulnerableword = Bitmap.createScaledBitmap(invulnerableword,
+				(int) getDrawUnity(15), (int) getDrawUnity(3), true);
+
+		malfunction = BitmapFactory.decodeResource(res,
+				R.drawable.malfunc_sprite);
+		malfunction = Tools.getResizedBitmap(malfunction,
+				(int) Tools.getDrawUnity((float) 10.2),
+				(int) Tools.getDrawUnity(40));
+		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),
+				(int) Tools.getDrawUnity(15), 3, 2, malfunction);
+
 		player = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien);
-		player = Bitmap.createScaledBitmap(player, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4), true);
-		
-		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien_anim);
-		player_animation = new Sprite((int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4),5,4,player_spritesheet);	
+		player = Bitmap.createScaledBitmap(player, (int) Tools.getDrawUnity(4),
+				(int) Tools.getDrawUnity(4), true);
+
+		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(),
+				R.drawable.alien_anim);
+		player_animation = new Sprite((int) Tools.getDrawUnity(4),
+				(int) Tools.getDrawUnity(4), 5, 4, player_spritesheet);
 	}
 
 	public static Bitmap getPlayer_spritesheet() {
@@ -192,7 +212,7 @@ public class Tools {
 	public static void init(int width, int height) {
 		screenWidth = width;
 		screenHeight = height;
-		drawUnity = screenWidth/20;
+		drawUnity = screenWidth / 20;
 	}
 
 	public static float getScreenWidth() {
@@ -209,10 +229,10 @@ public class Tools {
 
 	public static float getScreenHeight() {
 		return screenHeight;
-	} 
+	}
 
 	public static float getDrawUnity(float numberUnities) {
-		return drawUnity*numberUnities;
+		return drawUnity * numberUnities;
 	}
 
 	public static float getFPS() {
@@ -230,7 +250,7 @@ public class Tools {
 	public static Bitmap getPlayer() {
 		return player;
 	}
-	
+
 	public static boolean isMute() {
 		return mute;
 	}

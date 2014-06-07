@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
- * Esta classe representa o item "mina", que causa a troca dos controlos do jogo ao ser "apanhado"
+ * Esta classe representa o item "mina", que causa a troca dos controlos do jogo
+ * ao ser "apanhado"
+ * 
  * @author André Pires, Filipe Gama
  * @see Item
  */
@@ -19,6 +21,7 @@ public class Skymine extends Item {
 
 	/**
 	 * Funcao criada para efeitos de teste
+	 * 
 	 * @param x
 	 * @param y
 	 * @param teste
@@ -28,16 +31,21 @@ public class Skymine extends Item {
 	}
 
 	/**
-	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning (controlos trocados). 
-	 * @param player é-lhe mudado o booleano de malfunctioning, que será usado posteriomente
+	 * Função que caso o jogador não esteja invulnerável activa o malfunctioning
+	 * (controlos trocados).
+	 * 
+	 * @param player
+	 *            é-lhe mudado o booleano de malfunctioning, que será usado
+	 *            posteriomente
 	 */
 	@Override
 	public boolean caught(Player player) {
-		if(!player.isInvulnerable()) {
-			if(this.colide(player)) {
-				if(!Tools.isMute()) PlayActivity.getSingleInstance().playMalfunc();
+		if (!player.isInvulnerable()) {
+			if (this.colide(player)) {
+				if (!Tools.isMute())
+					PlayActivity.getSingleInstance().playMalfunc();
 				player.setMalfunctioning(true);
-				disabler(25);	
+				disabler(25);
 				return true;
 			}
 		}
@@ -54,10 +62,10 @@ public class Skymine extends Item {
 	 */
 	@Override
 	public void caught(Player player, boolean teste) {
-		if(!player.isInvulnerable()) {
-			if(this.colide(player)) {
+		if (!player.isInvulnerable()) {
+			if (this.colide(player)) {
 				player.setMalfunctioning(true);
-				disabler(25);	
+				disabler(25);
 			}
 		}
 

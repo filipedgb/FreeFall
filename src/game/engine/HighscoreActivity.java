@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 /**
  * Representa o menu de consulta dos highscores
+ * 
  * @author André Pires, Filipe Gama
  * @see Activity
  */
@@ -28,7 +29,8 @@ public class HighscoreActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.highscore);
 
@@ -37,12 +39,14 @@ public class HighscoreActivity extends Activity {
 	}
 
 	/**
-	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna do telemovel
+	 * Faz load dos highscores atraves do ficheiro guardado na memoria interna
+	 * do telemovel se existir, se nao é inicializado o array com valores
+	 * default
 	 */
 	public void loadHighscores() {
 		File file = getFileStreamPath(filename);
 
-		if(!file.exists()) {
+		if (!file.exists()) {
 			highscores = new HighscoreState();
 		}
 

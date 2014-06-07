@@ -10,9 +10,10 @@ public class ObjectTests {
 
 	@Test
 	public void HealthItem() {
-		// verificar se o item fica inactivo depois de apanhado (durante x tempo)
+		// verificar se o item fica inactivo depois de apanhado (durante x
+		// tempo)
 		Player p = new Player(true);
-		Health h = new Health(p.getX(),p.getY(), true);
+		Health h = new Health(p.getX(), p.getY(), true);
 
 		assertTrue(h.isActive());
 		h.caught(p, true);
@@ -22,9 +23,10 @@ public class ObjectTests {
 
 	@Test
 	public void FuelItem() {
-		// verificar se o item fica inactivo depois de apanhado (durante x tempo)
+		// verificar se o item fica inactivo depois de apanhado (durante x
+		// tempo)
 		Player p = new Player(true);
-		Fuel f = new Fuel(p.getX(),p.getY(), true);
+		Fuel f = new Fuel(p.getX(), p.getY(), true);
 
 		assertTrue(f.isActive());
 		f.caught(p, true);
@@ -34,9 +36,10 @@ public class ObjectTests {
 
 	@Test
 	public void slowDownItem() {
-		// verificar se o item fica inactivo depois de apanhado (durante x tempo)
+		// verificar se o item fica inactivo depois de apanhado (durante x
+		// tempo)
 		Player p = new Player(true);
-		SlowDown sm = new SlowDown(p.getX(),p.getY(), true);
+		SlowDown sm = new SlowDown(p.getX(), p.getY(), true);
 
 		assertTrue(sm.isActive());
 		sm.caught(p, true);
@@ -46,9 +49,10 @@ public class ObjectTests {
 
 	@Test
 	public void mineItem() {
-		// verificar se o item fica inactivo depois de apanhado (durante x tempo)
+		// verificar se o item fica inactivo depois de apanhado (durante x
+		// tempo)
 		Player p = new Player(true);
-		Skymine s = new Skymine(p.getX(),p.getY(), true);
+		Skymine s = new Skymine(p.getX(), p.getY(), true);
 
 		assertTrue(s.isActive());
 		s.caught(p, true);
@@ -58,7 +62,8 @@ public class ObjectTests {
 
 	@Test
 	public void InvulnerabilityItem() {
-		// verificar se o item fica inactivo depois de apanhado (durante x tempo)
+		// verificar se o item fica inactivo depois de apanhado (durante x
+		// tempo)
 		Player p = new Player(true);
 		Invulnerability i = new Invulnerability();
 

@@ -11,8 +11,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 /**
- * Esta classe representa o menu do jogo, que, consoante o que o jogador escolher,
- * pode jogar o jogo em si, pode verificar o highscore, ir para as opções, ou sair
+ * Esta classe representa o menu do jogo, que, consoante o que o jogador
+ * escolher, pode jogar o jogo em si, pode verificar o highscore, ir para as
+ * opções, ou sair
+ * 
  * @author André Pires, Filipe Gama
  * @see Activity
  */
@@ -23,11 +25,12 @@ public class GameMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.main);
 
-		//exit button
+		// exit button
 		Button buttonExit = (Button) findViewById(R.id.exit_button);
 		buttonExit.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -36,31 +39,34 @@ public class GameMainActivity extends Activity {
 			}
 		});
 
-		//highscore button
+		// highscore button
 		Button buttonHighscore = (Button) findViewById(R.id.highscore_button);
 		buttonHighscore.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent(GameMainActivity.this, HighscoreActivity.class);
+				Intent intent = new Intent(GameMainActivity.this,
+						HighscoreActivity.class);
 				startActivity(intent);
 			}
 		});
 
-		//start button
+		// start button
 		Button buttonStart = (Button) findViewById(R.id.start_button);
 
 		buttonStart.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent(GameMainActivity.this, PlayActivity.class);
+				Intent intent = new Intent(GameMainActivity.this,
+						PlayActivity.class);
 				startActivity(intent);
 			}
 		});
-		
-		//start button
+
+		// start button
 		Button buttonOptions = (Button) findViewById(R.id.options_button);
 
 		buttonOptions.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent(GameMainActivity.this, OptionsActivity.class);
+				Intent intent = new Intent(GameMainActivity.this,
+						OptionsActivity.class);
 				startActivity(intent);
 			}
 		});

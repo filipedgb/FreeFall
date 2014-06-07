@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
- * Esta classe representa o item de vida, o jogador ao apanhar este item ganha vida 
+ * Esta classe representa o item de vida, o jogador ao apanhar este item ganha
+ * vida
+ * 
  * @author André Pires, Filipe Gama
  * @see Item
  */
@@ -17,9 +19,10 @@ public class Health extends Item {
 		this.value = 200;
 		this.bmp = Tools.getHealth();
 	}
-	
+
 	/**
 	 * Criado para efeitos de teste
+	 * 
 	 * @param x
 	 * @param y
 	 */
@@ -29,25 +32,29 @@ public class Health extends Item {
 	}
 
 	/**
-	 * Esta função recebe o jogador e adiciona-lhe o valor de "value" ao atributo lifepoints através de addHealthPoints
-	 * Chama a função disabler que inicia um contador para o tempo que o item vai estar desativado depois de apanhado 
+	 * Esta função recebe o jogador e adiciona-lhe o valor de "value" ao
+	 * atributo lifepoints através de addHealthPoints Chama a função disabler
+	 * que inicia um contador para o tempo que o item vai estar desativado
+	 * depois de apanhado
 	 */
 	@Override
 	public boolean caught(Player player) {
-		if(this.colide(player)) {
-			if(!Tools.isMute()) PlayActivity.getSingleInstance().playHealth();
+		if (this.colide(player)) {
+			if (!Tools.isMute())
+				PlayActivity.getSingleInstance().playHealth();
 			player.addHealthPoints(value);
 			disabler(25);
 			return true;
 		}
 		return false;
 	}
+
 	/**
 	 * Funcao criada para efeitos de teste
 	 */
 	@Override
 	public void caught(Player player, boolean teste) {
-		if(this.colide(player)) {
+		if (this.colide(player)) {
 			player.addHealthPoints(value);
 			disabler(25);
 		}
