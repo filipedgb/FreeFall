@@ -34,10 +34,9 @@ public abstract class Item extends GameObject {
 	 * item(this) é apanhado
 	 * 
 	 * @param player
-
-
+	 * 
+	 * 
 	 * @return
-
 	 */
 	public abstract boolean caught(Player player);
 
