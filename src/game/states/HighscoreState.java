@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @author André Pires, Filipe Gama
  * @see GameState
  */
-public class HighscoreState implements GameState, Serializable {
+public class HighscoreState implements Serializable {
 
 	private static final long serialVersionUID = -8372755097262962101L;
 

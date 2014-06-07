@@ -35,7 +35,7 @@ public class Skymine extends Item {
 	public void caught(Player player) {
 		if(!player.isInvulnerable()) {
 			if(this.colide(player)) {
-				PlayActivity.getSingleInstance().playMalfunc();
+				if(!Tools.isMute()) PlayActivity.getSingleInstance().playMalfunc();
 				player.setMalfunctioning(true);
 				disabler(25);	
 			}

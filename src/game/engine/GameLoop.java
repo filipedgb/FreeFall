@@ -75,13 +75,6 @@ public class GameLoop extends Thread {
 		}
 	}
 
-	public static GameLoop getCurrent_instance() {
-		return current_instance;
-	}
-
-	public void setRunning(boolean running) {
-		this.running = running;
-	}
 
 	/**
 	 * Serve para perguntar o nome ao jogador caso entre no highscore
@@ -97,6 +90,11 @@ public class GameLoop extends Thread {
 
 	/**
 	 * Funcao que esta a decorrer durante o jogo, que atualiza o display
+	 * 
+	 * Para evitar que a velocidade seja diferente consoante a velocidade do processador,
+	 * foi criada uma variável SKIP_TICKS responsável por ajustar os updates de forma a ocorrerem
+	 * no framerate definido (neste caso 75 atualizações por segundo)
+	 *
 	 */
 	public void run() {
 		while (running) {
@@ -117,5 +115,18 @@ public class GameLoop extends Thread {
 	public void refresh() {
 		current_instance = new GameLoop(current_gameview,current_gamestate);
 	}
+	
+	/**
+	 * Getters and Setters 
+	 */
+	
+	public static GameLoop getCurrent_instance() {
+		return current_instance;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
 
 }

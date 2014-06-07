@@ -18,6 +18,7 @@ public class Tools {
 	private static float drawUnity;
 	private static float FPS = 75;
 	private static Resources res;
+	private static boolean mute = false;
 
 	private static Bitmap cloud ;
 	private static Bitmap health;
@@ -30,6 +31,12 @@ public class Tools {
 	private static Bitmap satelite;
 	private static Bitmap asteroid;
 	private static Bitmap levelone;
+	private static Bitmap malfunction;
+	private static Bitmap player;
+	private static Bitmap player_spritesheet;
+	private static Sprite player_animation;
+	private static Sprite malfunction_anim;
+
 	
 	private static int level;
 
@@ -102,8 +109,41 @@ public class Tools {
 
 		invulnerableword = BitmapFactory.decodeResource(res, R.drawable.invulnerableword);
 		invulnerableword = Bitmap.createScaledBitmap(invulnerableword, (int) getDrawUnity(15), (int) getDrawUnity(3), true);
+		
+		malfunction = BitmapFactory.decodeResource(res, R.drawable.malfunc_sprite);
+		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
+		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int)Tools.getDrawUnity(15),3,2,malfunction);
+		
+		player = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien);
+		player = Bitmap.createScaledBitmap(player, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4), true);
+		
+		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien_anim);
+		player_animation = new Sprite((int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4),5,4,player_spritesheet);	
 	}
 
+	public static Bitmap getPlayer_spritesheet() {
+		return player_spritesheet;
+	}
+
+	public static void setPlayer_spritesheet(Bitmap player_spritesheet) {
+		Tools.player_spritesheet = player_spritesheet;
+	}
+
+	public static Sprite getPlayer_animation() {
+		return player_animation;
+	}
+
+	public static void setPlayer_animation(Sprite player_animation) {
+		Tools.player_animation = player_animation;
+	}
+
+	public static void setRes(Resources res) {
+		Tools.res = res;
+	}
+
+	public static Sprite getMalfunction_anim() {
+		return malfunction_anim;
+	}
 
 	public static float getDrawUnity() {
 		return drawUnity;
@@ -185,5 +225,17 @@ public class Tools {
 
 	public static Bitmap getAsteroid() {
 		return asteroid;
+	}
+
+	public static Bitmap getPlayer() {
+		return player;
+	}
+	
+	public static boolean isMute() {
+		return mute;
+	}
+
+	public static void setMute(boolean mute) {
+		Tools.mute = mute;
 	}
 }

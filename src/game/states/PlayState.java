@@ -14,21 +14,18 @@ import android.os.Vibrator;
  * @author André Pires, Filipe Gama
  * @see GameState
  */
-public class PlayState implements GameState {
+public class PlayState {
 
 	private ArrayList<Obstacle> objects = new ArrayList<Obstacle>();
 	private Player player;
 	private ArrayList<Item> itens = new ArrayList<Item>();
-
 	private float points = 1;
 	private int level = 1;
 	private boolean changelevel = false;
-
 	private int direction = -1;
-
 	private boolean gameStarted = false;
 	private GameView current_view;
-	Vibrator v;
+	private Vibrator v;
 
 	public PlayState(GameView gameView) {
 		current_view = gameView;

@@ -1,10 +1,7 @@
 package game.entities;
 
-import game.config.R;
-import game.engine.Sprite;
+
 import game.engine.Tools;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -22,10 +19,7 @@ public class Player extends GameObject {
 	boolean turbo_enabled;
 	boolean invulnerable;
 	private int invulnerable_ticks;
-	private Sprite player_animation;
-	private Bitmap player_spritesheet;
 	private int motion;
-	
 	private boolean malfunctioning = false;
 	private int malfunc_ticks = 0;
 	
@@ -40,7 +34,7 @@ public class Player extends GameObject {
 	}
 
 	public Player(int x, int y) {
-		super(x, y, screen_width/6, screen_width/6);
+		super(x, y, (int) Tools.getScreenHeight()/6, (int) Tools.getScreenWidth());
 		lifepoints = max_life;
 		fuel = max_fuel;
 		turbo_enabled = false;
@@ -48,23 +42,15 @@ public class Player extends GameObject {
 		invulnerable = false;
 		invulnerable_ticks = 0;
 		motion = -1;
-		
-		if (bmp == null) {
-			//instancio a imagem do resource
-			bmp = BitmapFactory.decodeResource(res, R.drawable.alien);
-			//redimensiona imagem
-			bmp = Bitmap.createScaledBitmap(bmp, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4), true);
-		}
+		bmp = Tools.getPlayer();
 
-		player_spritesheet = BitmapFactory.decodeResource(res, R.drawable.alien_anim);
-		player_animation = new Sprite(x,y,(int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4),5,4,player_spritesheet);	
 	}
 	
 	/**
 	 * Criado para efeitos de teste
 	 */
 	public Player(boolean teste) {
-		super(0, 0, screen_width/6, screen_width/6);
+		super(0, 0, (int) Tools.getScreenHeight()/6, (int) Tools.getScreenWidth());
 		lifepoints = max_life;
 		fuel = max_fuel;
 		turbo_enabled = false;
@@ -97,7 +83,7 @@ public class Player extends GameObject {
 	}
 
 	public void setMotion(int motion) {
-		player_animation.setDirection(motion);
+		Tools.getPlayer_animation().setDirection(motion);
 		this.motion = motion;
 	}
 
@@ -114,7 +100,7 @@ public class Player extends GameObject {
 
 	public void draw(Canvas canvas, Paint paint) {
 		if(motion == -1) canvas.drawBitmap(bmp, getX(), getY(), paint);
-		else player_animation.draw(canvas);
+		else Tools.getPlayer_animation().draw(canvas, (int) x, (int) y);
 	}
 
 	/**
