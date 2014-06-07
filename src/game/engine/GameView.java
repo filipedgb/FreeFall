@@ -2,6 +2,7 @@ package game.engine;
 
 import game.config.R;
 import game.entities.GameObject;
+import game.entities.Item;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
@@ -17,7 +18,6 @@ public class GameView extends View {
 	private PlayState game = null;
 	private Bitmap malfunction;
 	private Sprite malfunction_anim;
-
 
 	public GameView(Context context) {
 		super(context);
@@ -63,8 +63,6 @@ public class GameView extends View {
 		if (!game.isGameStarted()) {
 			game.init();
 		}
-		
-	
 
 		// Desenha o fundo
 		if(game.getLevel() == 1) canvas.drawColor(Color.argb(255, 0, 0, 0));
@@ -72,20 +70,41 @@ public class GameView extends View {
 		else if (game.getLevel() == 3) canvas.drawColor(Color.argb(255, 135, 206, 235));
 
 		// Desenha invulnerável bonus
-		if(game.getPlayer().isInvulnerable()) canvas.drawBitmap(Tools.getInvulnerableword(), Tools.getDrawUnity(3), Tools.getDrawUnity(4), paint);
+		if(game.getPlayer().isInvulnerable()) 
+			canvas.drawBitmap(Tools.getInvulnerableword(), Tools.getDrawUnity(3), Tools.getDrawUnity(4), paint);
 
 		// Desenha bonus points
-		if(game.getPlayer().isBoost()) canvas.drawBitmap(Tools.getBoost(), Tools.getDrawUnity(8), Tools.getDrawUnity(3), paint);
+		if(game.getPlayer().isBoost()) 
+			canvas.drawBitmap(Tools.getBoost(), Tools.getDrawUnity(8), Tools.getDrawUnity(3), paint);
 
 		// Desenha malfunction sprite
 
-		if(game.getPlayer().isMalfunctioning())	malfunction_anim.draw(canvas);
+		if(game.getPlayer().isMalfunctioning())	
+			malfunction_anim.draw(canvas);
 
 		// Desenha os obstáculos
 		for (int i = 0; i < game.getObjects().size(); i++) {
 			game.getObjects().get(i).draw(canvas, paint);
 		}
 
+		//desenha barras
+		drawBarras(canvas);
+
+		// Desenha jogador
+		game.getPlayer().draw(canvas,paint);
+
+		// Desenha items que podem ser apanhados - Vida/Invulnerabilidade/Combustível
+		for(Item x : game.getItens())
+			if(x.isActive()) x.draw(canvas, paint);
+
+		// Desenha a pontuação
+		paint.setAntiAlias(true);
+		paint.setColor(Color.argb(255, 92, 87, 8));
+		paint.setTextSize(Tools.getDrawUnity((float)1.5));
+		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
+	}
+
+	public void drawBarras(Canvas canvas) {
 		//Desenha barras por baixo
 		paint.setColor(Color.MAGENTA);
 
@@ -121,22 +140,5 @@ public class GameView extends View {
 				Tools.getDrawUnity(2)+(game.getPlayer().getFuelFrac()*Tools.getDrawUnity(7)),
 				Tools.getDrawUnity((float)2.25)+Tools.getDrawUnity((float) 0.5),
 				paint);
-
-		// Desenha jogador
-		game.getPlayer().draw(canvas,paint);
-
-		// Desenha items que podem ser apanhados - Vida/Invulnerabilidade/Combustível
-		if(game.getHealth_item().isActive()) game.getHealth_item().draw(canvas,paint);
-		if(game.getSlowmotion_item().isActive()) game.getSlowmotion_item().draw(canvas,paint);
-		if(game.getNodamage_item().isActive())game.getNodamage_item().draw(canvas,paint);
-		if(game.getFuel_item().isActive())game.getFuel_item().draw(canvas,paint);
-		if(game.getSky_mine().isActive())game.getSky_mine().draw(canvas,paint);
-
-		// Desenha a pontuação
-		paint.setAntiAlias(true);
-		paint.setColor(Color.argb(255, 92, 87, 8));
-		paint.setTextSize(Tools.getDrawUnity((float)1.5));
-		canvas.drawText("SCORE: " + (int) game.getPoints(),Tools.getDrawUnity(12) ,paint.getTextSize()+Tools.getDrawUnity(1), paint);
 	}
-
 }
