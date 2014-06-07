@@ -1,6 +1,5 @@
 package game.engine;
 
-import game.entities.GameObject;
 import game.states.PlayState;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -33,33 +32,16 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	private Controllers() {
 		// prevenir que não são instanciados mais controllers
 	}
-
-
-
-	public boolean isControllerSensor() {
-		return controllerSensor;
-	}
-
-
-
-	public void setControllerSensor(boolean controllerSensor) {
-		this.controllerSensor = controllerSensor;
-	}
-
-
-
-	public static Controllers getControllerInstance() {
-		return controllerInstance;
-	}
-
-
+	
+	/**
+	 * Inicializar os parametros da instancia dos controlos
+	 * @param view
+	 * @param game
+	 */
 	public void controllerInit(GameView view, PlayState game) {
 		current_gameview = view;
 		current_game = game;
 	}
-
-
-
 
 	/**
 	 *  Se o jogador clica na metade direita do ecrã, o jogador move-se para a direita
@@ -72,7 +54,6 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 	 *  Se o jogador clicar na parte de baixo do ecrã, acelera ainda mais ganhando pontos extra
 	 *   
 	 */
-
 	@Override
 	public boolean onTouch(View arg0, MotionEvent event) {
 		if(current_game != null) {
@@ -120,7 +101,7 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 
 
 	/**
-	 * Acelerómetro 
+	 * Acelerómetro (apenas para movimentos horizontais (direita e esquerda))
 	 */
 
 	@Override
@@ -163,4 +144,24 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Getters and Setters
+	 */
+	
+
+	public boolean isControllerSensor() {
+		return controllerSensor;
+	}
+
+	public void setControllerSensor(boolean controllerSensor) {
+		this.controllerSensor = controllerSensor;
+	}
+
+	public static Controllers getControllerInstance() {
+		return controllerInstance;
+	}
+
+
+
 }

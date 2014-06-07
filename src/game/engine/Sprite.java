@@ -11,7 +11,7 @@ import android.graphics.Rect;
  */
 public class Sprite {
 
-	private int x, y, height , width, currentframe =0, direction;
+	private int height , width, currentframe =0, direction;
 	private int rows;
 	private int scale_height, scale_width;
 	
@@ -28,14 +28,12 @@ public class Sprite {
 	 * @param rows - linhas da spritesheet
 	 * @param spritesheet - spritesheet (imagem, bitmap)
 	 */
-	public Sprite (int x, int y , int scale_height, int scale_width, int columns, int rows, Bitmap spritesheet) {
+	public Sprite (int scale_height, int scale_width, int columns, int rows, Bitmap spritesheet) {
 		this.spritesheet = spritesheet;
 		height = spritesheet.getHeight()/rows;
 		width = spritesheet.getWidth()/columns;
 		this.scale_height = scale_height;
 		this.scale_width = scale_width;
-		this.x = x;
-		this.y = y;
 		this.rows = rows;
 	}
 
@@ -48,7 +46,7 @@ public class Sprite {
 	 * @param canvas - onde vai ser desenhada a animação
 	 */
 
-	public void draw(Canvas canvas) {
+	public void draw(Canvas canvas, int x, int y) {
 		update();
 
 		int srcX = currentframe*width;

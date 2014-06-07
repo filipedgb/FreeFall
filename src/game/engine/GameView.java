@@ -1,14 +1,9 @@
 package game.engine;
 
-import game.config.R;
-import game.entities.GameObject;
 import game.entities.Item;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.util.Log;
 import android.view.*;
 
 /**
@@ -19,37 +14,26 @@ import android.view.*;
 public class GameView extends View {
 	private Paint paint;
 	private PlayState game = null;
-	private Bitmap malfunction;
-	private Sprite malfunction_anim;
 
 	public GameView(Context context) {
 		super(context);
-		GameObject.setRes(this.getResources());
+		Tools.setRes(this.getResources());
+	//	GameObject.setRes(this.getResources());
 		paint = new Paint();
 	}
 
 	/**
 	 * Inicializa tudo o que é preciso na view. Um estado do jogo (onde se encontra a lógica)
-	 * O gameloop, que é uma thread responsável por actualizar e desenhar o jogo
-	 * O listener, tanto de acelerometro como touch.
-	 * Inicializa também uma sprite -> a animação de quando a nave entra em "malfunctioning"
+	 * Carrega as imagens todas através da classe Tools. 
+	 * O gameloop, que é uma thread responsável por chamar a função de atualização do estado do jogo e desenhá-lo no ecrã
+	 * Inicializa a classe controller , que contem os listeners tanto de acelerometro como touch.
 	 */
 	public void init() {
 		Tools.loadImages(this.getResources());
 		game = new PlayState(this);
 		new GameLoop(this,game);
-		
-		
-		
 		Controllers.getControllerInstance().controllerInit(this, game);
 		this.setOnTouchListener(Controllers.getControllerInstance());
-	
-		Log.e("FLAG", "" + Controllers.getControllerInstance().isControllerSensor());
-		
-		
-		malfunction = BitmapFactory.decodeResource(getResources(), R.drawable.malfunc_sprite);
-		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
-		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int)Tools.getDrawUnity(15),3,2,malfunction);	
 	}
 
 	public PlayState getGame() {
@@ -65,8 +49,8 @@ public class GameView extends View {
 
 		if(game == null) {
 			Tools.init(this.getWidth(),this.getHeight());
-			GameObject.setScreen_height(this.getHeight());
-			GameObject.setScreen_width(this.getWidth());
+//			GameObject.setScreen_height(this.getHeight());
+//			GameObject.setScreen_width(this.getWidth());
 			init();
 		}
 
@@ -90,7 +74,7 @@ public class GameView extends View {
 		// Desenha malfunction sprite
 
 		if(game.getPlayer().isMalfunctioning())	
-			malfunction_anim.draw(canvas);
+			Tools.getMalfunction_anim().draw(canvas, (int) Tools.getDrawUnity(3), (int) Tools.getDrawUnity(3));
 
 		// Desenha os obstáculos
 		for (int i = 0; i < game.getObjects().size(); i++) {

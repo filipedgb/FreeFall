@@ -1,7 +1,6 @@
 package game.entities;
 
 import game.engine.Tools;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -44,12 +43,8 @@ public abstract class GameObject {
 	protected float accelaration_x = 0;
 	protected float velocity_x = 0;
 	protected float resistence ;
-	
 	protected Bitmap bmp;
 
-	protected static Resources res;
-	protected static int screen_height;
-	protected static int screen_width;
 
 	protected boolean active = true;
 
@@ -76,31 +71,7 @@ public abstract class GameObject {
 		active = bool;
 	}
 
-	public static int getScreen_height() {
-		return screen_height;
-	}
-
-	public static void setScreen_height(int screen_height) {
-		GameObject.screen_height = screen_height;
-	}
-
-	public static int getScreen_width() {
-		return screen_width;
-	}
-
-	public static void setScreen_width(int screen_width) {
-		GameObject.screen_width = screen_width;
-	}
-
-
-	public static Resources getRes() {
-		return res;
-	}
-
-	public static void setRes(Resources res) {
-		GameObject.res = res;
-	}
-
+	
 	public GameObject(float x, float y, int height, int width) {
 		this.x = x;
 		this.y = y;
@@ -162,14 +133,14 @@ public abstract class GameObject {
 		velocity_x = velocity_x + (accelaration_x + resistence)/Tools.getFPS();
 		velocity_y = velocity_y + (accelaration_y + gravity_constant)/Tools.getFPS();
 
-		if (getY()>-screen_height) {
+		if (getY()>-Tools.getScreenHeight()) {
 			setY(getY() + velocity_y/Tools.getFPS());
 			setX(getX() + velocity_x/Tools.getFPS());			
 		} else {
-			int x = (int) (Math.random()*3*screen_width);
-			int y = (int) (Math.random()*screen_height);
+			int x = (int) (Math.random()*3*Tools.getScreenWidth());
+			int y = (int) (Math.random()*Tools.getScreenHeight());
 			setX(x);
-			setY(screen_height+y);
+			setY(Tools.getScreenHeight()+y);
 		}
 	}
 

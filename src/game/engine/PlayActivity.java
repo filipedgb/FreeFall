@@ -15,6 +15,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -32,6 +33,8 @@ public class PlayActivity extends Activity {
 	private MediaPlayer health_powerup;
 	private MediaPlayer fuel_powerup;
 	private MediaPlayer nodamage;
+	
+	private boolean mute = false;
 	
 	private HighscoreState highscores;
 	private static PlayActivity singleInstance = null;
@@ -65,6 +68,8 @@ public class PlayActivity extends Activity {
 		health_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup);
 		fuel_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup2);
 		nodamage = MediaPlayer.create(getBaseContext(), R.raw.nodamage);
+		
+		if(mute) muteSounds();
 
 		singleInstance = this;
 
@@ -147,6 +152,16 @@ public class PlayActivity extends Activity {
 		}
 	}
 
+	
+	public void muteSounds() {
+		Log.e("mute", "lol");
+		malfunction.setVolume(0,0);
+		health_powerup.setVolume(0,0);
+		fuel_powerup.setVolume(0,0);
+		nodamage.setVolume(0,0);
+	}
+	
+	
 	@Override
 	public void onBackPressed() {
 		GameLoop.stopThread(0);
@@ -167,5 +182,13 @@ public class PlayActivity extends Activity {
 	
 	public void playNoDamage() {
 		nodamage.start();
+	}
+
+	public boolean isMute() {
+		return mute;
+	}
+
+	public void setMute(boolean mute) {
+		this.mute = mute;
 	}
 }

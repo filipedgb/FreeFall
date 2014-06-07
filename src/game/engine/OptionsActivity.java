@@ -29,7 +29,7 @@ public class OptionsActivity extends Activity {
 		toggleButton1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		        if (isChecked) {
-		            // The toggle is enabled
+		           Tools.setMute(!Tools.isMute());
 		        } else {
 		            // The toggle is disabled
 		        }

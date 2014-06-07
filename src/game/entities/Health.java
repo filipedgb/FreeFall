@@ -35,7 +35,7 @@ public class Health extends Item {
 	@Override
 	public void caught(Player player) {
 		if(this.colide(player)) {
-			PlayActivity.getSingleInstance().playHealth();
+			if(!Tools.isMute()) PlayActivity.getSingleInstance().playHealth();
 			player.addHealthPoints(value);
 			disabler(25);
 		}
