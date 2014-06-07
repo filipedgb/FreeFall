@@ -1,6 +1,10 @@
 package game.entities;
 
+import game.config.R;
+import game.engine.Sprite;
 import game.engine.Tools;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -22,7 +26,10 @@ public class Player extends GameObject {
 	private int motion;
 	private boolean malfunctioning = false;
 	private int malfunc_ticks = 0;
-
+	private Bitmap bmp;
+	private Bitmap player_spritesheet;
+	private Sprite player_animation;
+	
 	private boolean boost = false;
 
 	public boolean isBoost() {
@@ -42,7 +49,14 @@ public class Player extends GameObject {
 		invulnerable = false;
 		invulnerable_ticks = 0;
 		motion = -1;
-		bmp = Tools.getPlayer();
+		bmp = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien);
+
+		bmp = Bitmap.createScaledBitmap(bmp, (int) Tools.getDrawUnity(4),
+				(int) Tools.getDrawUnity(4), true);
+
+		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(),
+				R.drawable.alien_anim);
+		player_animation = new Sprite((int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4), 5, 4, player_spritesheet);
 
 	}
 
@@ -85,7 +99,7 @@ public class Player extends GameObject {
 	}
 
 	public void setMotion(int motion) {
-		Tools.getPlayer_animation().setDirection(motion);
+		player_animation.setDirection(motion);
 		this.motion = motion;
 	}
 
@@ -104,7 +118,7 @@ public class Player extends GameObject {
 		if (motion == -1)
 			canvas.drawBitmap(bmp, getX(), getY(), paint);
 		else
-			Tools.getPlayer_animation().draw(canvas, (int) x, (int) y);
+			player_animation.draw(canvas, (int) x, (int) y);
 	}
 
 	/**
