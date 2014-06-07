@@ -131,14 +131,7 @@ public class Tools {
 		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),
 				(int) Tools.getDrawUnity(15), 3, 2, malfunction);
 
-		player = BitmapFactory.decodeResource(Tools.getRes(), R.drawable.alien);
-		player = Bitmap.createScaledBitmap(player, (int) Tools.getDrawUnity(4),
-				(int) Tools.getDrawUnity(4), true);
-
-		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(),
-				R.drawable.alien_anim);
-		player_animation = new Sprite((int) Tools.getDrawUnity(4),
-				(int) Tools.getDrawUnity(4), 5, 4, player_spritesheet);
+	
 	}
 
 	public static Bitmap getPlayer_spritesheet() {
