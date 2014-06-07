@@ -68,8 +68,7 @@ public class PlayActivity extends Activity {
 
 		singleInstance = this;
 
-		sensorManager.registerListener(new Controllers(game_view,game_view.getGame()),
-				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+		sensorManager.registerListener(Controllers.getControllerInstance(),sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);

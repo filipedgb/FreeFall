@@ -6,6 +6,9 @@ import game.entities.Item;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.*;
 
 /**
@@ -35,8 +38,15 @@ public class GameView extends View {
 		Tools.loadImages(this.getResources());
 		game = new PlayState(this);
 		new GameLoop(this,game);
-		this.setOnTouchListener(new Controllers(this,game));
-
+		
+		
+		
+		Controllers.getControllerInstance().controllerInit(this, game);
+		this.setOnTouchListener(Controllers.getControllerInstance());
+	
+		Log.e("FLAG", "" + Controllers.getControllerInstance().isControllerSensor());
+		
+		
 		malfunction = BitmapFactory.decodeResource(getResources(), R.drawable.malfunc_sprite);
 		malfunction = Tools.getResizedBitmap(malfunction, (int)Tools.getDrawUnity((float) 10.2),(int)Tools.getDrawUnity(40));
 		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int) Tools.getDrawUnity(3),(int)Tools.getDrawUnity(15),3,2,malfunction);	

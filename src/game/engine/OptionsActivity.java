@@ -40,9 +40,9 @@ public class OptionsActivity extends Activity {
 		toggleButton2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		        if (isChecked) {
-		            // The toggle is enabled
+		        	Controllers.getControllerInstance().setControllerSensor(!Controllers.getControllerInstance().isControllerSensor());
 		        } else {
-		            // The toggle is disabled
+		        	
 		        }
 		    }
 		});
