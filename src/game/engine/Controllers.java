@@ -132,10 +132,12 @@ public class Controllers implements OnTouchListener, SensorEventListener {
 				// check sensor type
 				if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 					float x;
-					
-					if(Tools.getOrientation() == 0)  x = event.values[0];
-					else x = -event.values[1];
-					
+
+					if (Tools.getOrientation() == 0)
+						x = event.values[0];
+					else
+						x = -event.values[1];
+
 					if (x > 0.5) {
 						if (current_game.isGameStarted()) {
 							if (current_game.getPlayer().isMalfunctioning())

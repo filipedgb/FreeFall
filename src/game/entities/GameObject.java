@@ -29,7 +29,6 @@ public abstract class GameObject {
 	protected float resistence;
 	protected Bitmap bmp;
 	protected boolean active = true;
-	
 
 	/**
 	 * Define as duas componentes da aceleração, que são comuns a todos os
@@ -50,7 +49,6 @@ public abstract class GameObject {
 		global_accelaration_x = x;
 		global_accelaration_y = y;
 	}
-
 
 	public GameObject(float x, float y, int height, int width) {
 		this.x = x;
@@ -257,7 +255,7 @@ public abstract class GameObject {
 	public static float getGlobal_accelaration_y() {
 		return global_accelaration_y;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}

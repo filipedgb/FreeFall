@@ -9,7 +9,6 @@ import java.util.Calendar;
  * nome, score e data de um determinado score
  * 
  * @author André Pires, Filipe Gama
- * @see GameState
  */
 public class HighscoreState implements Serializable {
 

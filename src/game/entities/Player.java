@@ -28,7 +28,7 @@ public class Player extends GameObject {
 	private Bitmap bmp;
 	private Bitmap player_spritesheet;
 	private Sprite player_animation;
-	
+
 	private boolean boost = false;
 
 	public boolean isBoost() {
@@ -54,7 +54,8 @@ public class Player extends GameObject {
 
 		player_spritesheet = BitmapFactory.decodeResource(Tools.getRes(),
 				R.drawable.alien_anim);
-		player_animation = new Sprite((int) Tools.getDrawUnity(4),(int) Tools.getDrawUnity(4), 5, 4, player_spritesheet);
+		player_animation = new Sprite((int) Tools.getDrawUnity(4),
+				(int) Tools.getDrawUnity(4), 5, 4, player_spritesheet);
 
 	}
 

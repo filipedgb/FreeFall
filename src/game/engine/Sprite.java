@@ -21,13 +21,9 @@ public class Sprite {
 	/**
 	 * Construtor da sprite.
 	 * 
-	 * @param x
-	 *            - posição x
-	 * @param y
-	 *            - posição y
-	 * @param view_height
+	 * @param scale_height
 	 *            - altura do ecrã
-	 * @param view_width
+	 * @param scale_width
 	 *            - largura do ecrã
 	 * @param columns
 	 *            - colunas da spritesheet

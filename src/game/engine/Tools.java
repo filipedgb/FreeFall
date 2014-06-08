@@ -15,19 +15,18 @@ import android.graphics.Matrix;
  */
 public class Tools {
 
-	//General info
+	// General info
 	private static float screenWidth;
 	private static float screenHeight;
 	private static float drawUnity;
 	private static float FPS = 75;
 	private static Resources res;
-	
 
 	private static boolean mute = false;
 	private static int level;
 	private static int orientation = 0; // 0 - portrait, 1 -landscape
 
-	//Images and animations
+	// Images and animations
 	private static Bitmap cloud;
 	private static Bitmap health;
 	private static Bitmap invulnerable;
@@ -44,7 +43,6 @@ public class Tools {
 	private static Bitmap player_spritesheet;
 	private static Sprite player_animation;
 	private static Sprite malfunction_anim;
-
 
 	public static void setLevel(int level) {
 		Tools.level = level;
@@ -136,7 +134,6 @@ public class Tools {
 		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),
 				(int) Tools.getDrawUnity(15), 3, 2, malfunction);
 
-	
 	}
 
 	public static Bitmap getPlayer_spritesheet() {
@@ -256,7 +253,7 @@ public class Tools {
 	public static void setMute(boolean mute) {
 		Tools.mute = mute;
 	}
-	
+
 	public static int getOrientation() {
 		return orientation;
 	}
