@@ -13,7 +13,6 @@ import android.os.Vibrator;
  * Estado que representa o jogo em si
  * 
  * @author André Pires, Filipe Gama
- * @see GameState
  */
 public class PlayState {
 

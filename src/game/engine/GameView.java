@@ -53,8 +53,9 @@ public class GameView extends View {
 		super.draw(canvas);
 
 		if (game == null) {
-			if (this.getHeight() > this.getWidth()) Tools.init(this.getWidth(), this.getHeight());
-			else { 
+			if (this.getHeight() > this.getWidth())
+				Tools.init(this.getWidth(), this.getHeight());
+			else {
 				Tools.init(this.getHeight(), this.getWidth());
 				Tools.setOrientation(1);
 			}
