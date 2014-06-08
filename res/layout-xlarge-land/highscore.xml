@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom|center|center_horizontal|fill_vertical"
+    android:background="@drawable/optionslandscape"
+    android:orientation="vertical"
+    tools:context="game.engine.HighscoreActivity"
+    tools:ignore="HardcodedText" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Highscore"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow>
+
+        <TextView
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:padding="3dip"
+            android:text="Name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:gravity="center"
+            android:padding="3dip"
+            android:text="Score"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView            
+            android:gravity="center"
+            android:hint="s"
+            android:padding="3dip"
+            android:text="Date"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="1-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name1"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_column="1"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date1"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="2-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name2"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score2"
+            android:layout_column="1"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date2"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="3-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name3"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score3"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date3"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="4-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name4"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score4"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date4"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="5-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name5"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score5"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date5"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="6-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name6"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score6"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date6"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="7-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name7"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score7"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date7"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="8-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name8"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score8"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date8"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="9-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name9"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score9"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date9"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_gravity="center_vertical" >
+
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="10-"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/name10"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score10"
+            android:layout_gravity="center_vertical"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date10"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+</TableLayout>
