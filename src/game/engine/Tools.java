@@ -21,8 +21,11 @@ public class Tools {
 	private static float drawUnity;
 	private static float FPS = 75;
 	private static Resources res;
+	
+
 	private static boolean mute = false;
 	private static int level;
+	private static int orientation = 0; // 0 - portrait, 1 -landscape
 
 	//Images and animations
 	private static Bitmap cloud;
@@ -252,5 +255,13 @@ public class Tools {
 
 	public static void setMute(boolean mute) {
 		Tools.mute = mute;
+	}
+	
+	public static int getOrientation() {
+		return orientation;
+	}
+
+	public static void setOrientation(int orientation) {
+		Tools.orientation = orientation;
 	}
 }
