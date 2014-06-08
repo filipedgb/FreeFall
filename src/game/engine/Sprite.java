@@ -16,8 +16,7 @@ public class Sprite {
 	private int height, width, currentframe = 0, direction;
 	private int rows;
 	private int scale_height, scale_width;
-
-	Bitmap spritesheet;
+	private Bitmap spritesheet;
 
 	/**
 	 * Construtor da sprite.

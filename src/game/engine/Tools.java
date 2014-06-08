@@ -15,13 +15,16 @@ import android.graphics.Matrix;
  */
 public class Tools {
 
+	//General info
 	private static float screenWidth;
 	private static float screenHeight;
 	private static float drawUnity;
 	private static float FPS = 75;
 	private static Resources res;
 	private static boolean mute = false;
+	private static int level;
 
+	//Images and animations
 	private static Bitmap cloud;
 	private static Bitmap health;
 	private static Bitmap invulnerable;
@@ -39,7 +42,6 @@ public class Tools {
 	private static Sprite player_animation;
 	private static Sprite malfunction_anim;
 
-	private static int level;
 
 	public static void setLevel(int level) {
 		Tools.level = level;

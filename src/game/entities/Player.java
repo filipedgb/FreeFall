@@ -20,8 +20,7 @@ public class Player extends GameObject {
 	private static int max_life = 1000;
 	private int fuel;
 	private static int max_fuel = 500;
-	boolean turbo_enabled;
-	boolean invulnerable;
+	private boolean invulnerable;
 	private int invulnerable_ticks;
 	private int motion;
 	private boolean malfunctioning = false;
@@ -44,7 +43,6 @@ public class Player extends GameObject {
 		super(x, y, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4));
 		lifepoints = max_life;
 		fuel = max_fuel;
-		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
@@ -67,7 +65,6 @@ public class Player extends GameObject {
 		super(0, 0, (int) Tools.getDrawUnity(4), (int) Tools.getScreenWidth());
 		lifepoints = max_life;
 		fuel = max_fuel;
-		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
@@ -107,7 +104,6 @@ public class Player extends GameObject {
 		this(0, 0);
 		lifepoints = 1000;
 		fuel = 100;
-		turbo_enabled = false;
 		accelaration_y = 0;
 		invulnerable = false;
 		invulnerable_ticks = 0;
