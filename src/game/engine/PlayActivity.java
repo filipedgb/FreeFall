@@ -30,14 +30,11 @@ import android.widget.EditText;
 public class PlayActivity extends Activity {
 
 	private SensorManager sensorManager;
-
 	private MediaPlayer malfunction;
 	private MediaPlayer health_powerup;
 	private MediaPlayer fuel_powerup;
 	private MediaPlayer nodamage;
-
 	private boolean mute = false;
-
 	private HighscoreState highscores;
 	private static PlayActivity singleInstance = null;
 

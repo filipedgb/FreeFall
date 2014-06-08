@@ -17,14 +17,11 @@ public class GameLoop extends Thread {
 	private long next_game_tick = System.currentTimeMillis();
 	private int sleep_time = 0;
 	private boolean running = true;
-
 	private GameView current_gameview;
 	private PlayState current_gamestate;
 	private static GameLoop current_instance = null;
-
 	private static Handler h;
 	private static boolean askingName = true;
-
 	private static float points;
 
 	/**
