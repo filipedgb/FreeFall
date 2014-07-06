@@ -8,5 +8,8 @@
     <string name="Exit">Exit</string>
     <string name="Options">Options</string>
     <string name="Sound">Sound</string>
+    <string name="level1">level1</string>
+    <string name="level2">level2</string>
+    <string name="level3">level3</string>
 
 </resources>

@@ -56,11 +56,12 @@ public class GameMainActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(GameMainActivity.this,
 						PlayActivity.class);
+				Tools.setLevel(1);
 				startActivity(intent);
 			}
 		});
 
-		// start button
+		// options button
 		Button buttonOptions = (Button) findViewById(R.id.options_button);
 
 		buttonOptions.setOnClickListener(new OnClickListener() {

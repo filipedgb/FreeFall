@@ -65,6 +65,7 @@ public class GameLoop extends Thread {
 					.getScoreIndex((int) points) < 10) {
 				askingName = true;
 				Thread t = new Thread() {
+					@Override
 					public void run() {
 						try {
 							h.post(askName);
@@ -82,6 +83,7 @@ public class GameLoop extends Thread {
 	 * Serve para perguntar o nome ao jogador caso entre no highscore
 	 */
 	private final static Runnable askName = new Runnable() {
+		@Override
 		public void run() {
 			if (askingName) {
 				PlayActivity.getSingleInstance().askName();
@@ -99,6 +101,7 @@ public class GameLoop extends Thread {
 	 * atualizações por segundo)
 	 * 
 	 */
+	@Override
 	public void run() {
 		while (running) {
 			current_gamestate.update();

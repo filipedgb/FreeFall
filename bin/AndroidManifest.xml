@@ -24,6 +24,7 @@
         <activity android:name="game.engine.HighscoreActivity"></activity>
         <activity android:name="game.engine.OptionsActivity"></activity>
         <activity android:name="game.engine.LevelActivity"></activity>
+        <activity android:name="game.engine.ChooseLevelActivity"></activity>
     </application>
 
 </manifest>
