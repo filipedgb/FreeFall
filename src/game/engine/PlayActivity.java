@@ -124,10 +124,10 @@ public class PlayActivity extends Activity {
 
 		alert.setNegativeButton("Cancel",
 				new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-			}
-		});
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				});
 
 		alert.show();
 	}

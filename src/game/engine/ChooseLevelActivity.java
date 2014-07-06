@@ -23,9 +23,9 @@ public class ChooseLevelActivity extends Activity {
 
 		setContentView(R.layout.chooselevel);
 
-		//Level 1
+		// Level 1
 		ImageButton lvl1 = (ImageButton) findViewById(R.id.level1Button);
-		lvl1.setOnClickListener( new OnClickListener() {
+		lvl1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(ChooseLevelActivity.this,
@@ -35,9 +35,9 @@ public class ChooseLevelActivity extends Activity {
 			}
 		});
 
-		//Level 2
+		// Level 2
 		ImageButton lvl2 = (ImageButton) findViewById(R.id.level2Button);
-		lvl2.setOnClickListener( new OnClickListener() {
+		lvl2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(ChooseLevelActivity.this,
@@ -47,9 +47,9 @@ public class ChooseLevelActivity extends Activity {
 			}
 		});
 
-		//Level 3
+		// Level 3
 		ImageButton lvl3 = (ImageButton) findViewById(R.id.level3Button);
-		lvl3.setOnClickListener( new OnClickListener() {
+		lvl3.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(ChooseLevelActivity.this,

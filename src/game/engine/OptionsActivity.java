@@ -33,36 +33,35 @@ public class OptionsActivity extends Activity {
 
 		ToggleButton toggleButton1 = (ToggleButton) findViewById(R.id.toggleButton1);
 		toggleButton1
-		.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					Tools.setMute(!Tools.isMute());
-				} else {
-					// The toggle is disabled
-				}
-			}
-		});
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						if (isChecked) {
+							Tools.setMute(!Tools.isMute());
+						} else {
+							// The toggle is disabled
+						}
+					}
+				});
 
 		ToggleButton toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
 		toggleButton2
-		.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					Controllers.getControllerInstance()
-					.setControllerSensor(
-							!Controllers
-							.getControllerInstance()
-							.isControllerSensor());
-				} else {
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						if (isChecked) {
+							Controllers.getControllerInstance()
+									.setControllerSensor(
+											!Controllers
+													.getControllerInstance()
+													.isControllerSensor());
+						} else {
 
-				}
-			}
-		});
-
+						}
+					}
+				});
 
 		Button buttonChooseLevel = (Button) findViewById(R.id.chooseLevel_button);
 
