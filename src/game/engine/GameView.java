@@ -49,6 +49,7 @@ public class GameView extends View {
 	 * Verifica o que deve ser a altura e a largura (landscape/portrait)
 	 * 
 	 */
+	@Override
 	public void draw(Canvas canvas) {
 		super.draw(canvas);
 

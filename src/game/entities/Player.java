@@ -111,6 +111,7 @@ public class Player extends GameObject {
 		motion = -1;
 	}
 
+	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		if (motion == -1)
 			canvas.drawBitmap(bmp, getX(), getY(), paint);

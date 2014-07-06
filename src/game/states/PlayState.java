@@ -46,14 +46,15 @@ public class PlayState {
 		int h = current_view.getHeight();
 
 		player = new Player(w / 2 - (int) Tools.getDrawUnity(4) / 2, h / 3);
-		itens.add(new Health((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
-		itens.add(new SlowDown((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
-		itens.add(new Invulnerability((int) rand.nextInt(w - 25), rand
+		itens.add(new Health(rand.nextInt(w - 25), rand.nextInt(h) + h));
+		itens.add(new SlowDown(rand.nextInt(w - 25), rand.nextInt(h) + h));
+		itens.add(new Invulnerability(rand.nextInt(w - 25), rand
 				.nextInt(h) + h));
-		itens.add(new Fuel((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
-		itens.add(new Skymine((int) rand.nextInt(w - 25), rand.nextInt(h) + h));
+		itens.add(new Fuel(rand.nextInt(w - 25), rand.nextInt(h) + h));
+		itens.add(new Skymine(rand.nextInt(w - 25), rand.nextInt(h) + h));
 
 		gameStarted = true;
+		changeLevel(Tools.getLevel());
 	}
 
 	/**
@@ -87,10 +88,10 @@ public class PlayState {
 		switch (level) {
 		case (2):
 			Obstacle.setCurrent_bmp(Tools.getAsteroid());
-			break;
+		break;
 		case (3):
 			Obstacle.setCurrent_bmp(Tools.getCloud());
-			break;
+		break;
 		default:
 			break;
 		}
@@ -117,7 +118,7 @@ public class PlayState {
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
 						+ Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
-			break;
+		break;
 		case (1): // Down
 			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
 				getPlayer().setMotion(1);
@@ -125,7 +126,7 @@ public class PlayState {
 						getGlobalAccelaration_y() - Tools.getDrawUnity(0.5f));
 				getPlayer().addFuel(0.01f * getGlobalAccelaration_y());
 			}
-			break;
+		break;
 
 		case (2):// Up
 			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
@@ -133,19 +134,19 @@ public class PlayState {
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
 						getGlobalAccelaration_y() + Tools.getDrawUnity(0.5f));
 			}
-			getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
-			break;
+		getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
+		break;
 		case (3): // Right
 			if (Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
 				getPlayer().setMotion(3);
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
 						- Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
-			break;
+		break;
 		case (-1): // No acceleration
 			GameObject.setGlobalAccelaration(0, 0);
-			getPlayer().setMotion(-1);
-			break;
+		getPlayer().setMotion(-1);
+		break;
 		}
 
 		// Verifica se foi apanhado o slow down
@@ -198,7 +199,7 @@ public class PlayState {
 	public void changeLevel(int lvl) {
 		Intent intent = new Intent(PlayActivity.getSingleInstance()
 				.getBaseContext(), LevelActivity.class);
-		Tools.setLevel(level);
+		Tools.setLevel(lvl);
 		PlayActivity.getSingleInstance().startActivity(intent);
 		GameLoop.getCurrent_instance().setRunning(false);
 		level = lvl;

@@ -15,7 +15,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -115,6 +114,7 @@ public class PlayActivity extends Activity {
 		alert.setView(input);
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String value = input.getText().toString();
 				addH(value, (int) GameLoop.getPoints());
@@ -124,9 +124,10 @@ public class PlayActivity extends Activity {
 
 		alert.setNegativeButton("Cancel",
 				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-					}
-				});
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
 
 		alert.show();
 	}
@@ -159,7 +160,6 @@ public class PlayActivity extends Activity {
 	}
 
 	public void muteSounds() {
-		Log.e("mute", "lol");
 		malfunction.setVolume(0, 0);
 		health_powerup.setVolume(0, 0);
 		fuel_powerup.setVolume(0, 0);

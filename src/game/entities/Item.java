@@ -1,6 +1,5 @@
 package game.entities;
 
-import android.util.Log;
 import game.engine.Tools;
 
 /**
@@ -20,7 +19,6 @@ public abstract class Item extends GameObject {
 	public void move() {
 		if (!this.isActive() && ticks == number_ticks) {
 			this.setActive(true);
-			Log.e("ACTIVOU", "ACTIVOU");
 		}
 		super.move();
 	}

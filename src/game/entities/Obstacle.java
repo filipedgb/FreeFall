@@ -98,6 +98,7 @@ public class Obstacle extends GameObject {
 		}
 	}
 
+	@Override
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.drawBitmap(current_bmp, getX(), getY(), paint);
 	}

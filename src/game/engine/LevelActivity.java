@@ -18,13 +18,14 @@ public class LevelActivity extends Activity {
 
 		if (Tools.getLevel() == 1)
 			setContentView(R.layout.level1);
-		if (Tools.getLevel() == 2)
+		else if (Tools.getLevel() == 2)
 			setContentView(R.layout.level2);
+		else if (Tools.getLevel() == 3)
+			setContentView(R.layout.level3);
 	}
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		GameLoop.getCurrent_instance().refresh();
 		finish();
