@@ -15,34 +15,36 @@ public final class R {
         public static final int alien_anim=0x7f020001;
         public static final int asteroid=0x7f020002;
         public static final int boostbonus=0x7f020003;
-        public static final int fuel=0x7f020004;
-        public static final int health=0x7f020005;
-        public static final int highscoremenu=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int invulnerability=0x7f020008;
-        public static final int invulnerable=0x7f020009;
-        public static final int invulnerableword=0x7f02000a;
-        public static final int landscapemainmenu=0x7f02000b;
-        public static final int level1portraitsmall=0x7f02000c;
-        public static final int level1portraitsmall1=0x7f02000d;
-        public static final int level2landscape=0x7f02000e;
-        public static final int level3=0x7f02000f;
-        public static final int level3landscape=0x7f020010;
-        public static final int level3portrait=0x7f020011;
-        public static final int levelum=0x7f020012;
-        public static final int levelum1=0x7f020013;
-        public static final int mainmenu2=0x7f020014;
-        public static final int malfunc_sprite=0x7f020015;
-        public static final int mine=0x7f020016;
-        public static final int nuvem=0x7f020017;
-        public static final int optionslandscape=0x7f020018;
-        public static final int satelite=0x7f020019;
-        public static final int slowmo=0x7f02001a;
+        public static final int coin=0x7f020004;
+        public static final int fuel=0x7f020005;
+        public static final int health=0x7f020006;
+        public static final int highscoremenu=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int invulnerability=0x7f020009;
+        public static final int invulnerable=0x7f02000a;
+        public static final int invulnerableword=0x7f02000b;
+        public static final int landscapemainmenu=0x7f02000c;
+        public static final int level1portraitsmall=0x7f02000d;
+        public static final int level1portraitsmall1=0x7f02000e;
+        public static final int level2landscape=0x7f02000f;
+        public static final int level3=0x7f020010;
+        public static final int level3landscape=0x7f020011;
+        public static final int level3portrait=0x7f020012;
+        public static final int levelum=0x7f020013;
+        public static final int levelum1=0x7f020014;
+        public static final int mainmenu2=0x7f020015;
+        public static final int malfunc_sprite=0x7f020016;
+        public static final int mine=0x7f020017;
+        public static final int nuvem=0x7f020018;
+        public static final int optionslandscape=0x7f020019;
+        public static final int satelite=0x7f02001a;
+        public static final int slowmo=0x7f02001b;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060000;
         public static final int TableLayout1=0x7f060004;
         public static final int chooseLevel_button=0x7f06002a;
+        public static final int coinsTV=0x7f060005;
         public static final int date1=0x7f060008;
         public static final int date10=0x7f060023;
         public static final int date2=0x7f06000b;
@@ -80,7 +82,6 @@ public final class R {
         public static final int score8=0x7f06001c;
         public static final int score9=0x7f06001f;
         public static final int start_button=0x7f060025;
-        public static final int textView1=0x7f060005;
         public static final int textView2=0x7f060028;
         public static final int toggleButton1=0x7f060029;
         public static final int toggleButton2=0x7f06002b;
@@ -95,10 +96,11 @@ public final class R {
         public static final int options=0x7f030006;
     }
     public static final class raw {
-        public static final int malfunction=0x7f040000;
-        public static final int nodamage=0x7f040001;
-        public static final int powerup=0x7f040002;
-        public static final int powerup2=0x7f040003;
+        public static final int coin=0x7f040000;
+        public static final int malfunction=0x7f040001;
+        public static final int nodamage=0x7f040002;
+        public static final int powerup=0x7f040003;
+        public static final int powerup2=0x7f040004;
     }
     public static final class string {
         public static final int Exit=0x7f050004;

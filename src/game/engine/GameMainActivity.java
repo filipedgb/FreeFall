@@ -1,5 +1,9 @@
 package game.engine;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 import game.config.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Esta classe representa o menu do jogo, que, consoante o que o jogador
@@ -19,10 +24,15 @@ import android.widget.Button;
  * @see Activity
  */
 public class GameMainActivity extends Activity {
+	private static int coins;
+	public static final String filenameCoins = "FreeFallCoins";
+
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		loadCoins();
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -72,5 +82,56 @@ public class GameMainActivity extends Activity {
 			}
 		});
 
+
+		updateCoins();
+	}
+
+	private void loadCoins() {
+		File file = getFileStreamPath(filenameCoins);
+
+		if (!file.exists()) {
+			setCoins(0);
+		}
+
+		try {
+			FileInputStream fis = openFileInput(filenameCoins);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			setCoins((Integer) ois.readObject());
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void addCoins() {
+		setCoins(getCoins() + 1);
+	}
+
+	/**
+	 * @return the coins
+	 */
+	public static int getCoins() {
+		return coins;
+	}
+
+	/**
+	 * @param coins the coins to set
+	 */
+	public static void setCoins(int coins) {
+		GameMainActivity.coins = coins;
+	}
+
+	public void updateCoins() {
+		TextView coinsTV = (TextView) findViewById(R.id.coinsTV);
+		coinsTV.setText("COINS: " + GameMainActivity.getCoins());
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onResume()
+	 */
+	@Override
+	protected void onResume() {
+		updateCoins();
+		super.onResume();
 	}
 }

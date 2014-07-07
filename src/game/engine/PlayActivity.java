@@ -37,6 +37,8 @@ public class PlayActivity extends Activity {
 	private HighscoreState highscores;
 	private static PlayActivity singleInstance = null;
 
+	private MediaPlayer coinSound;
+
 	/**
 	 * @return the highscores
 	 */
@@ -67,6 +69,7 @@ public class PlayActivity extends Activity {
 		health_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup);
 		fuel_powerup = MediaPlayer.create(getBaseContext(), R.raw.powerup2);
 		nodamage = MediaPlayer.create(getBaseContext(), R.raw.nodamage);
+		coinSound = MediaPlayer.create(getBaseContext(), R.raw.coin);
 
 		if (mute)
 			muteSounds();
@@ -119,15 +122,17 @@ public class PlayActivity extends Activity {
 				String value = input.getText().toString();
 				addH(value, (int) GameLoop.getPoints());
 				saveHighscores();
+				saveCoins();
 			}
 		});
 
 		alert.setNegativeButton("Cancel",
 				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int whichButton) {
-					}
-				});
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				saveCoins();
+			}
+		});
 
 		alert.show();
 	}
@@ -164,12 +169,26 @@ public class PlayActivity extends Activity {
 		health_powerup.setVolume(0, 0);
 		fuel_powerup.setVolume(0, 0);
 		nodamage.setVolume(0, 0);
+		coinSound.setVolume(0, 0);
 	}
 
 	@Override
 	public void onBackPressed() {
+		saveCoins();
 		GameLoop.stopThread(0);
 		super.onBackPressed();
+	}
+
+	public void saveCoins() {
+		try {
+			FileOutputStream fos = openFileOutput(GameMainActivity.filenameCoins,
+					MODE_WORLD_READABLE);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(GameMainActivity.getCoins());
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void playMalfunc() {
@@ -178,6 +197,10 @@ public class PlayActivity extends Activity {
 
 	public void playHealth() {
 		health_powerup.start();
+	}
+
+	public void playCoin() {
+		coinSound.start();
 	}
 
 	public void playFuel() {

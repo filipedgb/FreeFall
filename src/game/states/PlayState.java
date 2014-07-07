@@ -19,6 +19,14 @@ public class PlayState {
 	private ArrayList<Obstacle> objects = new ArrayList<Obstacle>();
 	private Player player;
 	private ArrayList<Item> itens = new ArrayList<Item>();
+	private ArrayList<Coin> coins = new ArrayList<Coin>();
+	/**
+	 * @return the coins
+	 */
+	public ArrayList<Coin> getCoins() {
+		return coins;
+	}
+
 	private float points = 1;
 	private int level = 1;
 	private boolean changelevel = false;
@@ -40,6 +48,7 @@ public class PlayState {
 	 */
 	public void init() {
 		randomizeObstacles();
+		randomizeCoins();
 		Random rand = new Random();
 
 		int w = current_view.getWidth();
@@ -70,6 +79,19 @@ public class PlayState {
 	}
 
 	/**
+	 * Função que determina posições iniciais das moedas, chamada no init
+	 */
+	private void randomizeCoins() {
+		int x, y;
+		for (int i = 0; i < 20; i++) {
+			y = (int) (Math.random() * 200);
+			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view
+					.getWidth());
+			coins.add(new Coin(x, current_view.getHeight() + y));
+		}
+	}
+
+	/**
 	 * Atualiza todos os objetos do jogo, quando esta a decorrer o jogo em si
 	 */
 	public void update() {
@@ -88,12 +110,12 @@ public class PlayState {
 			switch (level) {
 			case (2):
 				Obstacle.setCurrent_bmp(Tools.getAsteroid());
-				changelevel = false;
-				break;
+			changelevel = false;
+			break;
 			case (3):
 				Obstacle.setCurrent_bmp(Tools.getCloud());
-				changelevel = false;
-				break;
+			changelevel = false;
+			break;
 			default:
 				break;
 			}
@@ -122,7 +144,14 @@ public class PlayState {
 					x.setVelocity_y(x.getVelocity_y() / 2);
 				for (Obstacle x : objects)
 					x.setVelocity_y(x.getVelocity_y() / 2);
+				for(Coin x : coins)
+					x.setVelocity_y(x.getVelocity_y() / 2);
 			}
+		}
+
+		for(Coin x : coins) {
+			x.caught(player);
+			x.updateItem();
 		}
 
 		// Verifica se foi apanhado algum item
@@ -155,6 +184,10 @@ public class PlayState {
 		// move os itens
 		for (Item x : itens)
 			x.move();
+
+		// move as moedas
+		for (Coin x : coins)
+			x.move();
 	}
 
 	/**
@@ -168,7 +201,7 @@ public class PlayState {
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
 						+ Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
-			break;
+		break;
 		case (1): // Down
 			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
 				getPlayer().setMotion(1);
@@ -176,7 +209,7 @@ public class PlayState {
 						getGlobalAccelaration_y() - Tools.getDrawUnity(0.5f));
 				getPlayer().addFuel(0.01f * getGlobalAccelaration_y());
 			}
-			break;
+		break;
 
 		case (2):// Up
 			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
@@ -184,19 +217,19 @@ public class PlayState {
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
 						getGlobalAccelaration_y() + Tools.getDrawUnity(0.5f));
 			}
-			getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
-			break;
+		getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
+		break;
 		case (3): // Right
 			if (Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
 				getPlayer().setMotion(3);
 				GameObject.setGlobalAccelaration(getGlobalAccelaration_x()
 						- Tools.getDrawUnity(0.5f), getGlobalAccelaration_y());
 			}
-			break;
+		break;
 		case (-1): // No acceleration
 			GameObject.setGlobalAccelaration(0, 0);
-			getPlayer().setMotion(-1);
-			break;
+		getPlayer().setMotion(-1);
+		break;
 		}
 	}
 
