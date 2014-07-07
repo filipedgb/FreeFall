@@ -43,6 +43,8 @@ public class Tools {
 	private static Bitmap player_spritesheet;
 	private static Sprite player_animation;
 	private static Sprite malfunction_anim;
+	
+	private static Bitmap coin;
 
 	public static void setLevel(int level) {
 		Tools.level = level;
@@ -133,6 +135,10 @@ public class Tools {
 				(int) Tools.getDrawUnity(40));
 		malfunction_anim = new Sprite((int) Tools.getDrawUnity(3),
 				(int) Tools.getDrawUnity(15), 3, 2, malfunction);
+		
+		coin = BitmapFactory.decodeResource(res, R.drawable.coin);
+		coin = Bitmap.createScaledBitmap(coin, (int) getDrawUnity(2f),
+				(int) getDrawUnity(1.5f), true);
 
 	}
 
@@ -260,5 +266,9 @@ public class Tools {
 
 	public static void setOrientation(int orientation) {
 		Tools.orientation = orientation;
+	}
+
+	public static Bitmap getCoin() {
+		return coin;
 	}
 }

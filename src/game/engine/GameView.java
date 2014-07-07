@@ -1,6 +1,8 @@
 package game.engine;
 
+import game.entities.Coin;
 import game.entities.Item;
+import game.entities.Obstacle;
 import game.states.PlayState;
 import android.content.Context;
 import android.graphics.*;
@@ -93,9 +95,13 @@ public class GameView extends View {
 					(int) Tools.getDrawUnity(3), (int) Tools.getDrawUnity(3));
 
 		// Desenha os obstáculos
-		for (int i = 0; i < game.getObjects().size(); i++) {
-			game.getObjects().get(i).draw(canvas, paint);
-		}
+		for(Obstacle x : game.getObjects())
+			x.draw(canvas, paint);
+
+		//Desenha as moedas
+		for(Coin x : game.getCoins())
+			if(x.isActive())
+				x.draw(canvas, paint);
 
 		// desenha barras
 		drawBarras(canvas);
@@ -109,6 +115,7 @@ public class GameView extends View {
 			if (x.isActive())
 				x.draw(canvas, paint);
 
+
 		// Desenha a pontuação
 		paint.setAntiAlias(true);
 		paint.setColor(Color.argb(255, 92, 87, 8));
@@ -116,6 +123,14 @@ public class GameView extends View {
 		canvas.drawText("SCORE: " + (int) game.getPoints(),
 				Tools.getDrawUnity(12),
 				paint.getTextSize() + Tools.getDrawUnity(1), paint);
+
+		//Desenha as moedas
+		paint.setAntiAlias(true);
+		paint.setColor(Color.argb(255, 92, 87, 8));
+		paint.setTextSize(Tools.getDrawUnity((float) 1.5));
+		canvas.drawText("COINS: " + (int) GameMainActivity.getCoins(),
+				Tools.getDrawUnity(12),
+				paint.getTextSize() + Tools.getDrawUnity(3), paint);
 	}
 
 	/**
@@ -132,7 +147,7 @@ public class GameView extends View {
 				Tools.getDrawUnity((float) 1.5),
 				Tools.getDrawUnity(2) + Tools.getDrawUnity(7),
 				Tools.getDrawUnity((float) 1.5)
-						+ Tools.getDrawUnity((float) 0.5), paint);
+				+ Tools.getDrawUnity((float) 0.5), paint);
 
 		// Desenha barra de vida
 		paint.setColor(Color.GREEN);
@@ -141,9 +156,9 @@ public class GameView extends View {
 				Tools.getDrawUnity(2),
 				Tools.getDrawUnity((float) 1.5),
 				Tools.getDrawUnity(2)
-						+ (game.getPlayer().getHealthFrac() * Tools
-								.getDrawUnity(7)),
-				Tools.getDrawUnity((float) 1.5)
+				+ (game.getPlayer().getHealthFrac() * Tools
+						.getDrawUnity(7)),
+						Tools.getDrawUnity((float) 1.5)
 						+ Tools.getDrawUnity((float) 0.5), paint);
 
 		// Desenha barras por baixo
@@ -154,7 +169,7 @@ public class GameView extends View {
 				Tools.getDrawUnity((float) 2.25),
 				Tools.getDrawUnity(2) + Tools.getDrawUnity(7),
 				Tools.getDrawUnity((float) 2.25)
-						+ Tools.getDrawUnity((float) 0.5), paint);
+				+ Tools.getDrawUnity((float) 0.5), paint);
 
 		paint.setColor(Color.BLUE);
 
@@ -163,9 +178,9 @@ public class GameView extends View {
 				Tools.getDrawUnity(2),
 				Tools.getDrawUnity((float) 2.25),
 				Tools.getDrawUnity(2)
-						+ (game.getPlayer().getFuelFrac() * Tools
-								.getDrawUnity(7)),
-				Tools.getDrawUnity((float) 2.25)
+				+ (game.getPlayer().getFuelFrac() * Tools
+						.getDrawUnity(7)),
+						Tools.getDrawUnity((float) 2.25)
 						+ Tools.getDrawUnity((float) 0.5), paint);
 	}
 }
