@@ -51,4 +51,14 @@
         android:minWidth="100dp"
         android:text="@string/Options" />
 
+    <TextView
+        android:id="@+id/coinsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/highscore_button"
+        android:layout_alignRight="@+id/highscore_button"
+        android:layout_marginBottom="32dp"
+        android:text="Coins: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>

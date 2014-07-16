@@ -50,4 +50,15 @@
         android:minWidth="250dp"
         android:text="@string/Play" />
 
+    <TextView
+        android:id="@+id/coinsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/start_button"
+        android:layout_alignRight="@+id/start_button"
+        android:layout_marginBottom="136dp"
+        android:layout_marginRight="77dp"
+        android:text="Coins: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>
