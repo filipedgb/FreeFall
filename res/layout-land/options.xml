@@ -10,28 +10,6 @@
     tools:context="game.engine.HighscoreActivity"
     tools:ignore="HardcodedText" >
 
-    <ToggleButton
-        android:id="@+id/toggleButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toggleButton1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:text="Sensor"
-        android:textOff="Touch"
-        android:textOn="Sensor" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:text="@string/Sound"
-        android:textOff="Sound On"
-        android:textOn="Sound Off" />
-
     <TextView
         android:id="@+id/coinsTV"
         android:layout_width="wrap_content"
@@ -50,5 +28,34 @@
         android:layout_centerHorizontal="true"
         android:text="Options"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <ToggleButton
+         android:id="@+id/toggleButton1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/textView2"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="20dp"
+         android:text="@string/Sound"
+         android:textOff="Sound On"
+         android:textOn="Sound Off" />
+
+     <ToggleButton
+         android:id="@+id/toggleButton2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:text="Sensor"
+         android:textOff="Touch"
+         android:textOn="Sensor" />
+
+     <Button
+         android:id="@+id/chooseLevel_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/coinsTV"
+         android:layout_centerHorizontal="true"
+         android:text="Choose Level" />
 
 </RelativeLayout>

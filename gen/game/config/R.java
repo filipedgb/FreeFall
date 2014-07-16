@@ -24,21 +24,22 @@ public final class R {
         public static final int invulnerable=0x7f02000a;
         public static final int invulnerableword=0x7f02000b;
         public static final int landscapemainmenu=0x7f02000c;
-        public static final int level1portraitsmall=0x7f02000d;
-        public static final int level1portraitsmall1=0x7f02000e;
-        public static final int level2landscape=0x7f02000f;
-        public static final int level3=0x7f020010;
-        public static final int level3landscape=0x7f020011;
-        public static final int level3portrait=0x7f020012;
-        public static final int levelum=0x7f020013;
-        public static final int levelum1=0x7f020014;
-        public static final int mainmenu2=0x7f020015;
-        public static final int malfunc_sprite=0x7f020016;
-        public static final int mine=0x7f020017;
-        public static final int nuvem=0x7f020018;
-        public static final int optionslandscape=0x7f020019;
-        public static final int satelite=0x7f02001a;
-        public static final int slowmo=0x7f02001b;
+        public static final int level1land=0x7f02000d;
+        public static final int level1portraitsmall=0x7f02000e;
+        public static final int level1portraitsmall1=0x7f02000f;
+        public static final int level2landscape=0x7f020010;
+        public static final int level3=0x7f020011;
+        public static final int level3landscape=0x7f020012;
+        public static final int level3portrait=0x7f020013;
+        public static final int levelum=0x7f020014;
+        public static final int levelum1=0x7f020015;
+        public static final int mainmenu2=0x7f020016;
+        public static final int malfunc_sprite=0x7f020017;
+        public static final int mine=0x7f020018;
+        public static final int nuvem=0x7f020019;
+        public static final int optionslandscape=0x7f02001a;
+        public static final int satelite=0x7f02001b;
+        public static final int slowmo=0x7f02001c;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060000;
