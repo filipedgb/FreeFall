@@ -51,4 +51,13 @@
         android:text="Options"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+     <Button
+         android:id="@+id/chooseLevel_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/toggleButton2"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="55dp"
+         android:text="Choose Level" />
+
 </RelativeLayout>

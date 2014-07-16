@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/optionslandscape"
+    android:orientation="vertical" >
+
+    <ImageButton
+        android:id="@+id/level3Button"
+        android:layout_width="82dp"
+        android:layout_height="125dp"
+        android:layout_alignTop="@+id/level2Button"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/level2Button"
+        android:background="@drawable/level3"
+        android:contentDescription="@string/level3" />
+
+    <ImageButton
+        android:id="@+id/level1Button"
+        android:layout_width="82dp"
+        android:layout_height="125dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/levelum"
+        android:contentDescription="@string/level1" />
+
+    <ImageButton
+        android:id="@+id/level2Button"
+        android:layout_width="82dp"
+        android:layout_height="125dp"
+        android:layout_alignTop="@+id/level1Button"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/level1Button"
+        android:background="@drawable/level1portraitsmall1"
+        android:contentDescription="@string/level2" />
+
+</RelativeLayout>
