@@ -87,12 +87,12 @@ public class GameView extends View {
 		// Desenha bonus points
 		if (game.getPlayer().isBoost())
 			canvas.drawBitmap(Tools.getBoost(), Tools.getDrawUnity(8),
-					Tools.getDrawUnity(3), paint);
+					Tools.getDrawUnity(5), paint);
 
 		// Desenha malfunction sprite
 		if (game.getPlayer().isMalfunctioning())
 			Tools.getMalfunction_anim().draw(canvas,
-					(int) Tools.getDrawUnity(3), (int) Tools.getDrawUnity(3));
+					(int) Tools.getDrawUnity(3), (int) Tools.getDrawUnity(4));
 
 		// Desenha os obstáculos
 		for(Obstacle x : game.getObjects())
