@@ -165,10 +165,7 @@ public class GameView extends View {
 		paint.setColor(Color.GRAY);
 
 		canvas.drawRect(
-				Tools.getDrawUnity(2),
-				Tools.getDrawUnity((float) 2.25),
-				Tools.getDrawUnity(2) + Tools.getDrawUnity(7),
-				Tools.getDrawUnity((float) 2.25)
+				Tools.getDrawUnity(2),Tools.getDrawUnity((float) 2.25),Tools.getDrawUnity(2) + Tools.getDrawUnity(7),Tools.getDrawUnity((float) 2.25)
 				+ Tools.getDrawUnity((float) 0.5), paint);
 
 		paint.setColor(Color.BLUE);
@@ -178,8 +175,7 @@ public class GameView extends View {
 				Tools.getDrawUnity(2),
 				Tools.getDrawUnity((float) 2.25),
 				Tools.getDrawUnity(2)
-				+ (game.getPlayer().getFuelFrac() * Tools
-						.getDrawUnity(7)),
+				+ (game.getPlayer().getFuelFrac() * Tools.getDrawUnity(7)),
 						Tools.getDrawUnity((float) 2.25)
 						+ Tools.getDrawUnity((float) 0.5), paint);
 	}

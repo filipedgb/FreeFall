@@ -23,7 +23,7 @@ public class Obstacle extends GameObject {
 	protected int number_ticks = 0;
 
 	public Obstacle(int x, int y) {
-		super(x, y, (int) Tools.getDrawUnity(7), (int) Tools.getDrawUnity(7));
+		super(x, y, (int) Tools.getDrawUnity(4), (int) Tools.getDrawUnity(4));
 		this.bmp = Tools.getSatelite();
 		damage = 50;
 		current_bmp = bmp;
