@@ -89,16 +89,16 @@ public class Tools {
 		res = resources;
 
 		cloud = BitmapFactory.decodeResource(res, R.drawable.nuvem);
-		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(7),
-				(int) getDrawUnity(7), true);
+		cloud = Bitmap.createScaledBitmap(cloud, (int) getDrawUnity(4),
+				(int) getDrawUnity(4), true);
 
 		satelite = BitmapFactory.decodeResource(res, R.drawable.satelite);
-		satelite = Bitmap.createScaledBitmap(satelite, (int) getDrawUnity(7),
-				(int) getDrawUnity(7), true);
+		satelite = Bitmap.createScaledBitmap(satelite, (int) getDrawUnity(4),
+				(int) getDrawUnity(4), true);
 
 		asteroid = BitmapFactory.decodeResource(res, R.drawable.asteroid);
-		asteroid = Bitmap.createScaledBitmap(asteroid, (int) getDrawUnity(7),
-				(int) getDrawUnity(7), true);
+		asteroid = Bitmap.createScaledBitmap(asteroid, (int) getDrawUnity(4),
+				(int) getDrawUnity(4), true);
 
 		invulnerable = BitmapFactory.decodeResource(res,
 				R.drawable.invulnerable);

@@ -34,7 +34,7 @@ public class PlayState {
 	private boolean gameStarted = false;
 	private GameView current_view;
 	private Vibrator v;
-	private int max_velocity_x = 150;
+	private int max_velocity_x = 100;
 	private int max_velocity_y = 700;
 
 	public PlayState(GameView gameView) {
@@ -44,7 +44,7 @@ public class PlayState {
 	}
 
 	/**
-	 * Função que inicializa os objectos todos da cena, com posições aleatórias
+	 * Função que inicializa os objectos todos0 da cena, com posições aleatórias
 	 */
 	public void init() {
 		randomizeObstacles();
@@ -72,8 +72,7 @@ public class PlayState {
 		int x, y;
 		for (int i = 0; i < 10; i++) {
 			y = (int) (Math.random() * 200);
-			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view
-					.getWidth());
+			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view.getWidth());
 			objects.add(new Obstacle(x, current_view.getHeight() + y));
 		}
 	}
@@ -81,12 +80,12 @@ public class PlayState {
 	/**
 	 * Função que determina posições iniciais das moedas, chamada no init
 	 */
+
 	private void randomizeCoins() {
 		int x, y;
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 1; i++) {
 			y = (int) (Math.random() * 200);
-			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view
-					.getWidth());
+			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view.getWidth());
 			coins.add(new Coin(x, current_view.getHeight() + y));
 		}
 	}
@@ -194,7 +193,9 @@ public class PlayState {
 	 * Verifica movimentos do jogador
 	 */
 	public void checkPlayerMovements() {
+
 		switch (direction) {
+
 		case (0): // Left
 			if (Math.abs(objects.get(0).getVelocity_x()) < max_velocity_x) {
 				getPlayer().setMotion(2);
@@ -203,19 +204,33 @@ public class PlayState {
 			}
 		break;
 		case (1): // Down
-			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
-				getPlayer().setMotion(1);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
-						getGlobalAccelaration_y() - Tools.getDrawUnity(0.5f));
-				getPlayer().addFuel(0.01f * getGlobalAccelaration_y());
+			if(player.getFuel() <= 0) {
+				GameObject.setGlobalAccelaration(0, 0);
+				getPlayer().setMotion(-1);
+			}
+			else  {
+
+				if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+					getPlayer().setMotion(1);
+					GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
+							getGlobalAccelaration_y() - Tools.getDrawUnity(0.5f));
+					getPlayer().addFuel(0.01f * getGlobalAccelaration_y());
+				}
 			}
 		break;
 
 		case (2):// Up
-			if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
-				getPlayer().setMotion(0);
-				GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
-						getGlobalAccelaration_y() + Tools.getDrawUnity(0.5f));
+			if(player.getFuel() <= 0) {
+				GameObject.setGlobalAccelaration(0, 0);
+				getPlayer().setMotion(-1);
+			}
+			else {
+
+				if (Math.abs(objects.get(0).getVelocity_y()) < max_velocity_y) {
+					getPlayer().setMotion(0);
+					GameObject.setGlobalAccelaration(getGlobalAccelaration_x(),
+							getGlobalAccelaration_y() + Tools.getDrawUnity(0.5f));
+				}
 			}
 		getPlayer().addFuel(-0.01f * getGlobalAccelaration_y());
 		break;
@@ -239,8 +254,7 @@ public class PlayState {
 	 * @param lvl
 	 */
 	public void changeLevel(int lvl) {
-		Intent intent = new Intent(PlayActivity.getSingleInstance()
-				.getBaseContext(), LevelActivity.class);
+		Intent intent = new Intent(PlayActivity.getSingleInstance().getBaseContext(), LevelActivity.class);
 		Tools.setLevel(lvl);
 		PlayActivity.getSingleInstance().startActivity(intent);
 		GameLoop.getCurrent_instance().setRunning(false);
