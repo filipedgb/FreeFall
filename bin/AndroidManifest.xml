@@ -25,6 +25,8 @@
         <activity android:name="game.engine.OptionsActivity"></activity>
         <activity android:name="game.engine.LevelActivity"></activity>
         <activity android:name="game.engine.ChooseLevelActivity"></activity>
+        <activity android:name="game.engine.rules.HelpActivity"></activity>
+        <activity android:name="game.engine.rules.ControlsActivity"></activity>
     </application>
 
 </manifest>
