@@ -6,28 +6,6 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/exit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="68dp"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Exit" />
-
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/exit_button"
-        android:layout_alignLeft="@+id/exit_button"
-        android:layout_marginBottom="146dp"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Play" />
-
-    <Button
         android:id="@+id/options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,5 +37,37 @@
         android:layout_marginRight="32dp"
         android:text="Coins: "
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:minHeight="50dp"
+        android:minWidth="145dp"
+        android:text="@string/Exit" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/controls"
+        android:layout_alignLeft="@+id/controls"
+        android:layout_marginBottom="22dp"
+        android:minHeight="50dp"
+        android:minWidth="145dp"
+        android:text="@string/Play" />
+
+    <Button
+        android:id="@+id/controls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/highscore_button"
+        android:layout_alignLeft="@+id/highscore_button"
+        android:layout_alignRight="@+id/highscore_button"
+        android:layout_marginBottom="14dp"
+        android:text="Rules" />
 
 </RelativeLayout>

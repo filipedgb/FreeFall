@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 import game.config.R;
+import game.engine.rules.HelpActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,7 +71,7 @@ public class GameMainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-
+		
 		// options button
 		Button buttonOptions = (Button) findViewById(R.id.options_button);
 
@@ -78,6 +79,17 @@ public class GameMainActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(GameMainActivity.this,
 						OptionsActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		// rules button
+		Button rules = (Button) findViewById(R.id.controls);
+
+		rules.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(GameMainActivity.this,
+						HelpActivity.class);
 				startActivity(intent);
 			}
 		});
