@@ -1,6 +1,6 @@
 package game.entities;
 
-import game.engine.GameMainActivity;
+import game.engine.MarketActivity;
 import game.engine.PlayActivity;
 import game.engine.Tools;
 import android.graphics.Canvas;
@@ -17,7 +17,7 @@ public class Coin extends Item {
 	public boolean caught(Player player) {
 		if(this.colide(player)) {
 			if(this.isActive()) {
-				GameMainActivity.addCoins();
+				MarketActivity.addCoins();
 				PlayActivity.getSingleInstance().playCoin();
 			}
 			disabler(25);
@@ -29,7 +29,7 @@ public class Coin extends Item {
 	@Override
 	public void caught(Player player, boolean teste) {
 		if(this.colide(player)) {
-			GameMainActivity.addCoins();
+			MarketActivity.addCoins();
 			disabler(25);
 		}
 	}

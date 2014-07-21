@@ -181,10 +181,9 @@ public class PlayActivity extends Activity {
 
 	public void saveCoins() {
 		try {
-			FileOutputStream fos = openFileOutput(GameMainActivity.filenameCoins,
-					MODE_WORLD_READABLE);
+			FileOutputStream fos = openFileOutput(MarketActivity.filenameCoins,MODE_WORLD_READABLE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(GameMainActivity.getCoins());
+			oos.writeObject(MarketActivity.getCoins());
 			oos.close();
 		} catch (Exception e) {
 			e.printStackTrace();

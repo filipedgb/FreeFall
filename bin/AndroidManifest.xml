@@ -28,6 +28,7 @@
         <activity android:name="game.engine.rules.HelpActivity"></activity>
         <activity android:name="game.engine.rules.ControlsActivity"></activity>
         <activity android:name="game.engine.rules.ItemsActivity"></activity>
+        <activity android:name="game.engine.MarketActivity"></activity>
     </application>
 
 </manifest>

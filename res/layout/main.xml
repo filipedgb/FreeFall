@@ -6,12 +6,22 @@
     android:orientation="vertical" >
 
     <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:minHeight="50dp"
+        android:minWidth="145dp"
+        android:text="@string/Exit" />
+
+    <Button
         android:id="@+id/options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/exit_button"
         android:layout_alignLeft="@+id/exit_button"
-        android:layout_marginBottom="17dp"
         android:minHeight="50dp"
         android:minWidth="145dp"
         android:text="@string/Options" />
@@ -22,40 +32,16 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/options_button"
         android:layout_alignLeft="@+id/options_button"
-        android:layout_marginBottom="14dp"
         android:minHeight="50dp"
         android:minWidth="145dp"
         android:text="@string/Highscore" />
-
-    <TextView
-        android:id="@+id/coinsTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/start_button"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="39dp"
-        android:layout_marginRight="32dp"
-        android:text="Coins: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <Button
-        android:id="@+id/exit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Exit" />
 
     <Button
         android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/controls"
-        android:layout_alignLeft="@+id/controls"
-        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/market"
+        android:layout_alignLeft="@+id/market"
         android:minHeight="50dp"
         android:minWidth="145dp"
         android:text="@string/Play" />
@@ -67,7 +53,16 @@
         android:layout_above="@+id/highscore_button"
         android:layout_alignLeft="@+id/highscore_button"
         android:layout_alignRight="@+id/highscore_button"
-        android:layout_marginBottom="14dp"
         android:text="Rules" />
+
+    <Button
+        android:id="@+id/market"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/controls"
+        android:layout_alignLeft="@+id/controls"
+        android:minHeight="50dp"
+        android:minWidth="145dp"
+        android:text="Market" />
 
 </RelativeLayout>

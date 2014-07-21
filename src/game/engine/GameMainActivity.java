@@ -25,15 +25,15 @@ import android.widget.TextView;
  * @see Activity
  */
 public class GameMainActivity extends Activity {
-	private static int coins;
-	public static final String filenameCoins = "FreeFallCoins";
+	//	private static int coins;
+	//	public static final String filenameCoins = "FreeFallCoins";
 
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		loadCoins();
+		//	loadCoins();
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -71,7 +71,7 @@ public class GameMainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
+
 		// options button
 		Button buttonOptions = (Button) findViewById(R.id.options_button);
 
@@ -94,56 +94,67 @@ public class GameMainActivity extends Activity {
 			}
 		});
 
+		// market button
+		Button market = (Button) findViewById(R.id.market);
 
-		updateCoins();
+		market.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(GameMainActivity.this,
+						MarketActivity.class);
+				startActivity(intent);
+			}
+		});
+
+
+		//	updateCoins();
 	}
 
-	private void loadCoins() {
-		File file = getFileStreamPath(filenameCoins);
-
-		if (!file.exists()) {
-			setCoins(0);
-		}
-
-		try {
-			FileInputStream fis = openFileInput(filenameCoins);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			setCoins((Integer) ois.readObject());
-			ois.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void addCoins() {
-		setCoins(getCoins() + 1);
-	}
-
-	/**
-	 * @return the coins
-	 */
-	public static int getCoins() {
-		return coins;
-	}
-
-	/**
-	 * @param coins the coins to set
-	 */
-	public static void setCoins(int coins) {
-		GameMainActivity.coins = coins;
-	}
-
-	public void updateCoins() {
-		TextView coinsTV = (TextView) findViewById(R.id.coinsTV);
-		coinsTV.setText("COINS: " + GameMainActivity.getCoins());
-	}
+	//	private void loadCoins() {
+	//		File file = getFileStreamPath(filenameCoins);
+	//
+	//		if (!file.exists()) {
+	//			setCoins(0);
+	//		}
+	//
+	//		try {
+	//			FileInputStream fis = openFileInput(filenameCoins);
+	//			ObjectInputStream ois = new ObjectInputStream(fis);
+	//			setCoins((Integer) ois.readObject());
+	//			ois.close();
+	//		} catch (Exception e) {
+	//			e.printStackTrace();
+	//		}
+	//	}
+	//
+	//	public static void addCoins() {
+	//		setCoins(getCoins() + 1);
+	//	}
+	//
+	//	/**
+	//	 * @return the coins
+	//	 */
+	//	public static int getCoins() {
+	//		return coins;
+	//	}
+	//
+	//	/**
+	//	 * @param coins the coins to set
+	//	 */
+	//	public static void setCoins(int coins) {
+	//		GameMainActivity.coins = coins;
+	//	}
+	//
+	//	public void updateCoins() {
+	//		TextView coinsTV = (TextView) findViewById(R.id.coinsTV);
+	//		coinsTV.setText("COINS: " + GameMainActivity.getCoins());
+	//	}
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onResume()
 	 */
 	@Override
 	protected void onResume() {
-		updateCoins();
+		//	updateCoins();
 		super.onResume();
 	}
 }
