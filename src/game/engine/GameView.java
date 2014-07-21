@@ -128,7 +128,7 @@ public class GameView extends View {
 		paint.setAntiAlias(true);
 		paint.setColor(Color.argb(255, 92, 87, 8));
 		paint.setTextSize(Tools.getDrawUnity((float) 1.5));
-		canvas.drawText("COINS: " + (int) GameMainActivity.getCoins(),
+		canvas.drawText("COINS: " + (int) MarketActivity.getCoins(),
 				Tools.getDrawUnity(12),
 				paint.getTextSize() + Tools.getDrawUnity(3), paint);
 	}
