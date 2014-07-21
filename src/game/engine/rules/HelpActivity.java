@@ -33,6 +33,16 @@ public class HelpActivity extends Activity {
 			}
 		});
 
+		// highscore button
+		Button items = (Button) findViewById(R.id.items);
+		items.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(HelpActivity.this,
+						ItemsActivity.class);
+				startActivity(intent);
+			}
+		});
+
 
 
 	}

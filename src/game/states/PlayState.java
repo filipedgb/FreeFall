@@ -83,7 +83,7 @@ public class PlayState {
 
 	private void randomizeCoins() {
 		int x, y;
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 10; i++) {
 			y = (int) (Math.random() * 200);
 			x = (int) (Math.random() * (6 * current_view.getWidth()) - 3 * current_view.getWidth());
 			coins.add(new Coin(x, current_view.getHeight() + y));

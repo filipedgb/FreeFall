@@ -137,7 +137,7 @@ public class Tools {
 				(int) Tools.getDrawUnity(15), 3, 2, malfunction);
 		
 		coin = BitmapFactory.decodeResource(res, R.drawable.coin);
-		coin = Bitmap.createScaledBitmap(coin, (int) getDrawUnity(2f),
+		coin = Bitmap.createScaledBitmap(coin, (int) getDrawUnity(1.5f),
 				(int) getDrawUnity(1.5f), true);
 
 	}
