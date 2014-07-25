@@ -1,9 +1,5 @@
 package game.engine;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-
 import game.config.R;
 import game.engine.rules.HelpActivity;
 import android.app.Activity;
@@ -14,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 /**
  * Esta classe representa o menu do jogo, que, consoante o que o jogador
@@ -42,16 +38,18 @@ public class GameMainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		// exit button
-		Button buttonExit = (Button) findViewById(R.id.exit_button);
+		ImageButton  buttonExit = (ImageButton ) findViewById(R.id.exit_btn);
 		buttonExit.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				finish();
 				System.exit(0);
 			}
 		});
+		
+	
 
 		// highscore button
-		Button buttonHighscore = (Button) findViewById(R.id.highscore_button);
+		ImageButton  buttonHighscore = (ImageButton ) findViewById(R.id.scores_btn);
 		buttonHighscore.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(GameMainActivity.this,
@@ -61,8 +59,7 @@ public class GameMainActivity extends Activity {
 		});
 
 		// start button
-		Button buttonStart = (Button) findViewById(R.id.start_button);
-
+		ImageButton  buttonStart = (ImageButton ) findViewById(R.id.start_btn);
 		buttonStart.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(GameMainActivity.this,
@@ -73,7 +70,7 @@ public class GameMainActivity extends Activity {
 		});
 
 		// options button
-		Button buttonOptions = (Button) findViewById(R.id.options_button);
+		ImageButton  buttonOptions = (ImageButton ) findViewById(R.id.options_btn);
 
 		buttonOptions.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -84,7 +81,7 @@ public class GameMainActivity extends Activity {
 		});
 
 		// rules button
-		Button rules = (Button) findViewById(R.id.controls);
+		ImageButton  rules = (ImageButton ) findViewById(R.id.rules_btn);
 
 		rules.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -95,7 +92,7 @@ public class GameMainActivity extends Activity {
 		});
 
 		// market button
-		Button market = (Button) findViewById(R.id.market);
+		ImageButton  market = (ImageButton ) findViewById(R.id.market_btn);
 
 		market.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
