@@ -1,68 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/numero1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/mainmenu2"
-    android:orientation="vertical" >
+    android:background="@drawable/mainmenu2" >
 
-    <Button
-        android:id="@+id/exit_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Exit" />
+        android:layout_marginBottom="28dp"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/options_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/exit_button"
-        android:layout_alignLeft="@+id/exit_button"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Options" />
+        <ImageButton
+            android:id="@+id/start_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:background="@drawable/buttonplay" />
 
-    <Button
-        android:id="@+id/highscore_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/options_button"
-        android:layout_alignLeft="@+id/options_button"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Highscore" />
+        <ImageButton
+            android:id="@+id/market_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonmarket" />
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/market"
-        android:layout_alignLeft="@+id/market"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="@string/Play" />
+        <ImageButton
+            android:id="@+id/rules_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonrules" />
 
-    <Button
-        android:id="@+id/controls"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/highscore_button"
-        android:layout_alignLeft="@+id/highscore_button"
-        android:layout_alignRight="@+id/highscore_button"
-        android:text="Rules" />
+        <ImageButton
+            android:id="@+id/scores_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonscores" />
 
-    <Button
-        android:id="@+id/market"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/controls"
-        android:layout_alignLeft="@+id/controls"
-        android:minHeight="50dp"
-        android:minWidth="145dp"
-        android:text="Market" />
+        <ImageButton
+            android:id="@+id/options_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonoptions" />
+
+        <ImageButton
+            android:id="@+id/exit_btn"
+            android:layout_width="128dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonexit" />
+    </LinearLayout>
 
 </RelativeLayout>
