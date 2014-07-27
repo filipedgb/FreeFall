@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, Jogo01Activity!</string>
     <string name="app_name">FreeFall</string>
     <string name="Highscore">Highscore</string>
     <string name="Play">Play</string>
