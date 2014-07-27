@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class HelpActivity extends Activity {
 
@@ -23,8 +24,7 @@ public class HelpActivity extends Activity {
 		setContentView(R.layout.help);
 
 
-		// highscore button
-		Button controls = (Button) findViewById(R.id.controls);
+		ImageButton controls = (ImageButton) findViewById(R.id.controls);
 		controls.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(HelpActivity.this,
@@ -33,8 +33,7 @@ public class HelpActivity extends Activity {
 			}
 		});
 
-		// highscore button
-		Button items = (Button) findViewById(R.id.items);
+		ImageButton items = (ImageButton) findViewById(R.id.items);
 		items.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(HelpActivity.this,
