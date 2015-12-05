@@ -4,7 +4,7 @@ Android game developed for the Object Oriented Programming Laboratory class of t
 
 You're an alien pulled by the earth's gravitational field falling at an increasing speed towards the surface. You must avoid obstacles in order to survive, while trying to control your spaceship with limited fuel.
 
-## Screenshots:
+## Screenshots
 
 ![Alt text](/screenshots/lpoo1.png?raw=true "Level 1")
 
